@@ -29,12 +29,11 @@ const config_D = {
 function Home() {
     const navigation = useNavigation();
     return (
-        <StyledView style={styles.viewContainer}>
+        <StyledView tw="h-[100vh]" style={styles.viewContainer}>
             <StyledView tw="w-[100vw] h-[20vh] mt-0" style={styles.header}>
                 <StyledText tw="mt-[10vh] ml-[7vw] color-white" style={styles.username}>Home</StyledText>
             </StyledView>
             
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
@@ -55,7 +54,7 @@ function Home() {
 const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        marginTop: 0,
+        marginTop: -100,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'
@@ -64,8 +63,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#825ee6',
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: -85,
-        marginBottom: 5
+        marginTop: 0,
+        marginBottom: 40
     },
     username: {
         fontSize: 40,
