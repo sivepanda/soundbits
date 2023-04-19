@@ -16,9 +16,7 @@ function Home() {
     const navigation = useNavigation();
     return (
         <StyledView style={styles.viewContainer}>
-
-            <StyledText tw='rounded-sm bg-slate-400 p-9 '>test</StyledText>
-
+            <StyledText tw='rounded-full bg-slate-400 p-9'>test</StyledText>
        </StyledView>
     );
 }
