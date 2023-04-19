@@ -2,7 +2,12 @@
 module.exports = {
   content: ["./App.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        zila: ["Zilla Slab", "sans-serif"],
+        zen: ["Zen Dots", "sans-serif"]
+      }
+    },
   },
   plugins: [],
 }

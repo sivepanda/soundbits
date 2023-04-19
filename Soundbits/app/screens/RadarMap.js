@@ -5,6 +5,9 @@ import { getRealitivePosition } from 'chart.js/helpers';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 
+import { useNavigation } from '@react-navigation/native';
+
+
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
 const StyledView = styled(View);
@@ -12,20 +15,20 @@ const StyledView = styled(View);
 
 function RadarMap() {
 
-    return <div className="RadarMap">
+    return (
+    <View className="RadarMap">
         <radarChart chartData={{
-        data: {
-        labels: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
-        datasets: [{
-            label: 'deaths per day',
-            backgroundcolor: '#00FF00',
-            bordercolor: '#00FF00',
-            borderWidth: 2,
-            data: [(Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10)]
-        }
-      ]
-    }}}/>
-    </div>;
+            data: {
+            labels: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
+            datasets: [{
+                label: 'deaths per day',
+                backgroundcolor: '#00FF00',
+                bordercolor: '#00FF00',
+                borderWidth: 2,
+                data: [(Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10), (Math.random()*10)]
+            }]
+        }}}/>
+    </View> )
 }
 
 // const sty = nw`bg-blue-500 text-white`;
