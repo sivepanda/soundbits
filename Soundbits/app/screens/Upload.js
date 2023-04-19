@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default withExpoSnack(Accounts);
+export default withExpoSnack(Upload);

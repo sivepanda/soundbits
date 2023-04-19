@@ -30,6 +30,10 @@ function Home() {
             <Button style={styles.styBut} 
             onPress={ () => navigation.navigate('Accounts', {})  } 
             title="To Accounts" tw='bg-white w-[20vw] h-[30vw]'/>
+
+            <Button style={styles.styBut} 
+            onPress={ () => navigation.navigate('Upload', {})  } 
+            title="Upload" tw='bg-white w-[20vw] h-[30vw]'/>
        </StyledView>
     );
 }
