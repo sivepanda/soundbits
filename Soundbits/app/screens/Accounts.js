@@ -14,8 +14,11 @@ const sounds = [
   { name: 'Sound 5', duration: '5:67' }
 ];
 
-const randomLikes = Math.floor(Math.random() * 100);
+const randomLikes = Math.floor(Math.random() * 10000);
 const randomFriends = Math.floor(Math.random() * 1000);
+const randomPosts = Math.floor(Math.random() * 100);
+const StyledText = styled(Text);
+
 
 const Accounts = () => {
   const [username, setUsername] = useState('John Doe');
@@ -28,17 +31,27 @@ const Accounts = () => {
             <View style={styles.container}>
               <View style={styles.header}>
                 <Image style={styles.profilePicture} source={{ uri: profilePicture }} />
-                <Text style={styles.username}>{username}</Text>
+                <Text style={styles.username}>@{username}</Text>
               </View>
-              <View style={styles.likesAndFriends}>
-                <Text>{randomLikes} Likes </Text>
-                <Text>{randomFriends} Friends</Text>
+              <View style={styles.Information}>
+                <View style={styles.likes}>
+                    <StyledText tw="text-3xl">{randomLikes}</StyledText>
+                    <StyledText tw="text-2xl">  likes</StyledText>
+                </View>
+                <View style={styles.posts}>
+                    <StyledText tw="text-3xl"> {randomPosts}</StyledText>
+                    <StyledText tw="text-2xl">posts</StyledText>
+                </View>
+                <View style={styles.friends}>
+                    <StyledText tw="text-3xl"> {randomFriends}</StyledText>
+                    <StyledText tw="text-2xl">friends</StyledText>
+                </View>
               </View>
               <View style={styles.soundList}>
                 {sounds.map(sound => (
                   <View style={styles.soundItem} key={sound.name}>
-                    <Text style={styles.soundName}>{sound.name}</Text>
-                    <Text>{sound.name} : {sound.duration}</Text>
+                    <StyledText tw="text-3xl" style={styles.soundName}>{sound.name}</StyledText>
+                    <StyledText tw="text-2xl" >{sound.duration}</StyledText>
                   </View>
                 ))}
               </View>
@@ -49,47 +62,64 @@ const Accounts = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#825ee6',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20
   },
   header: {
+     backgroundColor: '#825ee6',
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 40,
-    marginBottom: 10
+    marginBottom: 5
+  },
+  likes: {
+    alightItems: 'center',
+    paddingHorizontal: 15
+  },
+  posts: {
+    alightItems: 'center',
+    paddingHorizontal: 15
+  },
+  friends: {
+    alightItems: 'center',
+    paddingHorizontal: 15
   },
   profilePicture: {
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 70,
     borderRadius: 25,
     marginRight: 10
   },
   username: {
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold'
   },
-  likesAndFriends: {
+  Information: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20
+    marginBottom: 50
   },
   soundList: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#fff',
+    width: '110%',
+    alignItems: 'center'
   },
   soundItem: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#eee',
-    padding: 10,
+    padding: 30,
     marginVertical: 10,
-    borderRadius: 5,
-    width: '100%'
+    borderRadius: 10,
+    width: '90%'
   },
   soundName: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alightItems: 'right'
   }
 });
 
