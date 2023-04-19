@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import { withExpoSnack } from 'nativewind';
+import { styled } from "nativewind";
 
 class Nav extends Component {
   return(

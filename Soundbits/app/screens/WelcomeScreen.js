@@ -14,6 +14,7 @@ const StyledButton = styled(Button);
 
 function WelcomeScreen() {
     const navigation = useNavigation();
+    
     return (
         <StyledView style={styles.viewContainer} tw="bg-black">
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
