@@ -35,21 +35,21 @@ const Accounts = () => {
               </View>
               <View style={styles.Information}>
                 <View style={styles.likes}>
-                    <StyledText tw="text-2xl text-center">{randomLikes}</StyledText>
-                    <StyledText tw="text-1xl text-center">likes</StyledText>
+                    <StyledText tw="text-2xl text-center font-semibold">{randomLikes}</StyledText>
+                    <StyledText tw="text-1xl text-center font-semibold">likes</StyledText>
                 </View>
                 <View style={styles.posts}>
-                    <StyledText tw="text-2xl text-center">{randomPosts}</StyledText>
-                    <StyledText tw="text-1xl text-center">posts</StyledText>
+                    <StyledText tw="text-2xl text-center font-semibold">{randomPosts}</StyledText>
+                    <StyledText tw="text-1xl text-center font-semibold">posts</StyledText>
                 </View>
                 <View style={styles.friends}>
-                    <StyledText tw="text-2xl text-center">{randomFriends}</StyledText>
-                    <StyledText tw="text-1xl text-center">friends</StyledText>
+                    <StyledText tw="text-2xl text-center font-semibold">{randomFriends}</StyledText>
+                    <StyledText tw="text-1xl text-center font-semibold">friends</StyledText>
                 </View>
               </View>
               <View style={styles.soundList}>
                     <View>
-                        <StyledText tw="text-3xl font-bold">Top 5 Sounds:</StyledText>
+                        <StyledText tw="text-4xl font-bold">Top 5 Sounds:</StyledText>
                     </View>
                 {sounds.map(sound => (
                   <View style={styles.soundItem} key={sound.name}>
