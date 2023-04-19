@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 import RadarMap from './app/screens/RadarMap';
 import Home from './app/screens/Home';
+import Accounts from './app/screens/Accounts';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+        <Stack.Screen name="Accounts" component={Accounts} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
     // <HTMLTest />

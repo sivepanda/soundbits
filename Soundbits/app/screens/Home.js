@@ -18,7 +18,9 @@ function Home() {
         <StyledView style={styles.viewContainer}>
 
             <StyledText tw='rounded-sm bg-slate-400 p-9 '>test</StyledText>
-
+            <Button style={styles.styBut} 
+            onPress={ () => navigation.navigate('Accounts', {})  } 
+            title="To Accounts" tw='bg-white w-[20vw] h-[30vw]'/>
        </StyledView>
     );
 }
