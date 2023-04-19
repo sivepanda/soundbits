@@ -17,16 +17,29 @@ const StyledView = styled(View);
 const StyledButton = styled(Button);
 
 const config = {
-    dictionaries: [names]
-  }
+    dictionaries: [names],
+    style: 'capital'
+}
+
+const config_D = {
+    dictionaries: [adjectives],
+    style: 'capital'
+}
 
 function Home() {
     const navigation = useNavigation();
-    var z = Math.floor((Math.random() * 10) + 1);
-    const [time, setTime] = (z < 10 ? "0" + z : z);
     return (
         <StyledView style={styles.viewContainer}>
-            <Sound tm={ time } nm="Raindrops" auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <StyledView tw="w-[100vw] h-[20vh] mt-0" style={styles.header}>
+                <StyledText tw="mt-[10vh] ml-[7vw] color-white" style={styles.username}>Home</StyledText>
+            </StyledView>
+            
+            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            
             <Button style={styles.styBut} 
             onPress={ () => navigation.navigate('Accounts', {})  } 
             title="To Accounts" tw='bg-white w-[20vw] h-[30vw]'/>
@@ -42,12 +55,22 @@ function Home() {
 const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
+        marginTop: 0,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'
     },
-    styTex: {
-    }
+    header: {
+        backgroundColor: '#825ee6',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: -85,
+        marginBottom: 5
+    },
+    username: {
+        fontSize: 40,
+        fontWeight: 'bold'
+    },
 });
 
 
