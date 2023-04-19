@@ -35,19 +35,22 @@ const Accounts = () => {
               </View>
               <View style={styles.Information}>
                 <View style={styles.likes}>
-                    <StyledText tw="text-3xl">{randomLikes}</StyledText>
-                    <StyledText tw="text-2xl">  likes</StyledText>
+                    <StyledText tw="text-2xl text-center">{randomLikes}</StyledText>
+                    <StyledText tw="text-1xl text-center">likes</StyledText>
                 </View>
                 <View style={styles.posts}>
-                    <StyledText tw="text-3xl"> {randomPosts}</StyledText>
-                    <StyledText tw="text-2xl">posts</StyledText>
+                    <StyledText tw="text-2xl text-center">{randomPosts}</StyledText>
+                    <StyledText tw="text-1xl text-center">posts</StyledText>
                 </View>
                 <View style={styles.friends}>
-                    <StyledText tw="text-3xl"> {randomFriends}</StyledText>
-                    <StyledText tw="text-2xl">friends</StyledText>
+                    <StyledText tw="text-2xl text-center">{randomFriends}</StyledText>
+                    <StyledText tw="text-1xl text-center">friends</StyledText>
                 </View>
               </View>
               <View style={styles.soundList}>
+                    <View>
+                        <StyledText tw="text-3xl font-bold">Top 5 Sounds:</StyledText>
+                    </View>
                 {sounds.map(sound => (
                   <View style={styles.soundItem} key={sound.name}>
                     <StyledText tw="text-3xl" style={styles.soundName}>{sound.name}</StyledText>
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   header: {
-     backgroundColor: '#825ee6',
+    backgroundColor: '#825ee6',
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 40,
@@ -90,7 +93,8 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 25,
-    marginRight: 10
+    marginRight: 10,
+    marginTop: 30
   },
   username: {
     fontSize: 40,
@@ -99,7 +103,8 @@ const styles = StyleSheet.create({
   Information: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 50
+    paddingLeft: 70,
+    marginBottom: 20
   },
   soundList: {
     flex: 1,
