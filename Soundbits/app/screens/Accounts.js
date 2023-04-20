@@ -59,11 +59,8 @@ const Accounts = () => {
                   </View>
                 ))}
               </View>
-              <View style={{ flex: 1 }}>
+              <View style={{ flex: 0 }}>
                 <NavBar navigation={navigation} activeTab="Accounts" />
-                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Account</Text>
-                  </View>
               </View>
             </View>
             

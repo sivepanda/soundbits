@@ -10,6 +10,7 @@ import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique
 import { useNavigation } from '@react-navigation/native';
 
 import Sound from '../components/Sound'
+import NavBar from '../components/Nav';
 
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
@@ -46,6 +47,9 @@ function Home() {
             <Button style={styles.styBut} 
             onPress={ () => navigation.navigate('Upload', {})  } 
             title="Upload" tw='bg-white w-[20vw] h-[30vw]'/>
+            <View style={{ flex: 0 }}>
+                <NavBar navigation={navigation} activeTab="Accounts" />
+              </View>
        </StyledView>
     );
 }

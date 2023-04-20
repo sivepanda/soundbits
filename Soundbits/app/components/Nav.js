@@ -3,26 +3,25 @@ import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const NavBar = ({ navigation, activeTab }) => {
-  const navigateTo = (screenName) => {
-    navigation.navigate(screenName);
-  };
+const NavBar = ({ activeTab }) => {
+  const navigation = useNavigation();
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigateTo('Home')} style={styles.tab}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home', {})} style={styles.tab}>
           <Ionicons name="home-outline" size={28} color={activeTab === 'Home' ? '#000' : '#ccc'} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigateTo('Search')} style={styles.tab}>
+        <TouchableOpacity onPress={() => navigation.navigate('Search', {})} style={styles.tab}>
           <Ionicons name="search-outline" size={28} color={activeTab === 'Search' ? '#000' : '#ccc'} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigateTo('Post')} style={styles.tab}>
-          <Ionicons name="add-circle-outline" size={28} color={activeTab === 'Post' ? '#000' : '#ccc'} />
+        <TouchableOpacity onPress={() => navigation.navigate('Upload', {})} style={styles.tab}>
+          <Ionicons name="add-circle-outline" size={28} color={activeTab === 'Upload' ? '#000' : '#ccc'} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigateTo('Friends')} style={styles.tab}>
+        <TouchableOpacity onPress={() => navigation.navigate('Friends', {})} style={styles.tab}>
           <Ionicons name="people-outline" size={28} color={activeTab === 'Friends' ? '#000' : '#ccc'} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigateTo('Accounts')} style={styles.tab}>
+        <TouchableOpacity onPress={() => navigation.navigate('Accounts', {})} style={styles.tab}>
           <Ionicons name="person-outline" size={28} color={activeTab === 'Accounts' ? '#000' : '#ccc'} />
         </TouchableOpacity>
       </View>
@@ -44,10 +43,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    height: 50,
-    borderTopWidth: 1,
-    borderTopColor: '#ccc'
+    alignItems: 'left',
+    position: 'sticky',
+    bottom: 0,
+    width: '100%',
+    height: 60,
   },
   tab: {
     flex: 1,
