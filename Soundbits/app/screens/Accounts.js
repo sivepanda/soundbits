@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
+import NavBar from '../components/Nav';
 
 const sounds = [
   { name: 'Sound 1', duration: '1:23' },
@@ -58,8 +59,14 @@ const Accounts = () => {
                   </View>
                 ))}
               </View>
+              <View style={{ flex: 1 }}>
+                <NavBar navigation={navigation} activeTab="Accounts" />
+                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>Account</Text>
+                  </View>
+              </View>
             </View>
-        
+            
       );
 };
 const styles = StyleSheet.create({
@@ -124,7 +131,7 @@ const styles = StyleSheet.create({
   },
   soundName: {
     fontWeight: 'bold',
-    alightItems: 'right'
+    textAlign: 'left'
   }
 });
 
