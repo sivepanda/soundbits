@@ -5,10 +5,12 @@ import { styled } from "nativewind";
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
+const StyledView = styled(View);
+
 const NavBar = ({ activeTab }) => {
   const navigation = useNavigation();
     return (
-      <View style={styles.container}>
+      <StyledView tw='bg-slate-900 pt-5' style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate('Home', {})} style={styles.tab}>
           <Ionicons name="home-outline" size={28} color={activeTab === 'Home' ? '#000' : '#ccc'} />
         </TouchableOpacity>
@@ -24,7 +26,7 @@ const NavBar = ({ activeTab }) => {
         <TouchableOpacity onPress={() => navigation.navigate('Accounts', {})} style={styles.tab}>
           <Ionicons name="person-outline" size={28} color={activeTab === 'Accounts' ? '#000' : '#ccc'} />
         </TouchableOpacity>
-      </View>
+      </StyledView>
     );
 };
 
