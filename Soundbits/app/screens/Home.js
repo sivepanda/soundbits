@@ -42,7 +42,9 @@ function Home() {
             <StyledView tw="w-[100vw] h-[20vh] mt-0" style={styles.header}>
                 <StyledText tw="mt-[10vh] ml-[7vw] color-white" style={styles.username}>Home</StyledText>
             </StyledView>
-            
+                <View style={{alignItems: 'left'}}>
+                        <StyledText tw="text-4xl pt-[2vh] pb-[2vh] font-bold">Explore Sounds:</StyledText>
+                </View>
             <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>

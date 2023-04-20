@@ -12,7 +12,7 @@ const StyledButton = styled(Button);
 
 const Sound = (props) => {
     return(
-        <StyledView style={styles.box} tw="rounded-xl h-[11vh] w-[90vw] mb-6 bg-cyan-400 shadow-sm">
+        <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-cyan-400 shadow-sm">
             <View style={styles.colplay}>
                 <StyledImage style={styles.plbt} source={require('../assets/play-button.png')} tw='bg-contain ml-4 w-[5vh] h-[5vh]'/>
                 <StyledText style={styles.mono} tw="mt-1 ml-4">{props.tm}</StyledText>

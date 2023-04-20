@@ -83,7 +83,7 @@ const Accounts = () => {
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
-                    
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
 
                   </View>
               
