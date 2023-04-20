@@ -38,6 +38,13 @@ const randomLikes = Math.floor(Math.random() * 10000);
 const randomFriends = Math.floor(Math.random() * 1000);
 const randomPosts = Math.floor(Math.random() * 100);
 
+function randNum() {
+  var min = Math.floor(Math.random() * 4) + 2;
+  var sec = Math.floor(Math.random() * 60);
+  min = min < 10 ? "0" + min : min;
+  sec = sec < 10 ? "0" + sec : sec;
+  return min + ":" + sec;
+}
 
 const Accounts = () => {
   const [username, setUsername] = useState('John Doe');
@@ -68,21 +75,21 @@ const Accounts = () => {
               </View>
               <View style={styles.soundList}>
                     <View style>
-                        <StyledText tw="text-4xl pt-[2vh] pb-[2vh] font-bold">Top 5 Sounds:</StyledText>
+                        <StyledText tw="text-4xl pt-[2vh] pb-[2vh] font-bold">Your Top 5 Sounds:</StyledText>
                     </View>
                 
                   <View syle= {styles.title}>
-                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
-                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
-                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
-                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
                     
 
                   </View>
               
               </View>
               <View style={{ flex: 0 }}>
-                <NavBar navigation={navigation} activeTab="Accounts" />
+                <NavBar navigation={navigation} activeTab="Accounts"/>
               </View>
             </View>
             
