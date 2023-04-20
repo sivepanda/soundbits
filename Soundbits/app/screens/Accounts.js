@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
 
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 import NavBar from '../components/Nav';
+
+import Sound from '../components/Sound'
+
+const StyledText = styled(Text);
+const StyledImage = styled(Image);
+const StyledView = styled(View);
+const StyledButton = styled(Button);
 
 const sounds = [
   { name: 'Sound 1', duration: '1:23' },
@@ -15,10 +24,19 @@ const sounds = [
   { name: 'Sound 5', duration: '5:67' }
 ];
 
+const config = {
+  dictionaries: [names],
+  style: 'capital'
+}
+
+const config_D = {
+  dictionaries: [adjectives],
+  style: 'capital'
+}
+
 const randomLikes = Math.floor(Math.random() * 10000);
 const randomFriends = Math.floor(Math.random() * 1000);
 const randomPosts = Math.floor(Math.random() * 100);
-const StyledText = styled(Text);
 
 
 const Accounts = () => {
@@ -49,15 +67,19 @@ const Accounts = () => {
                 </View>
               </View>
               <View style={styles.soundList}>
-                    <View>
-                        <StyledText tw="text-4xl font-bold">Top 5 Sounds:</StyledText>
+                    <View style>
+                        <StyledText tw="text-4xl pt-[2vh] pb-[2vh] font-bold">Top 5 Sounds:</StyledText>
                     </View>
-                {sounds.map(sound => (
-                  <View style={styles.soundItem} key={sound.name}>
-                    <StyledText tw="text-3xl" style={styles.soundName}>{sound.name}</StyledText>
-                    <StyledText tw="text-2xl" >{sound.duration}</StyledText>
+                
+                  <View syle= {styles.title}>
+                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    <Sound tm={ " " } nm={ uniqueNamesGenerator(config_D) } auth={username}/>
+                    
+
                   </View>
-                ))}
+              
               </View>
               <View style={{ flex: 0 }}>
                 <NavBar navigation={navigation} activeTab="Accounts" />
