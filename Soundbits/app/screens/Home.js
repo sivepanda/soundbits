@@ -26,6 +26,14 @@ const config_D = {
     style: 'capital'
 }
 
+function randNum() {
+    var min = Math.floor(Math.random() * 4) + 2;
+    var sec = Math.floor(Math.random() * 60);
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+    return min + ":" + sec;
+}
+
 function Home() {
     const navigation = useNavigation();
     return (
@@ -34,10 +42,10 @@ function Home() {
                 <StyledText tw="mt-[10vh] ml-[7vw] color-white" style={styles.username}>Home</StyledText>
             </StyledView>
             
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             
             <Button style={styles.styBut} 
             onPress={ () => navigation.navigate('Accounts', {})  } 
