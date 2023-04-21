@@ -9,13 +9,23 @@ import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique
 
 import { useNavigation } from '@react-navigation/native';
 
-import Sound from '../components/Sound'
+// import Sound from 'react-native-sound';
+
+import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
+import Title from '../components/Title';
 
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
 const StyledView = styled(View);
 const StyledButton = styled(Button);
+const StyledTitle = styled(Title);
+
+// Sound.setCategory('Playback');
+
+// const mySound = new Sound('../assets/meta.mp3', Sound.LIBRARY, (error) => {
+    
+// })
 
 const config = {
     dictionaries: [names],
@@ -38,28 +48,22 @@ function randNum() {
 function Home() {
     const navigation = useNavigation();
     return (
-        <StyledView tw="h-[100vh]" style={styles.viewContainer}>
-            <StyledView tw="w-[100vw] h-[20vh] mt-0" style={styles.header}>
-                <StyledText tw="mt-[10vh] ml-[7vw] color-white" style={styles.username}>Home</StyledText>
+        <StyledView style={styles.viewContainer}>
+            <StyledView tw="mt-[-70vh]" style={styles.head}>
+                <StyledTitle tm="Home" />
             </StyledView>
                 <View style={{alignItems: 'left'}}>
-                        <StyledText tw="text-4xl pt-[2vh] pb-[2vh] font-bold">Explore Sounds:</StyledText>
+                        <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Explore Sounds:</StyledText>
                 </View>
-            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             
-            <Button style={styles.styBut} 
-            onPress={ () => navigation.navigate('Accounts', {})  } 
-            title="To Accounts" tw='bg-white w-[20vw] h-[30vw]'/>
-
-            <Button style={styles.styBut} 
-            onPress={ () => navigation.navigate('Upload', {})  } 
-            title="Upload" tw='bg-white w-[20vw] h-[30vw]'/>
-            <View style={{ flex: 0 }}>
+            <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            
+            <StyledView style={ styles.bott }>
                 <NavBar navigation={navigation} activeTab="Accounts" />
-              </View>
+            </StyledView>
        </StyledView>
     );
 }
@@ -68,22 +72,21 @@ function Home() {
 const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        marginTop: -100,
+        // marginTop: 0,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: 'black',
+        // justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
-    header: {
-        backgroundColor: '#825ee6',
-        flexDirection: 'row',
-        alignItems: 'center',
+    head: {
         marginTop: 0,
-        marginBottom: 40
+        paddingTop:0,
     },
-    username: {
-        fontSize: 40,
-        fontWeight: 'bold'
-    },
+    bott: {
+        marginTop: 'auto',
+    }
+    
 });
 
 

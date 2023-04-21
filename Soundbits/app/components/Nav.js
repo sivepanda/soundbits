@@ -18,7 +18,7 @@ const NavBar = ({ activeTab }) => {
           <Ionicons name="search-outline" size={28} color={activeTab === 'Search' ? '#000' : '#ccc'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Upload', {})} style={styles.tab}>
-          <Ionicons name="add-circle-outline" size={28} color={activeTab === 'Upload' ? '#000' : '#ccc'} />
+          <Ionicons name="add-circle-outline" size={40} color={activeTab === 'Upload' ? '#000' : '#ccc'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Friends', {})} style={styles.tab}>
           <Ionicons name="people-outline" size={28} color={activeTab === 'Friends' ? '#000' : '#ccc'} />
@@ -46,10 +46,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'left',
+    justifyContent:'center',
     position: 'sticky',
     bottom: 0,
     width: '100%',
-    height: 60,
+    height: 75,
+    paddingBottom: 10,
   },
   tab: {
     flex: 1,
