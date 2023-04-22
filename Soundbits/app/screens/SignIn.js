@@ -5,14 +5,24 @@ import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 
+import { useNavigation } from '@react-navigation/native';
+
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
   const StyledText = styled(Text);
+  const navigation = useNavigation();
 
   const handleSignIn = () => {
     // Add sign-in logic here
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
+    *                                                                                                                                                       *
+    *                       CURRENTLY YOU ONLY HAVE TO PRESS SIGN IN ON THE SIGN IN PAGE TO GET TO HOME                                                     *
+    *                                                                                                                                                       *
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
     console.log('Username:', username);
     console.log('Password:', password);
   };
@@ -39,7 +49,7 @@ const SignIn = () => {
           secureTextEntry={true}
         />
       </View>
-      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
     </View>
