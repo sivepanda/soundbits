@@ -10,6 +10,8 @@ import Accounts from './app/screens/Accounts';
 import Search from './app/screens/Search';
 import Upload from './app/screens/Upload';
 import Friends from './app/screens/Friends';
+import SignIn from './app/screens/SignIn';
+import SignUp from './app/screens/SignUp';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,8 @@ export default function App() {
         <Stack.Screen name="Upload" component={Upload} options={{headerShown: false}} />
         <Stack.Screen name="Search" component={Search} options={{headerShown: false}} />
         <Stack.Screen name="Friends" component={Friends} options={{headerShown: false}} />
+        <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}} />
+        <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
     // <HTMLTest />

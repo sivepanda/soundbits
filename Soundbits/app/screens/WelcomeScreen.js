@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, View, Text, StyleSheet, Image} from 'react-native';
+import {Button, View, Text, StyleSheet, Image, Touchable, TouchableOpacity} from 'react-native';
 
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
@@ -19,9 +19,16 @@ function WelcomeScreen() {
         <StyledView style={styles.viewContainer} tw="bg-black">
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.styTex} tw='text-white text-3xl'>Soundbits</StyledText>
-            <Button style={styles.styBut} 
-            onPress={ () => navigation.navigate('Home', {})  } 
-            title="Log In" tw='bg-white w-[20vw] h-[30vw]'/>
+            <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {styles.Button}>
+                <StyledView>
+                    <StyledText tw='color-white'>Sign In</StyledText>
+                </StyledView>
+            </TouchableOpacity>
+            <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {styles.Button}>
+                <StyledView>
+                    <StyledText tw='color-white'>Sign Up</StyledText>
+                </StyledView>
+            </TouchableOpacity>
        </StyledView>
     );
 }
@@ -34,7 +41,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    styTex: {
+    Button: {
+        margin: 10,
+        marginBottom: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 8,
+        paddingRight: 8,
+        borderColor: 'white',
+        borderWidth: 2,
+        borderRadius: 15
+
     }
 });
 
