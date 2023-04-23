@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import {Button, View, Text, StyleSheet, Image, Touchable, TouchableOpacity} from 'react-native';
 
 import { withExpoSnack } from 'nativewind';
@@ -15,8 +15,31 @@ const StyledButton = styled(Button);
 function WelcomeScreen() {
     const navigation = useNavigation();
     
+    const [returnedData, setReturnedData] = useState(['hello']);
+
+
+    const fetchData = async (url) => {
+        const newData = await fetch('/hello', {
+            method: 'GET',
+            headers: {
+                'context-type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+    .then(res => res.json());
+    console.log(newData);
+    setReturnedData(newData.result)
+   }
+
     return (
         <StyledView style={styles.viewContainer} tw="bg-black">
+            
+            <TouchableOpacity style={styles.Button} onPress={() => fetchData('/quit')}>
+                <StyledText tw='color-white'>{returnedData}</StyledText>
+            </TouchableOpacity>
+            {/* onPress={() => fetchData('/quit')}
+            {returnedData} */}
+            
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.styTex} tw='text-white text-3xl'>Soundbits</StyledText>
             <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {styles.Button}>
