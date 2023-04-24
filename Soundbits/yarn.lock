@@ -1886,6 +1886,11 @@
     "prompts" "^2.4.0"
     "semver" "^6.3.0"
 
+"@react-native-picker/picker@^2.4.10":
+  "integrity" "sha512-EvAlHmPEPOwvbP6Pjg/gtDV3XJzIjIxr10fXFNlX5r9HeHw582G1Zt2o8FLyB718nOttgj8HYUTGxvhu4N65sQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-picker/picker/-/picker-2.4.10.tgz"
+  "version" "2.4.10"
+
 "@react-native/assets@1.0.0":
   "integrity" "sha512-KrwSpS1tKI70wuKl68DwJZYEvXktDHdZMG0k2AXD/rJVSlB23/X2CB2cutVR0HwNMJIal9HOUOBB2rVfa6UGtQ=="
   "resolved" "https://registry.npmjs.org/@react-native/assets/-/assets-1.0.0.tgz"
@@ -7617,7 +7622,7 @@
     "postcss-value-parser" "^4.2.0"
     "styleq" "^0.1.2"
 
-"react-native@*", "react-native@^*", "react-native@0.71.6":
+"react-native@*", "react-native@^*", "react-native@>=0.57", "react-native@0.71.6":
   "integrity" "sha512-gHrDj7qaAaiE41JwaFCh3AtvOqOLuRgZtHKzNiwxakG/wvPAYmG73ECfWHGxjxIx/QT17Hp37Da3ipCei/CayQ=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.71.6.tgz"
   "version" "0.71.6"
@@ -7670,7 +7675,7 @@
     "object-assign" "^4.1.1"
     "react-is" "^16.12.0 || ^17.0.0 || ^18.0.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0", "react@^18.2.0", "react@>=16.8", "react@>=17.0.0", "react@18.2.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0", "react@^18.2.0", "react@>=16", "react@>=16.8", "react@>=17.0.0", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
@@ -8992,10 +8997,10 @@
   dependencies:
     "unique-slug" "^2.0.0"
 
-unique-names-generator@^4.7.1:
-  version "4.7.1"
-  resolved "https://registry.npmjs.org/unique-names-generator/-/unique-names-generator-4.7.1.tgz"
-  integrity sha512-lMx9dX+KRmG8sq6gulYYpKWZc9RlGsgBR6aoO8Qsm3qvkSJ+3rAymr+TnV8EDMrIrwuFJ4kruzMWM/OpYzPoow==
+"unique-names-generator@^4.7.1":
+  "integrity" "sha512-lMx9dX+KRmG8sq6gulYYpKWZc9RlGsgBR6aoO8Qsm3qvkSJ+3rAymr+TnV8EDMrIrwuFJ4kruzMWM/OpYzPoow=="
+  "resolved" "https://registry.npmjs.org/unique-names-generator/-/unique-names-generator-4.7.1.tgz"
+  "version" "4.7.1"
 
 "unique-slug@^2.0.0":
   "integrity" "sha512-zoWr9ObaxALD3DOPfjPSqxt4fnZiWblxHIgeWqW8x7UqDzEtHEQLzji2cuJYQFCU6KmoJikOYAZlrTHHebjx2w=="
