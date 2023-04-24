@@ -67,7 +67,7 @@ const Accounts = () => {
                       <StyledText tw="text-2xl color-white text-center font-semibold">{randomFriends}</StyledText>
                       <StyledText tw="text-1xl color-white text-center font-semibold">friends</StyledText>
                   </View>
-              </StyledView>
+                </StyledView>
               </StyledView>
 
               
@@ -83,13 +83,12 @@ const Accounts = () => {
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/7))}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/9))}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/11))}/>
-
                   </ScrollView>
               
               </StyledView>
-              <View style={{ marginTop: 'auto', width: 400}}>
+              <StyledView tw='w-[110vw]' style={{ marginTop: 'auto', width: '100%'}}>
                 <NavBar navigation={navigation} activeTab="Accounts"/>
-              </View>
+              </StyledView>
             </StyledView>
             
       );
@@ -99,12 +98,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20
   },
   header: {
     backgroundColor: '#312e81',
-    flexDirection: 'column'
-
+    flexDirection: 'column',
+    paddingHorizontal: 25,
+    paddingTop: 15,
   },
   likes: {
     alightItems: 'center',

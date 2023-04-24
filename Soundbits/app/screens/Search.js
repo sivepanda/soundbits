@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text,TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text,TouchableOpacity, Image, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
@@ -37,6 +37,12 @@ const Upload = () => {
     const StyledText = styled(Text);
     const StyledTitle = styled(Title);
     const StyledIcon = styled(Ionicons);
+    
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearch = () => {
+        console.log(`Search for "${searchText}"`);
+    }
 
     return (
         <StyledView tw='h-[100vh] w-[100vw] mt-[-5vh]' style = {styles.overall}>
@@ -45,15 +51,22 @@ const Upload = () => {
             </StyledView>
             
 
-            <StyledView style={styles.box} tw="rounded-3xl h-[4vh] w-[90vw] mb-6 bg-gray-100 shadow-sm">
+            <StyledView style={styles.box}>
                 {/* <View style={styles.colplay}> */}
-                    <StyledIcon tw='ml-[2vw] mt-[0.8vh]' name="search-outline" size={20} />
-                    <StyledText style={styles.mono} tw="ml-4 mt-[0.8vh] color-gray-400">search</StyledText>
+                    <StyledIcon style={styles.searchBar} name="search-outline" size={20} />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Search"
+                        value={searchText}
+                        onChangeText={setSearchText}
+                        onSubmitEditing={handleSearch}
+                    />
                 {/* </View> */}
-                
             </StyledView>
 
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.sounds}></View>
+
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.sounds}>
                 <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
                 <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
                 <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
@@ -98,14 +111,30 @@ const styles = StyleSheet.create({
     },
     box: {
         // backgroundColor: 'green',
-        alignContent: 'stretch',
         flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#f2f2f2',
+        padding: 10,
+        borderRadius: 25,
+        width: '80%',
+
     },
     head: {
         marginTop: 0,
         paddingTop:0,
     },
-
+    searchBar: {
+        alignSelf: 'auto',
+        marginRight: 5
+    },
+    sounds: {
+        paddingTop: 15
+    },
+    input: {
+        flex: 1,
+        marginLeft: 10,
+        fontSize: 18,
+      },
 });
 
 export default withExpoSnack(Upload);
