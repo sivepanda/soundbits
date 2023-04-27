@@ -86,7 +86,7 @@ const Accounts = () => {
                   </ScrollView>
               
               </StyledView>
-              <StyledView tw='w-[110vw]' style={{ marginTop: 'auto', width: '100%'}}>
+              <StyledView style={{ marginTop: 'auto', width: '100%'}}>
                 <NavBar navigation={navigation} activeTab="Accounts"/>
               </StyledView>
             </StyledView>
