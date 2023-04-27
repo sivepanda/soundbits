@@ -1,3 +1,4 @@
+//create a visually appealing welcome screen
 import React, { useState }  from 'react';
 import {Button, View, Text, StyleSheet, Image, Touchable, TouchableOpacity} from 'react-native';
 
@@ -7,16 +8,22 @@ import { useFonts } from 'expo-font';
 
 import { useNavigation } from '@react-navigation/native';
 
+//Allows for these to be styles with tailwind 
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
 const StyledView = styled(View);
 const StyledButton = styled(Button);
 
+
+//Welcome Screen Function creates a Welcome screen with a sign-up and sign-in button that the user can use. Also creates a visually appealing Scheme that displays Soundbit's main colour scheme.
+//Main Function of the class
+
+//CHANGE THE COLORS TO REFLECT SOUNDBITS COLOR SCHEME --gradient
+//First time the user sees the app, good to reflect the app's color scheme
 function WelcomeScreen() {
     const navigation = useNavigation();
     
     const [returnedData, setReturnedData] = useState(['hello']);
-
 
     const fetchData = async (url) => {
         const newData = await fetch('/hello', {
@@ -27,7 +34,7 @@ function WelcomeScreen() {
             }
         })
     .then(res => res.json());
-    console.log(newData);
+    console.log(newData); 
     setReturnedData(newData.result)
    }
 
@@ -41,7 +48,7 @@ function WelcomeScreen() {
             {returnedData} */}
             
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
-            <StyledText style={styles.styTex} tw='text-white text-3xl'>Soundbits</StyledText>
+            <StyledText style={styles.styTex} tw='text-white text-3xl'>Soundbits</StyledText> 
             <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {styles.Button}>
                 <StyledView>
                     <StyledText tw='color-white'>Sign In</StyledText>
@@ -56,7 +63,7 @@ function WelcomeScreen() {
     );
 }
 
-
+//CSS Style Sheet
 const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
@@ -77,6 +84,5 @@ const styles = StyleSheet.create({
 
     }
 });
-
 
 export default withExpoSnack(WelcomeScreen);
