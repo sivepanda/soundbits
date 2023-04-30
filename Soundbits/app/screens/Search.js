@@ -49,8 +49,8 @@ const Upload = () => {
              <StyledView tw="mt-[-90vh]" style={styles.head}>
                 <StyledTitle tm="Search" />
             </StyledView>
-            
 
+{/* ---------------------------- Actual searchbar ---------------------------- */}
             <StyledView style={styles.box}>
                 {/* <View style={styles.colplay}> */}
                     <StyledIcon style={styles.searchBar} name="search-outline" size={20} />
@@ -65,6 +65,8 @@ const Upload = () => {
             </StyledView>
 
             <View style={styles.sounds}></View>
+
+{/* -------- Random Names for the searchbar. Helps it look less empty -------- */}
 
             <ScrollView showsVerticalScrollIndicator={false} style={styles.sounds}>
                 <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
@@ -89,6 +91,7 @@ const Upload = () => {
                 <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
 
             </ScrollView>
+{/* -------------------------------------------------------------------------- */}
 
             <StyledView tw='mt-[51vh]' style={{ marginTop: 'auto' }}>
                 <NavBar navigation={navigation} activeTab="Accounts"/>

@@ -16,7 +16,6 @@ const StyledButton = styled(Button);
 
 
 //Welcome Screen Function creates a Welcome screen with a sign-up and sign-in button that the user can use. Also creates a visually appealing Scheme that displays Soundbit's main colour scheme.
-//Main Function of the class
 
 //CHANGE THE COLORS TO REFLECT SOUNDBITS COLOR SCHEME --gradient
 //First time the user sees the app, good to reflect the app's color scheme

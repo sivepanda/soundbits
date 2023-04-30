@@ -9,7 +9,7 @@ import { useFonts } from 'expo-font';
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
 
-
+/* -------------- Allow the user to upload their own SoundBits! ------------- */
 const Upload = () => {
     const navigation = useNavigation(); 
     const StyledTO = styled(TouchableOpacity);

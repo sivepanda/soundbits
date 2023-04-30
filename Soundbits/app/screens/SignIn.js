@@ -27,13 +27,20 @@ const SignIn = () => {
     console.log('Password:', password);
   };
 
+  /* ------------------------------------------------------------------------------------------------------------------ */
+  /*                Allow for a returning user to access their account instead of creating a new account                */
+  /* ------------------------------------------------------------------------------------------------------------------ */
+
   return (
     <View style={styles.container}>
+     
       <Image
         source={require('../assets/icon.png')}
         style={styles.logo}
       />
       <StyledText tw='text-white text-3xl'>Soundbits</StyledText>
+      
+     {/* ----------------------------- Username input ----------------------------- */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -41,6 +48,7 @@ const SignIn = () => {
           onChangeText={(text) => setUsername(text)}
           value={username}
         />
+     { /* ---------------------------- Password input ---------------------------- */ }
         <TextInput
           style={styles.input}
           placeholder='Password'
@@ -49,9 +57,11 @@ const SignIn = () => {
           secureTextEntry={true}
         />
       </View>
+
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
+    
     </View>
   );
 };
