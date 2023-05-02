@@ -33,6 +33,7 @@ const Friends = () => {
                 <StyledTitle tm="Friends" />
             </StyledView>
              
+             {/* -------------------------------------------------------------------------- */}
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Homies />
                 <Homies />

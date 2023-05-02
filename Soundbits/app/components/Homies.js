@@ -10,7 +10,7 @@ const StyledText = styled(Text);
 const StyledView = styled(View);
 const StyledImage = styled(Image);
 const StyledButton = styled(Button);
-const StyledIco = styled(Ionicons);
+const StyledIcon = styled(Ionicons);
 
 const config = {
     dictionaries: [names],
@@ -33,21 +33,19 @@ const Sound = (props) => {
             <View style={styles.colplay}>
                 <StyledImage style={styles.plbt} source={ {uri: randImg()} } tw='bg-contain rounded-xl ml-4 w-[7vh] h-[7vh]'/>
                 <StyledText tw="mt-1 ml-4 text-2xl color-black text-center font-semibold">{uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}</StyledText>
+            </View>
+            <View style={styles.removeButton}>
                 <TouchableOpacity onPress={handleDelete}>
-                    <StyledIco style={styles.icon} tw='pl-2' name="person-remove" size={16} color={'#7f1d1d'} />
-
+                    <StyledIcon tw='pl-2' name="person-remove" size={16} color={'#7f1d1d'} />
                 </TouchableOpacity>
-
             </View>
             <View style={styles.colinfo}>
                 <StyledText tw="font-bold text-3xl">{props.nm}</StyledText>
                 <StyledText>{props.auth}</StyledText>
-
             </View>
         </StyledView>)
     } else return (
         <StyledView style={styles.box} tw="rounded-xl h-[0vh] w-[0vw] m-0">
-            
         </StyledView>
     )
 }
@@ -61,6 +59,7 @@ const styles = StyleSheet.create({
   box: {
     flexDirection:'row',
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
   colinfo: {
     flexDirection:'row',
@@ -82,7 +81,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     // marginTop: 30
   },
-
+  removeButton: {
+    alignSelf: 'auto',
+    marginLeft: 'auto'
+  },
 });
 
 export default Sound;

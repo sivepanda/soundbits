@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     position: 'sticky',
     bottom: 0,
     width: '100%',
-    height: 75,
-    paddingBottom: 10,
+    height: 95,
+    paddingBottom: 0,
   },
   tab: {
     flex: 1,

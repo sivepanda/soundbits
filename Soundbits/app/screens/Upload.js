@@ -10,7 +10,7 @@ import NavBar from '../components/Nav';
 // import { Ionicons } from '@expo/vector-icons';
 import Title from '../components/Title';
 
-
+/* -------------- Allow the user to upload their own SoundBits! ------------- */
 const Upload = () => {
     const navigation = useNavigation(); 
     const StyledTO = styled(TouchableOpacity);
