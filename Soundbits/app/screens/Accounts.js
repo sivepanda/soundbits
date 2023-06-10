@@ -1,24 +1,42 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Button, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
 
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
+import NavBar from '../components/Nav';
 
-const sounds = [
-  { name: 'Sound 1', duration: '1:23' },
-  { name: 'Sound 2', duration: '2:34' },
-  { name: 'Sound 3', duration: '3:45' },
-  { name: 'Sound 4', duration: '4:56' },
-  { name: 'Sound 5', duration: '5:67' }
-];
+import Sound from '../components/Sound'
+
+const StyledText = styled(Text);
+const StyledImage = styled(Image);
+const StyledView = styled(View);
+const StyledButton = styled(Button);
+
+const config = {
+  dictionaries: [names],
+  style: 'capital'
+}
+
+const config_D = {
+  dictionaries: [adjectives],
+  style: 'capital'
+}
 
 const randomLikes = Math.floor(Math.random() * 10000);
-const randomFriends = Math.floor(Math.random() * 1000);
-const randomPosts = Math.floor(Math.random() * 100);
-const StyledText = styled(Text);
+const randomFriends = 554;
+const randomPosts = Math.floor((Math.random() * 100)+5);
 
+function randNum() {
+  var min = Math.floor(Math.random() * 4) + 2;
+  var sec = Math.floor(Math.random() * 60);
+  min = min < 10 ? "0" + min : min;
+  sec = sec < 10 ? "0" + sec : sec;
+  return min + ":" + sec;
+}
 
 const Accounts = () => {
   const [username, setUsername] = useState('John Doe');
@@ -28,54 +46,64 @@ const Accounts = () => {
     const navigation = useNavigation();  
     return (
         
-            <View style={styles.container}>
-              <View style={styles.header}>
-                <Image style={styles.profilePicture} source={{ uri: profilePicture }} />
-                <Text style={styles.username}>@{username}</Text>
-              </View>
-              <View style={styles.Information}>
-                <View style={styles.likes}>
-                    <StyledText tw="text-2xl text-center font-semibold">{randomLikes}</StyledText>
-                    <StyledText tw="text-1xl text-center font-semibold">likes</StyledText>
+            <StyledView style={styles.container}>
+              <StyledView tw='w-[100vw] h-[25vh] bg-indigo-900' style={styles.header}>
+                
+                <View style={styles.userinfo}>
+                  <Image style={styles.profilePicture} source={{ uri: profilePicture }} />
+                  <Text style={styles.username}>{username}</Text>
                 </View>
-                <View style={styles.posts}>
-                    <StyledText tw="text-2xl text-center font-semibold">{randomPosts}</StyledText>
-                    <StyledText tw="text-1xl text-center font-semibold">posts</StyledText>
-                </View>
-                <View style={styles.friends}>
-                    <StyledText tw="text-2xl text-center font-semibold">{randomFriends}</StyledText>
-                    <StyledText tw="text-1xl text-center font-semibold">friends</StyledText>
-                </View>
-              </View>
-              <View style={styles.soundList}>
-                    <View>
-                        <StyledText tw="text-4xl font-bold">Top 5 Sounds:</StyledText>
-                    </View>
-                {sounds.map(sound => (
-                  <View style={styles.soundItem} key={sound.name}>
-                    <StyledText tw="text-3xl" style={styles.soundName}>{sound.name}</StyledText>
-                    <StyledText tw="text-2xl" >{sound.duration}</StyledText>
+                
+                <StyledView tw='w-[80vw] ml-[20vw]' style={styles.Information}>
+                  <View style={styles.likes}>
+                      <StyledText tw="text-2xl color-white text-center font-semibold">{randomLikes}</StyledText>
+                      <StyledText tw="text-1xl color-white text-center font-semibold">likes</StyledText>
                   </View>
-                ))}
-              </View>
-            </View>
-        
+                  <View style={styles.posts}>
+                      <StyledText tw="text-2xl color-white text-center font-semibold">{randomPosts}</StyledText>
+                      <StyledText tw="text-1xl color-white text-center font-semibold">posts</StyledText>
+                  </View>
+                  <View style={styles.friends}>
+                      <StyledText tw="text-2xl color-white text-center font-semibold">{randomFriends}</StyledText>
+                      <StyledText tw="text-1xl color-white text-center font-semibold">friends</StyledText>
+                  </View>
+                </StyledView>
+              </StyledView>
+
+              
+              
+              <StyledView tw="w-[100vw]" style={styles.soundList}>
+                    <View style>
+                        <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Your Top 5 Sounds:</StyledText>
+                    </View>
+                
+                  <ScrollView showsVerticalScrollIndicator={false} syle= {styles.title}>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={ "Likes: " + (Math.floor(randomLikes/5))}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/6))}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/7))}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/9))}/>
+                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/11))}/>
+                  </ScrollView>
+              
+              </StyledView>
+              <StyledView style={{ marginTop: 'auto', width: '100%'}}>
+                <NavBar navigation={navigation} activeTab="Accounts"/>
+              </StyledView>
+            </StyledView>
+            
       );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#825ee6',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20
   },
   header: {
-    backgroundColor: '#825ee6',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 40,
-    marginBottom: 5
+    backgroundColor: '#312e81',
+    flexDirection: 'column',
+    paddingHorizontal: 25,
+    paddingTop: 15,
   },
   likes: {
     alightItems: 'center',
@@ -90,33 +118,38 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   profilePicture: {
+    alignContent:'center',
+    justifyContent:'center',
     width: 70,
     height: 70,
     borderRadius: 25,
     marginRight: 10,
-    marginTop: 30
+    marginLeft: 10,
+    // marginTop: 30
   },
   username: {
     fontSize: 40,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'white',
   },
   Information: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 70,
+    alignItems: 'center',
+    justifyContent: 'left',
+    paddingLeft: 0,
     marginBottom: 20
   },
   soundList: {
     flex: 1,
-    backgroundColor: '#fff',
-    width: '110%',
+    backgroundColor: 'black',
+    // width: '110%',
     alignItems: 'center'
   },
   soundItem: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#eee',
+    // backgroundColor: '#eee',
     padding: 30,
     marginVertical: 10,
     borderRadius: 10,
@@ -124,7 +157,15 @@ const styles = StyleSheet.create({
   },
   soundName: {
     fontWeight: 'bold',
-    alightItems: 'right'
+    textAlign: 'left'
+  }, 
+  userinfo: {
+    // backgroundColor:'blue',
+    flexDirection: 'row',
+    alignItems: 'center',
+    // justifyContent: 'center',
+    marginTop: 40,
+    marginBottom: 5
   }
 });
 

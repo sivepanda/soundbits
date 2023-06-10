@@ -1,7 +1,8 @@
 import React from 'react';
-import {Button, View, Text, StyleSheet, Image} from 'react-native';
+import {Button, View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import { withExpoSnack } from 'nativewind';
+import { Ionicons } from '@expo/vector-icons';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 
@@ -9,12 +10,20 @@ import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique
 
 import { useNavigation } from '@react-navigation/native';
 
-import Sound from '../components/Sound'
+
+
+
+import Sounds from '../components/Sound'
+import NavBar from '../components/Nav';
+import Title from '../components/Title';
 
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
 const StyledView = styled(View);
 const StyledButton = styled(Button);
+const StyledTitle = styled(Title);
+
+
 
 const config = {
     dictionaries: [names],
@@ -26,27 +35,34 @@ const config_D = {
     style: 'capital'
 }
 
+function randNum() {
+    var min = Math.floor(Math.random() * 4) + 2;
+    var sec = Math.floor(Math.random() * 60);
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+    return min + ":" + sec;
+}
+
+
 function Home() {
     const navigation = useNavigation();
+
     return (
         <StyledView style={styles.viewContainer}>
-            <StyledView tw="w-[100vw] h-[20vh] mt-0" style={styles.header}>
-                <StyledText tw="mt-[10vh] ml-[7vw] color-white" style={styles.username}>Home</StyledText>
+            <StyledView tw="mt-[-70vh]" style={styles.head}>
+                <StyledTitle tm="Home" />
+                </StyledView>
+                <View style={{alignItems: 'left'}}>
+                        <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Explore Sounds:</StyledText>
+                </View>
+            <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            
+            <StyledView style={ styles.bott }>
+                <NavBar navigation={navigation} activeTab="Accounts" />
             </StyledView>
-            
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            <Sound tm={ "03:30" } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-            
-            <Button style={styles.styBut} 
-            onPress={ () => navigation.navigate('Accounts', {})  } 
-            title="To Accounts" tw='bg-white w-[20vw] h-[30vw]'/>
-
-            <Button style={styles.styBut} 
-            onPress={ () => navigation.navigate('Upload', {})  } 
-            title="Upload" tw='bg-white w-[20vw] h-[30vw]'/>
        </StyledView>
     );
 }
@@ -55,22 +71,32 @@ function Home() {
 const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        marginTop: 0,
+        // marginTop: 0,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: 'black',
+        // justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
-    header: {
-        backgroundColor: '#825ee6',
-        flexDirection: 'row',
+    head: {
+        marginTop: 0,
+        paddingTop:0,
+    },
+    bott: {
+        marginTop: 'auto',
+    },
+    /* ------------------------------- Added this for R-N-Sound ------------------------------- 
+    container: {
+        flex: 1,
         alignItems: 'center',
-        marginTop: -85,
-        marginBottom: 5
-    },
-    username: {
-        fontSize: 40,
-        fontWeight: 'bold'
-    },
+        justifyContent: 'center',
+        backgroundColor: '#000',
+      },
+      playBtn: {
+        padding: 20,
+      }
+       -------------------------------------------------------------------------- */
+    
 });
 
 
