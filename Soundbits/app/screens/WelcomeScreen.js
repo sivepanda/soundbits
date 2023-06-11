@@ -22,21 +22,6 @@ const StyledButton = styled(Button);
 function WelcomeScreen() {
     const navigation = useNavigation();
     
-    const [returnedData, setReturnedData] = useState(['hello']);
-
-    const fetchData = async (url) => {
-        const newData = await fetch('/hello', {
-            method: 'GET',
-            headers: {
-                'context-type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-    .then(res => res.json());
-    console.log(newData); 
-    setReturnedData(newData.result)
-   }
-
     return (
         <StyledView style={styles.viewContainer} tw="bg-black">
             

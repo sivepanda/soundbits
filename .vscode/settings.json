@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "dataworkspace.excludedProjects": [
         "Test/Test.sqlproj"
     ]
+=======
+    "sqltools.connections": []
+>>>>>>> 7fd438a982dc8a5ea656c6486065aa6695f4ec6a
 }

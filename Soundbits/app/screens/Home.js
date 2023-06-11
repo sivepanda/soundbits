@@ -55,7 +55,7 @@ function Home() {
                 <View style={{alignItems: 'left'}}>
                         <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Explore Sounds:</StyledText>
                 </View>
-            <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"}/>
+            <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>

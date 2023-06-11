@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet, TouchableOpacity, Text, View, Button, Image} from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View, Button, Image } from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { Ionicons } from '@expo/vector-icons';
@@ -13,46 +13,60 @@ const StyledButton = styled(Button);
 
 
 const Sound = (props) => {
+<<<<<<< HEAD
 
   const [isDownloaded, setIsDownloaded] = useState(false);
+=======
+>>>>>>> 7fd438a982dc8a5ea656c6486065aa6695f4ec6a
 
-  const handleDownload = () => {
-    setIsDownloaded(true);
-  }
-  
-  const [sound, setSound] = React.useState();
+    const [isDownloaded, setIsDownloaded] = useState(false);
+
+    const handleDownload = () => {
+        setIsDownloaded(true);
+    }
+
+    const [sound, setSound] = React.useState();
 
     async function playSound() {
-      sound ? await sound.unloadAsync() : null;
-      console.log('Loading Sound');
-      const { sound } = await Audio.Sound.createAsync( require('../assets/meta.mp3')
-      );
-      Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        playsInSilentModeIOS: true,
-      });
-      setSound(sound);
-  
-      console.log('Playing Sound');
-      await sound.playAsync();
-    }
-  
-    React.useEffect(() => {
-      return sound
-        ? () => {
-            console.log('Unloading Sound');
-            sound.unloadAsync();
-          }
-        : undefined;
-    }, [sound]);  
+        if(props.src) {
+            sound ? await sound.unloadAsync() : null;
+            console.log('Loading Sound');
+            const source = '../assets/' + props.src;
+            console.log('../assets/' + props.src + ' 111 ' + source);
+            const { sound } = await Audio.Sound.createAsync(require('../assets/meta.mp3'));
+            Audio.setAudioModeAsync({
+                allowsRecordingIOS: false,
+                playsInSilentModeIOS: true,
+            });
+            setSound(sound);
 
+<<<<<<< HEAD
     return(
         
+=======
+            console.log('Playing Sound');
+            await sound.playAsync();
+        } else {
+            return null;
+        }
+    }
+
+    React.useEffect(() => {
+        return sound
+            ? () => {
+                console.log('Unloading Sound');
+                sound.unloadAsync();
+            }
+            : undefined;
+    }, [sound]);
+
+    return (
+>>>>>>> 7fd438a982dc8a5ea656c6486065aa6695f4ec6a
         <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-gray-400 shadow-sm">
             <View style={styles.colplay}>
             
                 <TouchableOpacity style={styles.plbt} onPress={playSound}>
-                    <StyledImage style={styles.plbt} source={require('../assets/play-button.png')} tw='bg-contain ml-4 w-[5vh] h-[5vh]'/>
+                    <StyledImage style={styles.plbt} source={require('../assets/play-button.png')} tw='bg-contain ml-4 w-[5vh] h-[5vh]' />
                 </TouchableOpacity>
                 <StyledText style={styles.mono} tw="mt-1 ml-4">{props.tm}</StyledText>
             </View>
@@ -61,41 +75,41 @@ const Sound = (props) => {
                 <StyledText>{props.auth}</StyledText>
             </View>
             <View>
-              <TouchableOpacity onPress={handleDownload}>
-                <Ionicons style={styles.download} name={isDownloaded ? 'checkmark-outline' : 'arrow-down-outline'} size={28} color={isDownloaded ? 'green' : 'black'}/>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={handleDownload}>
+                    <Ionicons style={styles.download} name={isDownloaded ? 'checkmark-outline' : 'arrow-down-outline'} size={28} color={isDownloaded ? 'green' : 'black'} />
+                </TouchableOpacity>
             </View>
         </StyledView>
     )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 0.7,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  box: {
-    flexDirection:'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  colinfo: {
-    flexDirection:'column',
-    marginLeft: 20,
-    marginRight: 'auto',
-  }, 
-  colplay: {
-    flexDirection:'column',
-    alignItems:'center'
-    // marginLeft: 10
-  }, 
-  mono: {
-    fontFamily: "Courier New"
-  },
-  download: {
-    paddingRight: 15
-  },
+    container: {
+        flex: 0.7,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    box: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    colinfo: {
+        flexDirection: 'column',
+        marginLeft: 20,
+        marginRight: 'auto',
+    },
+    colplay: {
+        flexDirection: 'column',
+        alignItems: 'center'
+        // marginLeft: 10
+    },
+    mono: {
+        fontFamily: "Courier New"
+    },
+    download: {
+        paddingRight: 15
+    },
 
 });
 
