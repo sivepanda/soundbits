@@ -48,7 +48,9 @@ const Upload = () => {
         <StyledView tw='h-[100vh] w-[100vw] mt-[-5vh]' style = {styles.overall}>
              <StyledView tw="mt-[-90vh]" style={styles.head}>
                 <StyledTitle tm="Search" />
+                
             </StyledView>
+            
 
 {/* ---------------------------- Actual searchbar ---------------------------- */}
             <StyledView style={styles.box}>
@@ -63,6 +65,25 @@ const Upload = () => {
                     />
                 {/* </View> */}
             </StyledView>
+            <StyledView style={styles.texto}>
+                <Text style={styles.text}>Recommended Genres</Text>
+            </StyledView>
+
+            <StyledView style={styles.genres}>
+                <StyledView styles={styles.genre.pop}>
+
+                </StyledView>
+                <StyledView styles={styles.genre.rap}>
+                    
+                </StyledView>
+                <StyledView styles={styles.genre.edm}>
+                    
+                </StyledView>
+                <StyledView styles={styles.genre.rock}>
+                    
+                </StyledView>
+            </StyledView>
+            
 
             <View style={styles.sounds}></View>
 
@@ -118,8 +139,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#f2f2f2',
         padding: 10,
-        borderRadius: 25,
-        width: '80%',
+        borderRadius: 10,
+        width: '90%',
 
     },
     head: {
@@ -138,6 +159,22 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 18,
       },
+    texto:{
+        marginTop: '5%',
+       display: 'flex',
+       width:'100%',
+       alignItems: 'left',
+       marginLeft: '10%',
+    },
+    text:{
+        color: 'white',
+        fontSize: '20%',
+    },
+    genres:{
+        display: 'flex',
+        
+    }
+
 });
 
 export default withExpoSnack(Upload);

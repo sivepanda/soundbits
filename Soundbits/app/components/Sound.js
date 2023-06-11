@@ -11,8 +11,9 @@ const StyledView = styled(View);
 const StyledImage = styled(Image);
 const StyledButton = styled(Button);
 
+
 const Sound = (props) => {
-  
+
   const [isDownloaded, setIsDownloaded] = useState(false);
 
   const handleDownload = () => {
@@ -46,8 +47,10 @@ const Sound = (props) => {
     }, [sound]);  
 
     return(
+        
         <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-gray-400 shadow-sm">
             <View style={styles.colplay}>
+            
                 <TouchableOpacity style={styles.plbt} onPress={playSound}>
                     <StyledImage style={styles.plbt} source={require('../assets/play-button.png')} tw='bg-contain ml-4 w-[5vh] h-[5vh]'/>
                 </TouchableOpacity>
