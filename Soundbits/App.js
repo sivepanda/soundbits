@@ -12,7 +12,15 @@ import Upload from './app/screens/Upload';
 import Friends from './app/screens/Friends';
 import SignIn from './app/screens/SignIn';
 import SignUp from './app/screens/SignUp';
+/* 
+also for TrackPlayer
+import TrackPlayer from 'react-native-track-player';
 
+TrackPlayer.setupPlayer().then(() => {
+  console.log('Setup Complete');
+}); 
+
+*/ 
 const Stack = createNativeStackNavigator();
 
 export default function App() {

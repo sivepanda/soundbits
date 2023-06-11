@@ -33,15 +33,23 @@ const SignUp = () => {
     }
   };
 
+/* ------------------------------------------------------------------------------ */
+/*     Returns 4 input text boxes that allows for the user to create an account   */
+/* ------------------------------------------------------------------------------ */
+
   return (
     <View style={styles.container}>
+      
       <Image
         source={require('../assets/icon.png')}
         style={styles.logo}
       />
+
       <StyledText tw='text-white text-3xl'>Soundbits</StyledText>
+
       <View style={styles.inputContainer}>
         <TextInput
+          /* ---------------------------  Username --------------------------- */
           style={styles.input}
           placeholder='Username'
           onChangeText={handleUsernameChange}
@@ -49,6 +57,7 @@ const SignUp = () => {
         />
         {usernameError && <Text style={styles.errorText}>{usernameError}</Text>}
         <TextInput
+        /* ------------------------------ Set the Email ----------------------------- */
           style={styles.input}
           placeholder='Email'
           onChangeText={(text) => setEmail(text)}
@@ -56,6 +65,7 @@ const SignUp = () => {
           keyboardType='email-address'
         />
         <TextInput
+        /* ---------------------------- Set the Password ---------------------------- */
           style={styles.input}
           placeholder='Password'
           onChangeText={(text) => setPassword(text)}
@@ -63,6 +73,7 @@ const SignUp = () => {
           secureTextEntry={true}
         />
         <TextInput
+        /* -------------------------- Confirm the Password -------------------------- */
           style={styles.input}
           placeholder='Confirm Password'
           onChangeText={(text) => setConfirmPassword(text)}
@@ -70,6 +81,8 @@ const SignUp = () => {
           secureTextEntry={true}
         />
       </View>
+      
+      {/* --------------------------- Handle the Sign-up --------------------------- */}
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>

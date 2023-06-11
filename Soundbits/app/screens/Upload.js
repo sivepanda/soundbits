@@ -7,9 +7,10 @@ import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 import NavBar from '../components/Nav';
+// import { Ionicons } from '@expo/vector-icons';
 import Title from '../components/Title';
 
-
+/* -------------- Allow the user to upload their own SoundBits! ------------- */
 const Upload = () => {
     const navigation = useNavigation(); 
     const StyledTO = styled(TouchableOpacity);
@@ -27,6 +28,12 @@ const Upload = () => {
             </StyledTO>
             <StyledText tw='text-2xl color-white'>Upload Now!</StyledText>
 
+            <TouchableOpacity style={styles.download}>
+                <Ionicons name="download-outline" size={28} color={'#fff'} />
+
+                <StyledText tw="text-lg text-stone-300">Saved Bits</StyledText>
+            </TouchableOpacity>
+
             <StyledView tw='mt-[51vh]' style={{ marginTop: 'auto' }}>
                 <NavBar navigation={navigation} activeTab="Accounts"/>
               </StyledView>
@@ -35,6 +42,20 @@ const Upload = () => {
 }
 
 const styles = StyleSheet.create({
+
+    download: {
+        marginTop: '40%',
+        flexDirection: 'column',
+        backgroundColor: 'grey',
+        borderRadius: '10px',
+        width: '45%',
+        height: '20%',
+        justifyContent: 'center',
+    
+        alignItems: 'center',
+    },
+
+
 
     overall: {
         flex: 1,

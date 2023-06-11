@@ -1,7 +1,8 @@
 import React from 'react';
-import {Button, View, Text, StyleSheet, Image} from 'react-native';
+import {Button, View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import { withExpoSnack } from 'nativewind';
+import { Ionicons } from '@expo/vector-icons';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 
@@ -9,7 +10,8 @@ import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique
 
 import { useNavigation } from '@react-navigation/native';
 
-// import Sound from 'react-native-sound';
+
+
 
 import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
@@ -21,11 +23,7 @@ const StyledView = styled(View);
 const StyledButton = styled(Button);
 const StyledTitle = styled(Title);
 
-// Sound.setCategory('Playback');
 
-// const mySound = new Sound('../assets/meta.mp3', Sound.LIBRARY, (error) => {
-    
-// })
 
 const config = {
     dictionaries: [names],
@@ -45,18 +43,19 @@ function randNum() {
     return min + ":" + sec;
 }
 
+
 function Home() {
     const navigation = useNavigation();
+
     return (
         <StyledView style={styles.viewContainer}>
             <StyledView tw="mt-[-70vh]" style={styles.head}>
                 <StyledTitle tm="Home" />
-            </StyledView>
+                </StyledView>
                 <View style={{alignItems: 'left'}}>
                         <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Explore Sounds:</StyledText>
                 </View>
-            
-            <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"}/>
+            <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
@@ -85,7 +84,18 @@ const styles = StyleSheet.create({
     },
     bott: {
         marginTop: 'auto',
-    }
+    },
+    /* ------------------------------- Added this for R-N-Sound ------------------------------- 
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#000',
+      },
+      playBtn: {
+        padding: 20,
+      }
+       -------------------------------------------------------------------------- */
     
 });
 
