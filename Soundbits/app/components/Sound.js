@@ -11,13 +11,7 @@ const StyledView = styled(View);
 const StyledImage = styled(Image);
 const StyledButton = styled(Button);
 
-
 const Sound = (props) => {
-<<<<<<< HEAD
-
-  const [isDownloaded, setIsDownloaded] = useState(false);
-=======
->>>>>>> 7fd438a982dc8a5ea656c6486065aa6695f4ec6a
 
     const [isDownloaded, setIsDownloaded] = useState(false);
 
@@ -28,7 +22,7 @@ const Sound = (props) => {
     const [sound, setSound] = React.useState();
 
     async function playSound() {
-        if(props.src) {
+        if (props.src) {
             sound ? await sound.unloadAsync() : null;
             console.log('Loading Sound');
             const source = '../assets/' + props.src;
@@ -40,10 +34,6 @@ const Sound = (props) => {
             });
             setSound(sound);
 
-<<<<<<< HEAD
-    return(
-        
-=======
             console.log('Playing Sound');
             await sound.playAsync();
         } else {
@@ -61,10 +51,8 @@ const Sound = (props) => {
     }, [sound]);
 
     return (
->>>>>>> 7fd438a982dc8a5ea656c6486065aa6695f4ec6a
         <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-gray-400 shadow-sm">
             <View style={styles.colplay}>
-            
                 <TouchableOpacity style={styles.plbt} onPress={playSound}>
                     <StyledImage style={styles.plbt} source={require('../assets/play-button.png')} tw='bg-contain ml-4 w-[5vh] h-[5vh]' />
                 </TouchableOpacity>
