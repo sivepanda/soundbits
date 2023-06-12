@@ -9,7 +9,15 @@ const db = mysql.createPool({
     database: 'Soundbits',
 });
 
-db.getConnection((err, connection) => {
+// AWS HOSTED SERVER
+const db_aws = mysql.createPool({
+  host: 'soundbits-1.cvidf6oikyfm.us-east-1.rds.amazonaws.com',
+  user: 'soundmaster',
+  password: 'RLypqr:b,5+R8JH',  // CHANGE TO A GITHUB SECRET ON PUBLISH
+  database: 'soundbits-1',
+});
+
+db_aws.getConnection((err, connection) => {
     if (err) {
       console.error('Error acquiring database connection:', err);
       return;
@@ -33,7 +41,7 @@ app.get("/", (req, res) => {
     
         
     const sqlInsert = "INSERT INTO UserInfo (username, email, userPassword, profilePicture, numLikes, numPosts, numFriends) VALUES ('test5234', 'test1', 'test1', 'test1', 0, 0, 0);"
-    db.query(sqlInsert, (err, result) => {
+    db_aws.query(sqlInsert, (err, result) => {
         console.log("hello world");
     })
 });
