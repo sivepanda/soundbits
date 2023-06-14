@@ -2,18 +2,22 @@ const express = require('express')
 const app = express()
 const mysql = require('mysql')
 
-const db = mysql.createPool({
-    host: '192.168.56.1',
-    user: 'sa',
-    password: 'cat123',
-    database: 'Soundbits',
-});
+// const db = mysql.createPool({
+//     host: '192.168.56.1',
+//     user: 'sa',
+//     password: 'cat123',
+//     database: 'Soundbits',
+// });
 
 // AWS HOSTED SERVER
 const db_aws = mysql.createPool({
+  connectionLimit : 1000,
+  connectTimeout  : 1000000,
+  acquireTimeout  : 60 * 60 * 1000,
+  timeout         : 60 * 60 * 1000,
   host: 'soundbits-1.cvidf6oikyfm.us-east-1.rds.amazonaws.com',
   user: 'soundmaster',
-  password: 'RLypqr:b,5+R8JH',  // CHANGE TO A GITHUB SECRET ON PUBLISH
+  password: "RLypqr:b,5+R8JH",  // CHANGE TO A GITHUB SECRET ON PUBLISH
   database: 'soundbits-1',
 });
 
