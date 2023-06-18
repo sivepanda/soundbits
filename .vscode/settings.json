@@ -1,9 +1,16 @@
 {
-<<<<<<< HEAD
-    "dataworkspace.excludedProjects": [
-        "Test/Test.sqlproj"
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "soundbits.cvidf6oikyfm.us-east-1.rds.amazonaws.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "soundbits",
+            "database": "soundbits",
+            "username": "admin"
+        }
     ]
-=======
-    "sqltools.connections": []
->>>>>>> 7fd438a982dc8a5ea656c6486065aa6695f4ec6a
 }

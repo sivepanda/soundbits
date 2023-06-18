@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text,TouchableOpacity, Image, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -44,6 +44,23 @@ const Upload = () => {
         console.log(`Search for "${searchText}"`);
     }
 
+    const [fontsLoaded] = useFonts({
+        'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
+        'Urbanist': require('../assets/fonts/Urbanist-Regular.ttf'),
+      });
+    
+      const onLayoutRootView = useCallback(async () => {
+        console.log('hello')
+        if (fontsLoaded) {
+          await SplashScreen.hideAsync();
+        }
+      }, [fontsLoaded]);
+
+      if (!fontsLoaded) {
+        console.log('fail to load');
+        return null;
+      }
+
     return (
         <StyledView tw='h-[100vh] w-[100vw] mt-[-5vh]' style = {styles.overall}>
              <StyledView tw="mt-[-90vh]" style={styles.head}>
@@ -67,21 +84,6 @@ const Upload = () => {
             </StyledView>
             <StyledView style={styles.texto}>
                 <Text style={styles.text}>Recommended Genres</Text>
-            </StyledView>
-
-            <StyledView style={styles.genres}>
-                <StyledView styles={styles.genre.pop}>
-
-                </StyledView>
-                <StyledView styles={styles.genre.rap}>
-                    
-                </StyledView>
-                <StyledView styles={styles.genre.edm}>
-                    
-                </StyledView>
-                <StyledView styles={styles.genre.rock}>
-                    
-                </StyledView>
             </StyledView>
             
 

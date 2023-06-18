@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const mysql = require('mysql')
+require('dotenv').config();
 
 // const db = mysql.createPool({
 //     host: '192.168.56.1',
@@ -15,10 +16,10 @@ const db_aws = mysql.createPool({
   connectTimeout  : 1000000,
   acquireTimeout  : 60 * 60 * 1000,
   timeout         : 60 * 60 * 1000,
-  host: 'soundbits-1.cvidf6oikyfm.us-east-1.rds.amazonaws.com',
-  user: 'soundmaster',
-  password: "RLypqr:b,5+R8JH",  // CHANGE TO A GITHUB SECRET ON PUBLISH
-  database: 'soundbits-1',
+  host: process.env.HOSTNM,
+  user: process.env.AWS_USR,
+  password: process.env.PASS,
+  database: process.env.AWS_DB,
 });
 
 db_aws.getConnection((err, connection) => {
@@ -27,7 +28,7 @@ db_aws.getConnection((err, connection) => {
       return;
     }
   
-    const sql = 'SELECT * FROM users';
+    const sql = 'SELECT * FROM Users';
     connection.query(sql, (err, results) => {
       connection.release(); // Release the connection back to the pool
   
@@ -44,7 +45,7 @@ app.get("/", (req, res) => {
     
     
         
-    const sqlInsert = "INSERT INTO UserInfo (username, email, userPassword, profilePicture, numLikes, numPosts, numFriends) VALUES ('test5234', 'test1', 'test1', 'test1', 0, 0, 0);"
+    const sqlInsert = "INSERT INTO Users (username, email, userPassword, profilePicture, numLikes, numPosts, numFriends) VALUES ('test5234', 'test1', 'test1', 'test1', 0, 0, 0);"
     db_aws.query(sqlInsert, (err, result) => {
         console.log("hello world");
     })

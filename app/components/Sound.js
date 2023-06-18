@@ -22,6 +22,23 @@ const Sound = (props) => {
     const [sound, setSound] = React.useState();
 
     async function playSound() {
+        const [fontsLoaded] = useFonts({
+            'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
+            'Urbanist': require('../assets/fonts/Urbanist-SemiBold.ttf'),
+          });
+        
+          const onLayoutRootView = useCallback(async () => {
+            console.log('hello')
+            if (fontsLoaded) {
+              await SplashScreen.hideAsync();
+            }
+          }, [fontsLoaded]);
+    
+          if (!fontsLoaded) {
+            console.log('fail to load');
+            return null;
+          }
+
         if (props.src) {
             sound ? await sound.unloadAsync() : null;
             console.log('Loading Sound');
@@ -59,8 +76,8 @@ const Sound = (props) => {
                 <StyledText style={styles.mono} tw="mt-1 ml-4">{props.tm}</StyledText>
             </View>
             <View style={styles.colinfo}>
-                <StyledText tw="font-bold text-3xl">{props.nm}</StyledText>
-                <StyledText>{props.auth}</StyledText>
+                <StyledText style={styles.nm} tw="font-bold text-3xl">{props.nm}</StyledText>
+                <StyledText style={styles.auth}>{props.auth}</StyledText>
             </View>
             <View>
                 <TouchableOpacity onPress={handleDownload}>
@@ -72,6 +89,15 @@ const Sound = (props) => {
 }
 
 const styles = StyleSheet.create({
+    nm: {
+        fontSize: 25,
+        fontFamily: 'Syne',
+        fontWeight: 600,
+    },
+    auth: {
+        fontFamily: 'Urbanist',
+
+    },
     container: {
         flex: 0.7,
         justifyContent: 'center',
