@@ -1,0 +1,2 @@
+DROP TABLE Sounds;
+DROP TABLE Users;
