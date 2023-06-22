@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 
+import Axios from 'axios' 
+
 const SignUp = () => {
+  
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,10 +20,20 @@ const SignUp = () => {
 
   const handleSignUp = () => {
     // Add sign-up logic here
-    console.log('Username:', username);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+
+    Axios.post("http://soundbits.cvidf6oikyfm.us-east-1.rds.amazonaws.com/api/insert", {
+      username: username,  
+      email: email,
+      userPassword: password
+     });
+    //.then {()=>{
+    //   alert("inserted!");
+    // }};
+
+    // console.log('Username:', username);
+    // console.log('Email:', email);
+    // console.log('Password:', password);
+    // console.log('Confirm Password:', confirmPassword);
   };
 
   const handleUsernameChange = (text) => {
