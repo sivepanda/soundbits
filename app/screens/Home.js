@@ -84,19 +84,7 @@ const styles = StyleSheet.create({
     },
     bott: {
         marginTop: 'auto',
-    },
-    /* ------------------------------- Added this for R-N-Sound ------------------------------- 
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#000',
-      },
-      playBtn: {
-        padding: 20,
-      }
-       -------------------------------------------------------------------------- */
-    
+    }   
 });
 
 

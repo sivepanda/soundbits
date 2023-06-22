@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text,TouchableOpacity, Image, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -44,11 +44,30 @@ const Upload = () => {
         console.log(`Search for "${searchText}"`);
     }
 
+    const [fontsLoaded] = useFonts({
+        'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
+        'Urbanist': require('../assets/fonts/Urbanist-Regular.ttf'),
+      });
+    
+      const onLayoutRootView = useCallback(async () => {
+        console.log('hello')
+        if (fontsLoaded) {
+          await SplashScreen.hideAsync();
+        }
+      }, [fontsLoaded]);
+
+      if (!fontsLoaded) {
+        console.log('fail to load');
+        return null;
+      }
+
     return (
         <StyledView tw='h-[100vh] w-[100vw] mt-[-5vh]' style = {styles.overall}>
              <StyledView tw="mt-[-90vh]" style={styles.head}>
                 <StyledTitle tm="Search" />
+                
             </StyledView>
+            
 
 {/* ---------------------------- Actual searchbar ---------------------------- */}
             <StyledView style={styles.box}>
@@ -63,6 +82,10 @@ const Upload = () => {
                     />
                 {/* </View> */}
             </StyledView>
+            <StyledView style={styles.texto}>
+                <Text style={styles.text}>Recommended Genres</Text>
+            </StyledView>
+            
 
             <View style={styles.sounds}></View>
 
@@ -118,8 +141,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#f2f2f2',
         padding: 10,
-        borderRadius: 25,
-        width: '80%',
+        borderRadius: 10,
+        width: '90%',
 
     },
     head: {
@@ -138,6 +161,22 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 18,
       },
+    texto:{
+        marginTop: '5%',
+       display: 'flex',
+       width:'100%',
+       alignItems: 'left',
+       marginLeft: '10%',
+    },
+    text:{
+        color: 'white',
+        fontSize: '20%',
+    },
+    genres:{
+        display: 'flex',
+        
+    }
+
 });
 
 export default withExpoSnack(Upload);
