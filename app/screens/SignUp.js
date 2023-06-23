@@ -21,7 +21,7 @@ const SignUp = () => {
   const handleSignUp = () => {
     // Add sign-up logic here
 
-    Axios.post("http://soundbits.cvidf6oikyfm.us-east-1.rds.amazonaws.com/api/insert", {
+    Axios.post("localhost:3000/api/insert", {
       username: username,  
       email: email,
       userPassword: password
