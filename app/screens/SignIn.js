@@ -7,21 +7,6 @@ import { useFonts } from 'expo-font';
 
 import { useNavigation } from '@react-navigation/native';
 
-const findUserIdByUsername = async (username) => {
-  console.log('test1')
-  try {
-    const user = await User.findOne({ where: { username } });
-    if (user) {
-      const userId = user.id; // Assuming 'id' is the primary key column name
-      console.log(`User ID for ${username}: ${userId}`);
-    } else {
-      console.log(`User ${username} not found`);
-    }
-  } catch (error) {
-    console.error('Error finding user:', error);
-  }
-};
-
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -29,6 +14,21 @@ const SignIn = () => {
   const StyledText = styled(Text);
   const navigation = useNavigation();
 
+  const findUserIdByUsername = async (username) => {
+    console.log('test1')
+    try {
+      const user = await User.findOne({ where: { username } });
+      if (user) {
+        const userId = user.id; // Assuming 'id' is the primary key column name
+        console.log(`User ID for ${username}: ${userId}`);
+      } else {
+        console.log(`User ${username} not found`);
+      }
+    } catch (error) {
+      console.error('Error finding user:', error);
+    }
+  };
+  
   const handleSignIn = () => {
     // Add sign-in logic here
 
