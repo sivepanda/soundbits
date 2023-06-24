@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'reac
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
-
+import Axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
 const SignIn = () => {
@@ -17,14 +17,21 @@ const SignIn = () => {
   const handleSignIn = () => {
     // Add sign-in logic here
 
+    const id = Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/password');
+
+    if(
+      Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/id/userPassword").equals(password)
+    ){
+      navigation.navigate('Home', {})
+    } else {
+      console.log('failed to login')
+    }
+    
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
     *                                                                                                                                                       *
     *                       CURRENTLY YOU ONLY HAVE TO PRESS SIGN IN ON THE SIGN IN PAGE TO GET TO HOME                                                     *
     *                                                                                                                                                       *
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-    console.log('Username:', username);
-    console.log('Password:', password);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------ */
@@ -58,7 +65,7 @@ const SignIn = () => {
         />
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
+      <TouchableOpacity style={styles.button} onPress={() => handleSignIn()}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
     
