@@ -7,6 +7,21 @@ import { useFonts } from 'expo-font';
 
 import { useNavigation } from '@react-navigation/native';
 
+const findUserIdByUsername = async (username) => {
+  console.log('test1')
+  try {
+    const user = await User.findOne({ where: { username } });
+    if (user) {
+      const userId = user.id; // Assuming 'id' is the primary key column name
+      console.log(`User ID for ${username}: ${userId}`);
+    } else {
+      console.log(`User ${username} not found`);
+    }
+  } catch (error) {
+    console.error('Error finding user:', error);
+  }
+};
+
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,14 +32,20 @@ const SignIn = () => {
   const handleSignIn = () => {
     // Add sign-in logic here
 
+    const id = findUserIdByUsername(username);
+    if(
+      Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/id/userPassword").equals(password)
+    ){
+      navigation.navigate('Home', {})
+    } else {
+      console.log('failed to login')
+    }
+    
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
     *                                                                                                                                                       *
     *                       CURRENTLY YOU ONLY HAVE TO PRESS SIGN IN ON THE SIGN IN PAGE TO GET TO HOME                                                     *
     *                                                                                                                                                       *
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-    console.log('Username:', username);
-    console.log('Password:', password);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------ */
@@ -58,7 +79,7 @@ const SignIn = () => {
         />
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
+      <TouchableOpacity style={styles.button} onPress={() => handleSignIn}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
     

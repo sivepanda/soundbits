@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     res.json(get);
 })
 
-app.get('/:id/:attribute', (req, res) => {
+router.get('/:id/:attribute', (req, res) => {
     const id = req.params.id;
     const attribute = req.params.attribute;
   

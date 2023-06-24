@@ -38,7 +38,7 @@ const SignUp = () => {
   };
   
   const handleTestGet = () => {
-    Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users").then(function (response) {
+    Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/1/username").then(function (response) {
       // Handle the response data
       console.log(response.data);
     }).catch(function (error) {
@@ -107,6 +107,7 @@ const SignUp = () => {
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
+
       <TouchableOpacity style={styles.button} onPress={handleTestGet}>
         <Text style={styles.buttonText}>Test Get Method</Text>
       </TouchableOpacity>
@@ -146,6 +147,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 10,
   },
   buttonText: {
     color: '#fff',
