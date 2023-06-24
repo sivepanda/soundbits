@@ -3,8 +3,10 @@ const router = Router();
 const { User } = require("../models")
 
 
-router.get("/", (req, res) => {
-    res.json("Test");
+router.get("/", async (req, res) => {
+    const get = req.body.User;
+    await User.findAll(get);
+    res.json(get);
 })
 
 router.post("/", async (req, res) => {
