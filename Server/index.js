@@ -40,8 +40,8 @@ app.post('/api/insert', (req, res) => {
 // Routers
 const soundRouter = require("./routes/Sounds");
 app.use("/sounds", soundRouter);
-// const commentsRouter = require("./routes/Comments");
-// app.use("/comments", commentsRouter);
+const userRouter = require("./routes/Users");
+app.use("/users", userRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(3000, () => {

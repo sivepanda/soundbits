@@ -21,11 +21,18 @@ const SignUp = () => {
   const handleSignUp = () => {
     // Add sign-up logic here
 
-    Axios.post("http://soundbits.cvidf6oikyfm.us-east-1.rds.amazonaws.com/api/insert", {
+    Axios.post("http://localhost:3000/users", {
       username: username,  
       email: email,
-      userPassword: password
-     });
+      userPassword: password,
+      profilePicture: "https://media.discordapp.net/attachments/908915908758601729/1121652123625607168/pass-colin-1.png?width=559&height=559", 
+      numLikes: 0,
+      numPosts: 0,
+      numFriends: 0,
+     }).catch(e => {
+      console.log(e);
+      return e;
+    });
     //.then {()=>{
     //   alert("inserted!");
     // }};
