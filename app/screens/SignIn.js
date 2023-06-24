@@ -68,7 +68,9 @@ const SignIn = () => {
       <TouchableOpacity style={styles.button} onPress={() => handleSignIn()}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
-    
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
+        <Text style={styles.buttonText}>Skip Sign In</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 10,
   },
   buttonText: {
     color: '#fff',
