@@ -38,7 +38,7 @@ function WelcomeScreen() {
       }, [fontsLoaded]);
 
       if (!fontsLoaded) {
-        console.log('fail to load');
+        console.log('fail to load fonts');
         return null;
       }
     

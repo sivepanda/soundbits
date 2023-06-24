@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-
+import React, { useState, useRef } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
@@ -22,16 +22,9 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [usernameError, setUsernameError] = useState(null);
-
-    const StyledText = styled(Text);
-    
-    
-    bcrypt.setRandomFallback((len) => {
-        const bytes = Random.getRandomBytes(len);
-        console.log("set")
-        return bytes;
-    });
+  const [usernameError, setUsernameError] = useState(null);
+  
+  const StyledText = styled(Text);
 
     const handleSignUp = () => {
         bcrypt.setRandomFallback((len) => {

@@ -19,6 +19,16 @@ const Sound = (props) => {
         setIsDownloaded(true);
     }
 
+    const [isLiked, setIsLiked] = useState(false);
+
+    const handleLiked = () => {
+        setIsLiked(true);
+    }
+
+    const handleFindAccount = () => {
+        
+    }
+
     const [sound, setSound] = React.useState();
 
     async function playSound() {
@@ -77,9 +87,14 @@ const Sound = (props) => {
             </View>
             <View style={styles.colinfo}>
                 <StyledText style={styles.nm} tw="font-bold text-3xl">{props.nm}</StyledText>
-                <StyledText style={styles.auth}>{props.auth}</StyledText>
+                <TouchableOpacity onPress={handleFindAccount}>
+                    <StyledText style={styles.auth}>{props.auth}</StyledText>
+                </TouchableOpacity>
             </View>
-            <View>
+            <View style={styles.icons}>
+                <TouchableOpacity onPress={handleLiked}>
+                    <Ionicons name={isLiked ? 'heart' : 'heart-outline'} size={28} color={isLiked ? 'red' : 'black'} />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={handleDownload}>
                     <Ionicons style={styles.download} name={isDownloaded ? 'checkmark-outline' : 'arrow-down-outline'} size={28} color={isDownloaded ? 'green' : 'black'} />
                 </TouchableOpacity>
@@ -124,7 +139,9 @@ const styles = StyleSheet.create({
     download: {
         paddingRight: 15
     },
-
+    icons: {
+        flexDirection: 'row',
+    },
 });
 
 export default Sound;
