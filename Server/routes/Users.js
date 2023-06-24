@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { Sound } = require("../models")
+const { User } = require("../models")
 
 
 router.get("/", (req, res) => {
@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
     const post = req.body;
-    await Sound.create(post);
+    await User.create(post);
     res.json(post);
 })
 

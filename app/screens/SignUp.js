@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 
+import Axios from 'axios' 
+
 const SignUp = () => {
+  
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,10 +20,27 @@ const SignUp = () => {
 
   const handleSignUp = () => {
     // Add sign-up logic here
-    console.log('Username:', username);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+
+    Axios.post("http://localhost:3000/users", {
+      username: username,  
+      email: email,
+      userPassword: password,
+      profilePicture: "https://media.discordapp.net/attachments/908915908758601729/1121652123625607168/pass-colin-1.png?width=559&height=559", 
+      numLikes: 0,
+      numPosts: 0,
+      numFriends: 0,
+     }).catch(e => {
+      console.log(e);
+      return e;
+    });
+    //.then {()=>{
+    //   alert("inserted!");
+    // }};
+
+    // console.log('Username:', username);
+    // console.log('Email:', email);
+    // console.log('Password:', password);
+    // console.log('Confirm Password:', confirmPassword);
   };
 
   const handleUsernameChange = (text) => {
