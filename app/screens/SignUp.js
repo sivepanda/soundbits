@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-
+import React, { useState, useRef } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
@@ -21,7 +21,7 @@ const SignUp = () => {
   const handleSignUp = () => {
     // Add sign-up logic here
 
-    Axios.post("http://localhost:3000/users", {
+    Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users", {
       username: username,  
       email: email,
       userPassword: password,
@@ -33,14 +33,18 @@ const SignUp = () => {
       console.log(e);
       return e;
     });
-    //.then {()=>{
-    //   alert("inserted!");
-    // }};
-
-    // console.log('Username:', username);
-    // console.log('Email:', email);
-    // console.log('Password:', password);
-    // console.log('Confirm Password:', confirmPassword);
+    
+    
+  };
+  
+  const handleTestGet = () => {
+    Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users").then(function (response) {
+      // Handle the response data
+      console.log(response.data);
+    }).catch(function (error) {
+      // Handle any errors that occurred during the request
+      console.error(error);
+    });
   };
 
   const handleUsernameChange = (text) => {
@@ -50,9 +54,8 @@ const SignUp = () => {
       setUsernameError('Username already exists');
     } else {
       setUsernameError(null);
-    }
-  };
-
+    }};
+    
 /* ------------------------------------------------------------------------------ */
 /*     Returns 4 input text boxes that allows for the user to create an account   */
 /* ------------------------------------------------------------------------------ */
@@ -66,45 +69,46 @@ const SignUp = () => {
       />
 
       <StyledText tw='text-white text-3xl'>Soundbits</StyledText>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          /* ---------------------------  Username --------------------------- */
-          style={styles.input}
-          placeholder='Username'
-          onChangeText={handleUsernameChange}
-          value={username}
+          <View style={styles.inputContainer}>
+            <TextInput
+              /* ---------------------------  Username --------------------------- */
+              style={styles.input}
+              placeholder='Username'
+              onChangeText={handleUsernameChange}
+              value={username}
+            />
+            {usernameError && <Text style={styles.errorText}>{usernameError}</Text>}
+            <TextInput
+            /* ------------------------------ Set the Email ----------------------------- */
+              style={styles.input}
+              placeholder='Email'
+              onChangeText={(text) => setEmail(text)}
+              value={email}
+              keyboardType='email-address'
+            />
+            <TextInput
+            /* ---------------------------- Set the Password ---------------------------- */
+              style={styles.input}
+              placeholder='Password'
+              onChangeText={(text) => setPassword(text)}
+              value={password}
+              secureTextEntry={true}
+            />
+            <TextInput
+            /* -------------------------- Confirm the Password -------------------------- */
+              style={styles.input}
+              placeholder='Confirm Password'
+              onChangeText={(text) => setConfirmPassword(text)}
+              value={confirmPassword}
+              secureTextEntry={true}
         />
-        {usernameError && <Text style={styles.errorText}>{usernameError}</Text>}
-        <TextInput
-        /* ------------------------------ Set the Email ----------------------------- */
-          style={styles.input}
-          placeholder='Email'
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          keyboardType='email-address'
-        />
-        <TextInput
-        /* ---------------------------- Set the Password ---------------------------- */
-          style={styles.input}
-          placeholder='Password'
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          secureTextEntry={true}
-        />
-        <TextInput
-        /* -------------------------- Confirm the Password -------------------------- */
-          style={styles.input}
-          placeholder='Confirm Password'
-          onChangeText={(text) => setConfirmPassword(text)}
-          value={confirmPassword}
-          secureTextEntry={true}
-        />
-      </View>
-      
+          </View>
       {/* --------------------------- Handle the Sign-up --------------------------- */}
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleTestGet}>
+        <Text style={styles.buttonText}>Test Get Method</Text>
       </TouchableOpacity>
     </View>
   );
