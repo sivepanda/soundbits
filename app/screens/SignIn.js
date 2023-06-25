@@ -17,10 +17,10 @@ const SignIn = () => {
   const handleSignIn = () => {
     // Add sign-in logic here
 
-    const id = Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/username');
+    const id = Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/' + username);
 
     if(
-      Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/id/userPassword").equals(password)
+      Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword").equals(password)
     ){
       navigation.navigate('Home', {})
     } else {
