@@ -15,6 +15,7 @@ router.get("/getId/:username", (req, res) => {
         try {
           const user = await User.findOne({ where: { username } });
           if (username) {
+            console.log(user);
             return user;
             // const userId = user.id; // Assuming 'id' is the primary key column name
             // console.log(`User ID for ${username}: ${userId}`);
