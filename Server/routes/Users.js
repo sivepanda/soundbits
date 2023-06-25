@@ -15,7 +15,7 @@ router.get("/getId/:username", (req, res) => {
         try {
           User.findOne({ where: { username } }).then((result) => {
             if (username) {
-                console.log(`User ID for ${username}: ${result.id}`);
+                console.log(`User ID for ${username}: ${result}`);
                 return result.id;
               } else {
                 console.log(`User ${username} not found`);
