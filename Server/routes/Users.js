@@ -26,7 +26,7 @@ router.get("/getId/:username", (req, res) => {
         }
       };
 
-      res.json(String(findUserIdByUsername(Username)));
+      res.json(JSON.stringify(findUserIdByUsername(Username)));
 });
 
 router.get('/:id/:attribute', (req, res) => {
