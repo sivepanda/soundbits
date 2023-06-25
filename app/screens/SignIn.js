@@ -6,6 +6,8 @@ import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 import Axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+var bcrypt = require('react-native-bcrypt');
+import * as Random from 'expo-random';
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
@@ -16,16 +18,24 @@ const SignIn = () => {
 
   const handleSignIn = () => {
     // Add sign-in logic here
+    bcrypt.setRandomFallback((len) => {
+      const bytes = Random.getRandomBytes(len);
+      console.log("set")
+      return bytes;
+    });
+
+    
 
     const id = Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/' + username);
-
-    if(
-      Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword").equals(password)
-    ){
-      navigation.navigate('Home', {})
-    } else {
-      console.log('failed to login')
-    }
+    console.log('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/' + username);
+    bcrypt.compare(password, Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword"), function(err, res) {
+    console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword".userPassword)  
+    if(res) {
+        navigation.navigate('Home', {})
+      } else {
+        console.log('failed to login')
+      }
+    });
     
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
     *                                                                                                                                                       *
