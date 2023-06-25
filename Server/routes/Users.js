@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     res.json(get);
 })
 
-router.get("/getId/:username", (req, res) => {
+router.get("/getId/:username", async (req, res) => {
     const Username = req.params.username;
     const findUserIdByUsername = async (username) => {
         try {
@@ -28,8 +28,10 @@ router.get("/getId/:username", (req, res) => {
         }
       };
 
-      res.json({id: findUserIdByUsername(Username)});
+      res.json({id: await findUserIdByUsername(Username)});
 });
+
+
 
 router.get('/:id/:attribute', (req, res) => {
     const id = req.params.id;
