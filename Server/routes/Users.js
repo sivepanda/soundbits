@@ -28,7 +28,7 @@ router.get("/getId/:username", async (req, res) => {
         }
       };
 
-      res.json(await findUserIdByUsername(Username));
+      res.json({uID: await findUserIdByUsername(Username)});
 });
 
 
