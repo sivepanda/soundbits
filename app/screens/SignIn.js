@@ -27,7 +27,7 @@ const SignIn = () => {
     
 
     const id = Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/' + username);
-    console.log('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/' + username);
+    console.log("123", id, username);
     bcrypt.compare(password, Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword"), function(err, res) {
     console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword".userPassword)  
     if(res) {
