@@ -15,9 +15,10 @@ router.get("/getId/:username", (req, res) => {
         try {
           const user = await User.findOne({ where: { username } });
           if (username) {
-            const userId = user.id; // Assuming 'id' is the primary key column name
-            console.log(`User ID for ${username}: ${userId}`);
-            return userId;
+            return user;
+            // const userId = user.id; // Assuming 'id' is the primary key column name
+            // console.log(`User ID for ${username}: ${userId}`);
+            // return userId;
           } else {
             console.log(`User ${username} not found`);
           }
@@ -26,7 +27,7 @@ router.get("/getId/:username", (req, res) => {
         }
       };
 
-      res.json((findUserIdByUsername(Username)));
+      res.json(String(findUserIdByUsername(Username)));
 });
 
 router.get('/:id/:attribute', (req, res) => {
