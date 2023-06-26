@@ -10,6 +10,8 @@ import { useFonts } from 'expo-font';
 const StyledView = styled(View);
 const StyledText = styled(Text);
 
+/* Easy-to-use title component */
+
 const Title = (props) => {
     const [fontsLoaded] = useFonts({
         'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),

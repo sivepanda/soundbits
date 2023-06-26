@@ -11,6 +11,8 @@ const StyledView = styled(View);
 const StyledImage = styled(Image);
 const StyledButton = styled(Button);
 
+    /* ----- Returns a functional sound button that only plays the best music ---- */
+
 const Sound = (props) => {
 
     const [isDownloaded, setIsDownloaded] = useState(false);
@@ -30,6 +32,9 @@ const Sound = (props) => {
     }
 
     const [sound, setSound] = React.useState();
+
+    /* ---------------------------  Creates a sound object on the screen -------------------------- */
+    // However, this object can only play Metamorphosis atm
 
     async function playSound() {
         const [fontsLoaded] = useFonts({
@@ -75,6 +80,9 @@ const Sound = (props) => {
             }
             : undefined;
     }, [sound]);
+
+/* ---------------------------  Creates a sound object on the screen -------------------------- */
+// However, this object can only play Metamorphosis
 
     return (
         <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-gray-400 shadow-sm">

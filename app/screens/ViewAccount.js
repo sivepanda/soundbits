@@ -85,7 +85,7 @@ const ViewAccount = () => {
           {/* Add your genres content here */}
         </View>
       </ScrollView>
-      <StyledView style={{ marginTop: 'auto', width: '100%'}}>
+      <StyledView style={{ marginTop: 'auto' /*, width: '100%'*/}}>
         <NavBar navigation={navigation} activeTab="Home"/>
       </StyledView>
 
