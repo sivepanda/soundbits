@@ -28,18 +28,19 @@ const SignIn = () => {
 
     
 
-    const id = Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/' + username);
-    console.log("123", id, username);
-    bcrypt.compare(password, Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword"), function(err, res) {
-    console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword".userPassword)  
-    if(res) {
-        navigation.navigate('Home', {})
-      } else {
-        console.log('failed to login')
-      }
+    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{
+      // var x = JSON.parse(response.data.uID);
+      console.log(username, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword)
+      bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, function(err, res) {
+        console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
+        if(res) {
+            navigation.navigate('Home', {})
+          } else {
+            console.log('failed to login')
+        }
+      })
     });
-  
-  };
+  }
 
   /* ------------------------------------------------------------------------------------------------------------------ */
   /*                Allow for a returning user to access their account instead of creating a new account                */
