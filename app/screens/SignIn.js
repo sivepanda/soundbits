@@ -26,17 +26,17 @@ const SignIn = () => {
 
     
 
-    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then((response) =>{
+    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{
       // var x = JSON.parse(response.data.uID);
-      console.log("123", (response.data), username)
-      // bcrypt.compare(password, Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response + "/userPassword"), function(err, res) {
-      //   console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response + "/userPassword".userPassword)  
-      //   if(res) {
-      //       navigation.navigate('Home', {})
-      //     } else {
-      //       console.log('failed to login')
-      //   }
-      // })
+      console.log(username, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword)
+      bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, function(err, res) {
+        console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
+        if(res) {
+            navigation.navigate('Home', {})
+          } else {
+            console.log('failed to login')
+        }
+      })
     })
     
     
