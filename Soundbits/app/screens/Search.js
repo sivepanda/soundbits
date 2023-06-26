@@ -69,25 +69,11 @@ const Upload = () => {
                 <Text style={styles.text}>Recommended Genres</Text>
             </StyledView>
 
-            <StyledView style={styles.genres}>
-                <StyledView styles={styles.genre.pop}>
-
-                </StyledView>
-                <StyledView styles={styles.genre.rap}>
-                    
-                </StyledView>
-                <StyledView styles={styles.genre.edm}>
-                    
-                </StyledView>
-                <StyledView styles={styles.genre.rock}>
-                    
-                </StyledView>
-            </StyledView>
             
 
             <View style={styles.sounds}></View>
 
-{/* -------- Random Names for the searchbar. Helps it look less empty -------- */}
+{/* -------- Random Names for the searchbar -------- */}
 
             <ScrollView showsVerticalScrollIndicator={false} style={styles.sounds}>
                 <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>

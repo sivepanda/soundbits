@@ -54,6 +54,9 @@ const Sound = (props) => {
             : undefined;
     }, [sound]);
 
+/* ---------------------------  Creates a sound object on the screen -------------------------- */
+// However, this object can only play Metamorphosis
+
     return (
         <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-gray-400 shadow-sm">
             <View style={styles.colplay}>

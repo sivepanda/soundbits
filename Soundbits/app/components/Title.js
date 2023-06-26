@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 const StyledView = styled(View);
 const StyledText = styled(Text);
 
+/* Easy-to-use title component */
+
 const Title = (props) => {
     const y = props;
     return (

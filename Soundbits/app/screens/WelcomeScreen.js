@@ -25,17 +25,17 @@ function WelcomeScreen() {
     return (
         <StyledView style={styles.viewContainer} tw="bg-black">
             
-            <TouchableOpacity style={styles.Button} onPress={() => fetchData('/quit')}>
+            {/* <TouchableOpacity style={styles.Button} onPress={() => fetchData('/quit')}>
                 <StyledText tw='color-white'>{returnedData}</StyledText>
             </TouchableOpacity>
             {/* onPress={() => fetchData('/quit')}
             {returnedData} */}
-            
+
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.styTex} tw='text-white text-3xl'>Soundbits</StyledText> 
             <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {styles.Button}>
                 <StyledView>
-                    <StyledText tw='color-white'>Sign In</StyledText>
+                    <StyledText tw='color-white'>Log In</StyledText>
                 </StyledView>
             </TouchableOpacity>
             <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {styles.Button}>

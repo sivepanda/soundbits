@@ -43,7 +43,7 @@ function randNum() {
     return min + ":" + sec;
 }
 
-
+/* Home just shows some of the user's friends, all of whom are randomly generated */
 function Home() {
     const navigation = useNavigation();
 
@@ -85,18 +85,7 @@ const styles = StyleSheet.create({
     bott: {
         marginTop: 'auto',
     },
-    /* ------------------------------- Added this for R-N-Sound ------------------------------- 
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#000',
-      },
-      playBtn: {
-        padding: 20,
-      }
-       -------------------------------------------------------------------------- */
-    
+ 
 });
 
 

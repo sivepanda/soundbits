@@ -13,6 +13,7 @@ const StyledImage = styled(Image);
 const StyledView = styled(View);
 // const StyledButton = styled(Button);
 
+//testing
 function RadarMap() {
 
     return (
