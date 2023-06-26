@@ -12,21 +12,21 @@ const StyledView = styled(View);
 const NavBar = ({ activeTab }) => {
   const navigation = useNavigation();
     return (
-      <StyledView tw='bg-slate-900 pt-5' style={styles.container}>
+      <StyledView tw='bg-black pt-5' style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate('Home', {})} style={styles.tab}>
-          <Ionicons name="home-outline" size={28} color={activeTab === 'Home' ? '#000' : '#ccc'} />
+          <Ionicons name={activeTab === 'Home' ? 'home-outline' : 'home'} size={28} color={activeTab === 'Home' ? '#000' : '#ccc'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Search', {})} style={styles.tab}>
-          <Ionicons name="search-outline" size={28} color={activeTab === 'Search' ? '#000' : '#ccc'} />
+          <Ionicons name={activeTab === 'Search' ? 'search' : 'search-outline'} size={28} color={activeTab === 'Search' ? '#000' : '#ccc'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Upload', {})} style={styles.tab}>
-          <Ionicons name="add-circle-outline" size={40} color={activeTab === 'Upload' ? '#000' : '#ccc'} />
+          <Ionicons name={activeTab === 'Upload' ? 'add-circle' : 'add-circle-outline'} size={40} color={activeTab === 'Upload' ? '#000' : '#ccc'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Friends', {})} style={styles.tab}>
-          <Ionicons name="people-outline" size={28} color={activeTab === 'Friends' ? '#000' : '#ccc'} />
+          <Ionicons name={activeTab === 'Friends' ? 'people' : 'people-outline'} size={28} color={activeTab === 'Friends' ? '#000' : '#ccc'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Accounts', {})} style={styles.tab}>
-          <Ionicons name="person-outline" size={28} color={activeTab === 'Accounts' ? '#000' : '#ccc'} />
+          <Ionicons name={activeTab === 'Accounts' ? 'person' : 'person-outline'} size={28} color={activeTab === 'Accounts' ? '#000' : '#ccc'} />
         </TouchableOpacity>
       </StyledView>
     );

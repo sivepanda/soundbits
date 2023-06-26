@@ -104,7 +104,7 @@ function Home() {
                 </ScrollView>
                 
             <StyledView style={ styles.bott }>
-                <NavBar navigation={navigation} activeTab="Accounts" />
+                <NavBar navigation={navigation} activeTab="Home" />
             </StyledView>
             
        </StyledView>

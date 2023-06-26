@@ -116,7 +116,7 @@ const Upload = () => {
 {/* -------------------------------------------------------------------------- */}
 
             <StyledView tw='mt-[51vh]' style={{ marginTop: 'auto' }}>
-                <NavBar navigation={navigation} activeTab="Accounts"/>
+                <NavBar navigation={navigation} activeTab="Search"/>
               </StyledView>
         </StyledView>
     )    

@@ -5,7 +5,7 @@ import { styled } from "nativewind";
 import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
 
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
@@ -47,18 +47,17 @@ const ViewAccount = () => {
     <StyledView style={styles.styledContainer}>
     
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.profileContainer}>
-          <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> 
+        <View style={styles.profileContainer}> 
             <Image
              style={styles.profilePicture}
              source={{ uri: randImg() }}
             />
-          </LinearGradient>
+            <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
           {/* <View style={styles.gradientOverlay} /> */}
           <Text style={styles.username}>John Doe</Text>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>Likes: 500</Text>
-            <Text style={styles.infoText}>Posts: 100</Text>
+            <Text style={styles.infoText}>Likes: 500 </Text>
+            <Text style={styles.infoText}>Posts: 100 </Text>
             <Text style={styles.infoText}>Friends: 300</Text>
           </View>
         </View>
@@ -112,10 +111,9 @@ const styles = StyleSheet.create({
     height: width,
   },
   linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5
+    width: width,
+    height: width,
+    position: 'absolute',
   },
   username: {
     color: 'white',

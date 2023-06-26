@@ -73,7 +73,7 @@ const Friends = () => {
              
 
              <StyledView style={ styles.bott }>
-                <NavBar navigation={navigation} activeTab="Accounts" />
+                <NavBar navigation={navigation} activeTab="Freinds" />
             </StyledView>
         </StyledView>
     )    
