@@ -38,7 +38,7 @@ function randNum() {
   return min + ":" + sec;
 }
 
-/* -------------- Creates accounts -------------- */
+/* ------------------------ Shows active user account ----------------------- */
 
 const Accounts = () => {
   const [username, setUsername] = useState('John Doe');
