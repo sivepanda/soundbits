@@ -22,7 +22,7 @@ const ViewAccount = () => {
         <View style={styles.profileContainer}>
           <Image
             style={styles.profilePicture}
-            source={require('..\app\assets\icon.png')}
+            source={{uri: randImg()}}
           />
           <View style={styles.gradientOverlay} />
           <Text style={styles.username}>John Doe</Text>
@@ -55,7 +55,7 @@ const ViewAccount = () => {
           {/* Add your genres content here */}
         </View>
       </ScrollView>
-      <StyledView style={{ marginTop: 'auto', width: '100%'}}>
+      <StyledView style={{ marginTop: 'auto' /*, width: '100%'*/}}>
         <NavBar navigation={navigation} activeTab="Home"/>
       </StyledView>
 
@@ -66,7 +66,7 @@ const ViewAccount = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingTop: height * 0.3,
+    // paddingTop: height * 0.3,
     paddingBottom: 20,
     paddingHorizontal: 20,
   },
@@ -78,16 +78,16 @@ const styles = StyleSheet.create({
     right: 0,
   },
   profilePicture: {
-    width: width * 0.4,
-    height: width * 0.4,
-    borderRadius: (width * 0.4) / 2,
+    // width: width * 0.4,
+    // height: width * 0.4,
+    // borderRadius: (width * 0.4) / 2,
   },
   gradientOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: height * 0.3,
+    // height: height * 0.3,
     backgroundColor: 'transparent',
     zIndex: 1,
     borderBottomLeftRadius: 10,
