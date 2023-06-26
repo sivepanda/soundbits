@@ -85,7 +85,7 @@ function Home() {
                 <StyledTitle tm="Home" />
                 </StyledView>
                 <View style={{alignItems: 'left'}}>
-                        <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Explore:</StyledText>
+                        <StyledText style={styles.explore} tw="text-4xl color-white pb-[2vh] font-bold">Explore:</StyledText>
                 </View>
                 <ScrollView style={styles.ScrollView}>
                     <ProfilePicturesBar />
@@ -112,6 +112,10 @@ function Home() {
 }
 
 
+/* -------------------------------------------------------------------------- */
+/*                                   Styles                                   */
+/* -------------------------------------------------------------------------- */
+
 const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
@@ -122,6 +126,11 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
         justifyContent: 'flex-end',
     },
+
+    explore: {
+     
+    },
+
     head: {
         marginTop: 0,
         paddingTop:0,
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
       marginBottom: 8,
-      marginTop:-18,
+      marginTop: -18,
       color: 'white',
     },
     userContainer: {
