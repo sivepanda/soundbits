@@ -15,6 +15,17 @@ const ViewAccount = () => {
   }
   const StyledView = styled(View);
   
+  // const user = await AsyncStorage.getItem('user-id')
+
+  async function getUsrInfo(attribute) { 
+    const userID = await AsyncStorage.getItem('user-id');
+    console.log('yo')
+    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/' + userID + '/getId/' + attribute).then(async (response) =>{
+      console.log(response)
+      return response;
+    });
+  }
+
   return (
     <styledView>
     
@@ -25,9 +36,9 @@ const ViewAccount = () => {
             source={{uri: randImg()}}
           />
           <View style={styles.gradientOverlay} />
-          <Text style={styles.username}>John Doe</Text>
+          <Text style={styles.username}>{getUsrInfo(username)}</Text>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>Likes: 500</Text>
+            <Text style={styles.infoText}>Likes: {getUsrInfo(numLikes)}</Text>
             <Text style={styles.infoText}>Posts: 100</Text>
             <Text style={styles.infoText}>Friends: 300</Text>
           </View>

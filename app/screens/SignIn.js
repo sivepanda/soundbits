@@ -35,7 +35,7 @@ const SignIn = () => {
         console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
         if(res) {
             try {
-              await AsyncStorage.setItem('my-key', value);
+              await AsyncStorage.setItem('user-id', value);
               navigation.navigate('Home', {})
 
             } catch (e) {
@@ -44,6 +44,7 @@ const SignIn = () => {
             }
           } else {
             console.log('failed to login')
+            console.log(err)
         }
       })
     })
