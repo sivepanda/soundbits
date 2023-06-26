@@ -4,43 +4,48 @@ import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useNavigation } from '@react-navigation/native';
 
-const GenreItem = (props) => {
 const { width, height } = Dimensions.get('window');
 
+const GenreItem = (props) => {
+
+
   return (
-    <View style={[styles.container, { borderColor: 'transparent'}]}>
-      <View style={[styles.diagonalLine, { backgroundColor: props.c, left: width - 8}]} />
-      <Text style={styles.title}>{props.t}</Text>
+    <View style={styles.container}>
+      <View style={[styles.halfContainer, styles.leftHalf]} />
+      <View style={[styles.halfContainer, styles.rightHalf]} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 28,
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 20,
-    marginHorizontal: 20,
-    backgroundColor: '#fff6',
-  },
-  diagonalLine: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    transform: [{ rotate: '15deg' }],
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'black',
-    marginLeft: 10,
-  },
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        width: width * .7,
+        height: width * .2,
+        borderRadius: 25,
+        borderWidth: 2,
+        borderColor: 'white',
+        zIndex: 2,
+      },
+      halfContainer: {
+        flex: 1,
+        alignContent: 'space-between',
+      },
+      leftHalf: {
+        backgroundColor: 'blue',
+        transform: [{ rotate: '45deg' }],
+        height: 1,
+        width: 1000,
+        zIndex: 2,
+      },
+      rightHalf: {
+        backgroundColor: 'green',
+        transform: [{ rotate: '45deg' }],
+        height: 1,
+        width: 1000,
+        zIndex: 2,
+      },
 });
 
 export default withExpoSnack(GenreItem);
