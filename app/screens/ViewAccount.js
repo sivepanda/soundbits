@@ -6,6 +6,8 @@ import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique
 
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+
+import GenreItem from '../components/GenreItem';
 import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
@@ -33,6 +35,12 @@ function randNum() {
     return min + ":" + sec;
 }
 
+function title() {
+  return 'Rock';
+}
+function color() {
+  return 'red'
+}
 
 function randImg() {
   return 'https://picsum.photos/400';
@@ -68,7 +76,7 @@ const ViewAccount = () => {
           {/* <View style={styles.gradientOverlay} /> */}
           <Text style={styles.username}>John Doe</Text>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>Likes: {getUsrInfo(numLikes)}</Text>
+            {/* <Text style={styles.infoText}>Likes: {getUsrInfo(numLikes)}</Text> */}
             <Text style={styles.infoText}>Posts: 100</Text>
             <Text style={styles.infoText}>Friends: 300</Text>
           </View>
@@ -93,7 +101,9 @@ const ViewAccount = () => {
         </View>
         <View style={styles.genresContainer}>
           <Text style={styles.sectionTitle}>Genres</Text>
-          {/* Add your genres content here */}
+            <GenreItem c={ color() } t={ title() } w={ width } />
+            <GenreItem c={ color() } t={ title() } w={ width } />
+            <GenreItem c={ color() } t={ title() } w={ width } />
         </View>
       </ScrollView>
       <StyledView style={{ marginTop: 'auto' /*, width: '100%'*/}}>
@@ -163,6 +173,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#8b5cf6',
     borderRadius: 10,
+    borderWidth: 15,
     alignItems: 'center',
   },
   songText: {
