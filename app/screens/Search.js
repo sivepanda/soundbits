@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text,TouchableOpacity, Image, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -44,6 +44,22 @@ const Upload = () => {
         console.log(`Search for "${searchText}"`);
     }
 
+    const [fontsLoaded] = useFonts({
+        'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
+        'Urbanist': require('../assets/fonts/Urbanist-Regular.ttf'),
+      });
+    
+      const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+          await SplashScreen.hideAsync();
+        }
+      }, [fontsLoaded]);
+
+      if (!fontsLoaded) {
+        console.log('fail to load');
+        return null;
+      }
+
     return (
         <StyledView tw='h-[100vh] w-[100vw] mt-[-5vh]' style = {styles.overall}>
              <StyledView tw="mt-[-90vh]" style={styles.head}>
@@ -68,12 +84,11 @@ const Upload = () => {
             <StyledView style={styles.texto}>
                 <Text style={styles.text}>Recommended Genres</Text>
             </StyledView>
-
             
 
             <View style={styles.sounds}></View>
 
-{/* -------- Random Names for the searchbar -------- */}
+{/* -------- Random Names for the searchbar. Helps it look less empty -------- */}
 
             <ScrollView showsVerticalScrollIndicator={false} style={styles.sounds}>
                 <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>

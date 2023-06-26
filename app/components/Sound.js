@@ -21,11 +21,37 @@ const Sound = (props) => {
         setIsDownloaded(true);
     }
 
+    const [isLiked, setIsLiked] = useState(false);
+
+    const handleLiked = () => {
+        setIsLiked(true);
+    }
+
+    const handleFindAccount = () => {
+        
+    }
+
     const [sound, setSound] = React.useState();
 
     /* --------------------------- Plays Metamorphosis -------------------------- */
 
     async function playSound() {
+        const [fontsLoaded] = useFonts({
+            'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
+            'Urbanist': require('../assets/fonts/Urbanist-SemiBold.ttf'),
+          });
+        
+          const onLayoutRootView = useCallback(async () => {
+            if (fontsLoaded) {
+              await SplashScreen.hideAsync();
+            }
+          }, [fontsLoaded]);
+    
+          if (!fontsLoaded) {
+            console.log('fail to load');
+            return null;
+          }
+
         if (props.src) {
             sound ? await sound.unloadAsync() : null;
             console.log('Loading Sound');
@@ -66,10 +92,15 @@ const Sound = (props) => {
                 <StyledText style={styles.mono} tw="mt-1 ml-4">{props.tm}</StyledText>
             </View>
             <View style={styles.colinfo}>
-                <StyledText tw="font-bold text-3xl">{props.nm}</StyledText>
-                <StyledText>{props.auth}</StyledText>
+                <StyledText style={styles.nm} tw="font-bold text-3xl">{props.nm}</StyledText>
+                <TouchableOpacity onPress={handleFindAccount}>
+                    <StyledText style={styles.auth}>{props.auth}</StyledText>
+                </TouchableOpacity>
             </View>
-            <View>
+            <View style={styles.icons}>
+                <TouchableOpacity onPress={handleLiked}>
+                    <Ionicons name={isLiked ? 'heart' : 'heart-outline'} size={28} color={isLiked ? 'red' : 'black'} />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={handleDownload}>
                     <Ionicons style={styles.download} name={isDownloaded ? 'checkmark-outline' : 'arrow-down-outline'} size={28} color={isDownloaded ? 'green' : 'black'} />
                 </TouchableOpacity>
@@ -79,6 +110,15 @@ const Sound = (props) => {
 }
 
 const styles = StyleSheet.create({
+    nm: {
+        fontSize: 25,
+        fontFamily: 'Syne',
+        fontWeight: 600,
+    },
+    auth: {
+        fontFamily: 'Urbanist',
+
+    },
     container: {
         flex: 0.7,
         justifyContent: 'center',
@@ -88,6 +128,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        margin: 0,
     },
     colinfo: {
         flexDirection: 'column',
@@ -103,9 +144,12 @@ const styles = StyleSheet.create({
         fontFamily: "Courier New"
     },
     download: {
-        paddingRight: 15
+        paddingRight: 15,
+        marginLeft: 10,
     },
-
+    icons: {
+        flexDirection: 'row',
+    },
 });
 
 export default Sound;

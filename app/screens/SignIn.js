@@ -4,8 +4,10 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'reac
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
-
+import Axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+var bcrypt = require('react-native-bcrypt');
+import * as Random from 'expo-random';
 
 const SignIn = () => {
   const [username, setUsername] = useState('');
@@ -16,15 +18,33 @@ const SignIn = () => {
 
   const handleSignIn = () => {
     // Add sign-in logic here
+    bcrypt.setRandomFallback((len) => {
+      const bytes = Random.getRandomBytes(len);
+      console.log("set")
+      return bytes;
+    });
 
+    
+
+    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then((response) =>{
+      // var x = JSON.parse(response.data.uID);
+      console.log("123", (response.data), username)
+      // bcrypt.compare(password, Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response + "/userPassword"), function(err, res) {
+      //   console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response + "/userPassword".userPassword)  
+      //   if(res) {
+      //       navigation.navigate('Home', {})
+      //     } else {
+      //       console.log('failed to login')
+      //   }
+      // })
+    })
+    
+    
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
     *                                                                                                                                                       *
     *                       CURRENTLY YOU ONLY HAVE TO PRESS SIGN IN ON THE SIGN IN PAGE TO GET TO HOME                                                     *
     *                                                                                                                                                       *
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-    console.log('Username:', username);
-    console.log('Password:', password);
   };
 
   /* ------------------------------------------------------------------------------------------------------------------ */
@@ -58,10 +78,12 @@ const SignIn = () => {
         />
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
+      <TouchableOpacity style={styles.button} onPress={() => handleSignIn()}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
-    
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
+        <Text style={styles.buttonText}>Skip Sign In</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -98,6 +120,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 10,
   },
   buttonText: {
     color: '#fff',
