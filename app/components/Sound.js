@@ -86,7 +86,7 @@ const Sound = (props) => {
 // However, this object can only play Metamorphosis
 
     return (
-        <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 shadow-sm">
+        <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-0 shadow-sm">
             <View style={styles.colplay}>
                 <TouchableOpacity style={styles.plbt} onPress={playSound}>
                     <Ionicons style={styles.plbt} name="play-circle-outline" size={55} color={'white'}/>
@@ -138,6 +138,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         margin: 0,
         backgroundColor: 'transparent',
+        borderBottomWidth: 1,
+        borderBottomColor: '#1c1917',
+        marginVertical: 8,
+        paddingBottom: 8,
     },
     colinfo: {
         flexDirection: 'column',

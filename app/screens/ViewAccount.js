@@ -104,17 +104,13 @@ const ViewAccount = () => {
           <Text style={styles.sectionTitle}>Top Sounds</Text>
           <View style={styles.songContainer}>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-          </View>
-          <View style={styles.songContainer}>
+
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-          </View>
-          <View style={styles.songContainer}>
+
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-          </View>
-          <View style={styles.songContainer}>
+
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-          </View>
-          <View style={styles.songContainer}>
+
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
           </View>
         </View>
@@ -208,9 +204,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   songContainer: {
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#1c1917',
+    paddingVertical: 0,
+    marginVertical: 0,
     borderRadius: 10,
     borderWidth: 15,
     alignItems: 'center',
