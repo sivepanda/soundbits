@@ -2,17 +2,45 @@ import React, { useState, useRef } from 'react';
 import { View, ScrollView, Image, Text, StyleSheet, Dimensions } from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
+import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
+
+import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
-import Sound from '../components/Sound'
+import Title from '../components/Title';
+
+const StyledText = styled(Text);
+const StyledImage = styled(Image);
+const StyledView = styled(View);
+const StyledTitle = styled(Title);
+
+const config = {
+    dictionaries: [names],
+    style: 'capital'
+}
+
+const config_D = {
+    dictionaries: [adjectives],
+    style: 'capital'
+}
+
+function randNum() {
+    var min = Math.floor(Math.random() * 4) + 2;
+    var sec = Math.floor(Math.random() * 60);
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+    return min + ":" + sec;
+}
 
 
+function randImg() {
+  return 'https://picsum.photos/400';
+}
+
+const { width, height } = Dimensions.get('window');
 
 const ViewAccount = () => {
-  const { width, height } = Dimensions.get('window');
-
-  function randImg() {
-    return 'https://picsum.photos/400';
-  }
   const StyledView = styled(View);
   
   // const user = await AsyncStorage.getItem('user-id')
@@ -26,17 +54,20 @@ const ViewAccount = () => {
     });
   }
 
+  const navigation = useNavigation();
   return (
-    <styledView>
+    <StyledView style={styles.styledContainer}>
     
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.profileContainer}>
-          <Image
-            style={styles.profilePicture}
-            source={{uri: randImg()}}
-          />
-          <View style={styles.gradientOverlay} />
-          <Text style={styles.username}>{getUsrInfo(username)}</Text>
+          <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> 
+            <Image
+             style={styles.profilePicture}
+             source={{ uri: randImg() }}
+            />
+          </LinearGradient>
+          {/* <View style={styles.gradientOverlay} /> */}
+          <Text style={styles.username}>John Doe</Text>
           <View style={styles.infoContainer}>
             <Text style={styles.infoText}>Likes: {getUsrInfo(numLikes)}</Text>
             <Text style={styles.infoText}>Posts: 100</Text>
@@ -70,54 +101,50 @@ const ViewAccount = () => {
         <NavBar navigation={navigation} activeTab="Home"/>
       </StyledView>
 
-    </styledView>
+    </StyledView>
     );
 };
 
 const styles = StyleSheet.create({
+  styledContainer: {
+    backgroundColor: 'black',
+  },
   container: {
     flexGrow: 1,
-    // paddingTop: height * 0.3,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
+    backgroundColor: 'black',
   },
   profileContainer: {
     alignItems: 'center',
-    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
   },
   profilePicture: {
-    // width: width * 0.4,
-    // height: width * 0.4,
-    // borderRadius: (width * 0.4) / 2,
+    width: width,
+    height: width,
   },
-  gradientOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    // height: height * 0.3,
-    backgroundColor: 'transparent',
-    zIndex: 1,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    opacity: 0.7,
-    backgroundColor: 'black',
-    paddingBottom: 10,
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
   },
   username: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginLeft: 10,
+    alignSelf: 'left',
     zIndex: 2,
+    position: 'absolute',
+    paddingTop: width * .9,
   },
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignSelf: 'left',
     marginTop: 10,
+    marginLeft: 10,
     zIndex: 2,
   },
   infoText: {
@@ -131,11 +158,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: 'white',
   },
   songContainer: {
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#CCCCCC',
+    borderBottomColor: '#8b5cf6',
+    borderRadius: 10,
+    alignItems: 'center',
   },
   songText: {
     fontSize: 16,
