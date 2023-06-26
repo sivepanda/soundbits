@@ -33,7 +33,8 @@ const Sound = (props) => {
 
     const [sound, setSound] = React.useState();
 
-    /* --------------------------- Plays Metamorphosis -------------------------- */
+    /* ---------------------------  Creates a sound object on the screen -------------------------- */
+    // However, this object can only play Metamorphosis atm
 
     async function playSound() {
         const [fontsLoaded] = useFonts({
