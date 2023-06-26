@@ -93,14 +93,11 @@ const ViewAccount = () => {
     );
 };
 
-<<<<<<< HEAD
 
 /* -------------------------------------------------------------------------- */
 /*                                   Styles                                   */
 /* -------------------------------------------------------------------------- */
 
-=======
->>>>>>> 0836a1e7b90b0f7d6e1b2ef28decc5d2e1c9a61a
 const styles = StyleSheet.create({
   styledContainer: {
     backgroundColor: 'black',
