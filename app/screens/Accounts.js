@@ -38,6 +38,8 @@ function randNum() {
   return min + ":" + sec;
 }
 
+/* ------------------------ Shows active user account ----------------------- */
+
 const Accounts = () => {
   const [username, setUsername] = useState('John Doe');
   const [profilePicture, setProfilePicture] = useState('https://picsum.photos/200');
@@ -78,6 +80,9 @@ const Accounts = () => {
                     </View>
                 
                   <ScrollView showsVerticalScrollIndicator={false} syle= {styles.title}>
+                   
+                    {/* Scrollable component with 5 random people */}
+
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={ "Likes: " + (Math.floor(randomLikes/5))}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/6))}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/7))}/>

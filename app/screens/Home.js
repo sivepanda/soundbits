@@ -10,10 +10,6 @@ import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique
 
 import { useNavigation } from '@react-navigation/native';
 
-
-
-
-
 import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
@@ -23,8 +19,6 @@ const StyledImage = styled(Image);
 const StyledView = styled(View);
 const StyledButton = styled(Button);
 const StyledTitle = styled(Title);
-
-
 
 const config = {
     dictionaries: [names],
@@ -43,7 +37,6 @@ function randNum() {
     sec = sec < 10 ? "0" + sec : sec;
     return min + ":" + sec;
 }
-
 
 function Home() {
     const navigation = useNavigation();
@@ -67,7 +60,6 @@ function Home() {
         
         return (
             <View style={styles.container}>
-              <Text style={styles.title}>Suggested Users: </Text>
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -76,7 +68,7 @@ function Home() {
                 {users.map(user => (
                   <View key={user.id} style={styles.userCard}>
                     <Image source={{ uri: randImg() }} style={styles.userImage} />
-                    <TouchableOpacity onPress={navigation.navigate('ViewAccount.js', {})}>
+                    <TouchableOpacity onPress={''}>
                         <Text style={styles.username}>{user.username}</Text>
                     </TouchableOpacity>
                   </View>
@@ -95,17 +87,22 @@ function Home() {
                 <View style={{alignItems: 'left'}}>
                         <StyledText style={styles.explore} tw="text-4xl color-white pb-[2vh] font-bold">Explore:</StyledText>
                 </View>
-                <ScrollView>
-                    <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
-                    <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-                    <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-                    <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                <ScrollView style={styles.ScrollView}>
                     <ProfilePicturesBar />
-                    <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-                    <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
-                    <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                    <StyledView style={styles.viewContainer}>
+                      <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
+                      <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                      <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                      <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                      <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                      <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                      <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+                    </StyledView>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ViewAccount', {})}>
+                      <Text style={styles.title}>TESTING</Text>
+                    </TouchableOpacity>
                 </ScrollView>
-            
+                
             <StyledView style={ styles.bott }>
                 <NavBar navigation={navigation} activeTab="Accounts" />
             </StyledView>
@@ -173,6 +170,9 @@ const styles = StyleSheet.create({
       marginTop: 8,
       textAlign: 'center',
     },  
+    scrollView: {
+      alignContent: 'center'
+    }
 });
 
 

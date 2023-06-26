@@ -22,6 +22,10 @@ function randImg() {
     return 'https://picsum.photos/400';
 }
 
+
+/* ------------------------------- Creates one friend, or "homie" ------------------------------- */
+//The homies can be deleted by being clicked on, but are otherwise very basic
+
 const Sound = (props) => {
     const [isVisible, setIsVisible] = useState(true);
 

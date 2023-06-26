@@ -9,6 +9,8 @@ import { useNavigation } from '@react-navigation/native';
 var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +28,7 @@ const SignIn = () => {
 
     
 
+<<<<<<< HEAD
     const id = Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/getId/' + username);
     console.log("123", id, username);
     bcrypt.compare(password, Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ id + "/userPassword"), function(err, res) {
@@ -37,6 +40,34 @@ const SignIn = () => {
       }
     });
   
+=======
+    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{
+      // var x = JSON.parse(response.data.uID);
+      console.log(username, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword)
+      bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, async function(err, res) {
+        console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
+        if(res) {
+            try {
+              await AsyncStorage.setItem('my-key', value);
+              navigation.navigate('Home', {})
+
+            } catch (e) {
+              console.log('failed to save user to session')
+              navigation.navigate('Home', {})
+            }
+          } else {
+            console.log('failed to login')
+        }
+      })
+    })
+    
+    
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  *
+    *                                                                                                                                                       *
+    *                       CURRENTLY YOU ONLY HAVE TO PRESS SIGN IN ON THE SIGN IN PAGE TO GET TO HOME                                                     *
+    *                                                                                                                                                       *
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+>>>>>>> 0836a1e7b90b0f7d6e1b2ef28decc5d2e1c9a61a
   };
 
   /* ------------------------------------------------------------------------------------------------------------------ */

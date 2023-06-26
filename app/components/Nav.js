@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const StyledView = styled(View);
 
+/* --------------- Creates the navbar at the bottom of the screen -------------- */
+
 const NavBar = ({ activeTab }) => {
   const navigation = useNavigation();
     return (

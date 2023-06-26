@@ -1,175 +1,174 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, Button, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
+import React, { useState, useRef } from 'react';
+import { View, ScrollView, Image, Text, StyleSheet, Dimensions } from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
-import { useFonts } from 'expo-font';
+import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
+
+import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
-import Sound from '../components/Sound'
+import Title from '../components/Title';
 
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
 const StyledView = styled(View);
-const StyledButton = styled(Button);
+const StyledTitle = styled(Title);
 
 const config = {
-  dictionaries: [names],
-  style: 'capital'
+    dictionaries: [names],
+    style: 'capital'
 }
 
 const config_D = {
-  dictionaries: [adjectives],
-  style: 'capital'
+    dictionaries: [adjectives],
+    style: 'capital'
 }
-
-const randomLikes = Math.floor(Math.random() * 10000);
-const randomFriends = 554;
-const randomPosts = Math.floor((Math.random() * 100)+5);
 
 function randNum() {
-  var min = Math.floor(Math.random() * 4) + 2;
-  var sec = Math.floor(Math.random() * 60);
-  min = min < 10 ? "0" + min : min;
-  sec = sec < 10 ? "0" + sec : sec;
-  return min + ":" + sec;
+    var min = Math.floor(Math.random() * 4) + 2;
+    var sec = Math.floor(Math.random() * 60);
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+    return min + ":" + sec;
 }
 
-const Accounts = () => {
-  const [username, setUsername] = useState('John Doe');
-  const [profilePicture, setProfilePicture] = useState('https://picsum.photos/200');
-  
 
-    const navigation = useNavigation();  
-    return (
-        
-            <StyledView style={styles.container}>
-              <StyledView tw='w-[100vw] h-[25vh] bg-indigo-900' style={styles.header}>
-                
-                <View style={styles.userinfo}>
-                  <Image style={styles.profilePicture} source={{ uri: profilePicture }} />
-                  <Text style={styles.username}>{username}</Text>
-                </View>
-                
-                <StyledView tw='w-[80vw] ml-[20vw]' style={styles.Information}>
-                  <View style={styles.likes}>
-                      <StyledText tw="text-2xl color-white text-center font-semibold">{randomLikes}</StyledText>
-                      <StyledText tw="text-1xl color-white text-center font-semibold">likes</StyledText>
-                  </View>
-                  <View style={styles.posts}>
-                      <StyledText tw="text-2xl color-white text-center font-semibold">{randomPosts}</StyledText>
-                      <StyledText tw="text-1xl color-white text-center font-semibold">posts</StyledText>
-                  </View>
-                  <View style={styles.friends}>
-                      <StyledText tw="text-2xl color-white text-center font-semibold">{randomFriends}</StyledText>
-                      <StyledText tw="text-1xl color-white text-center font-semibold">friends</StyledText>
-                  </View>
-                </StyledView>
-              </StyledView>
+function randImg() {
+  return 'https://picsum.photos/400';
+}
 
-              
-              
-              <StyledView tw="w-[100vw]" style={styles.soundList}>
-                    <View style>
-                        <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Your Top 5 Sounds:</StyledText>
-                    </View>
-                
-                  <ScrollView showsVerticalScrollIndicator={false} syle= {styles.title}>
-                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={ "Likes: " + (Math.floor(randomLikes/5))}/>
-                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/6))}/>
-                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/7))}/>
-                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/9))}/>
-                    <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/11))}/>
-                  </ScrollView>
-              
-              </StyledView>
-              <StyledView style={{ marginTop: 'auto', width: '100%'}}>
-                <NavBar navigation={navigation} activeTab="Accounts"/>
-              </StyledView>
-            </StyledView>
-            
-      );
+const { width, height } = Dimensions.get('window');
+
+const ViewAccount = () => {
+  const StyledView = styled(View);
+  const navigation = useNavigation();
+  return (
+    <StyledView style={styles.styledContainer}>
+    
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.profileContainer}>
+          <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> 
+            <Image
+             style={styles.profilePicture}
+             source={{ uri: randImg() }}
+            />
+          </LinearGradient>
+          {/* <View style={styles.gradientOverlay} /> */}
+          <Text style={styles.username}>John Doe</Text>
+          <View style={styles.infoContainer}>
+            <Text style={styles.infoText}>Likes: 500</Text>
+            <Text style={styles.infoText}>Posts: 100</Text>
+            <Text style={styles.infoText}>Friends: 300</Text>
+          </View>
+        </View>
+        <View style={styles.topHitsContainer}>
+          <Text style={styles.sectionTitle}>Top Hits</Text>
+          <View style={styles.songContainer}>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+          </View>
+          <View style={styles.songContainer}>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+          </View>
+          <View style={styles.songContainer}>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+          </View>
+          <View style={styles.songContainer}>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+          </View>
+          <View style={styles.songContainer}>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+          </View>
+        </View>
+        <View style={styles.genresContainer}>
+          <Text style={styles.sectionTitle}>Genres</Text>
+          {/* Add your genres content here */}
+        </View>
+      </ScrollView>
+      <StyledView style={{ marginTop: 'auto' /*, width: '100%'*/}}>
+        <NavBar navigation={navigation} activeTab="Home"/>
+      </StyledView>
+
+    </StyledView>
+    );
 };
 
+<<<<<<< HEAD
 
 /* -------------------------------------------------------------------------- */
 /*                                   Styles                                   */
 /* -------------------------------------------------------------------------- */
 
+=======
+>>>>>>> 0836a1e7b90b0f7d6e1b2ef28decc5d2e1c9a61a
 const styles = StyleSheet.create({
+  styledContainer: {
+    backgroundColor: 'black',
+  },
   container: {
-    flex: 1,
+    flexGrow: 1,
+    backgroundColor: 'black',
+  },
+  profileContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header: {
-    backgroundColor: '#312e81',
-    flexDirection: 'column',
-    paddingHorizontal: 25,
-    paddingTop: 15,
-  },
-  likes: {
-    alightItems: 'center',
-    paddingHorizontal: 15
-  },
-  posts: {
-    alightItems: 'center',
-    paddingHorizontal: 15
-  },
-  friends: {
-    alightItems: 'center',
-    paddingHorizontal: 15
+    top: 0,
+    left: 0,
+    right: 0,
   },
   profilePicture: {
-    alignContent:'center',
-    justifyContent:'center',
-    width: 70,
-    height: 70,
-    borderRadius: 25,
-    marginRight: 10,
-    marginLeft: 10,
-    // marginTop: 30
+    width: width,
+    height: width,
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
   },
   username: {
+    color: 'white',
     fontSize: 40,
     fontWeight: 'bold',
+    marginLeft: 10,
+    alignSelf: 'left',
+    zIndex: 2,
+    position: 'absolute',
+    paddingTop: width * .9,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignSelf: 'left',
+    marginTop: 10,
+    marginLeft: 10,
+    zIndex: 2,
+  },
+  infoText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  topHitsContainer: {
+    marginTop: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
     color: 'white',
   },
-  Information: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'left',
-    paddingLeft: 0,
-    marginBottom: 20
-  },
-  soundList: {
-    flex: 1,
-    backgroundColor: 'black',
-    // width: '110%',
-    alignItems: 'center'
-  },
-  soundItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    // backgroundColor: '#eee',
-    padding: 30,
-    marginVertical: 10,
+  songContainer: {
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#8b5cf6',
     borderRadius: 10,
-    width: '90%'
-  },
-  soundName: {
-    fontWeight: 'bold',
-    textAlign: 'left'
-  }, 
-  userinfo: {
-    // backgroundColor:'blue',
-    flexDirection: 'row',
     alignItems: 'center',
-    // justifyContent: 'center',
-    marginTop: 40,
-    marginBottom: 5
-  }
+  },
+  songText: {
+    fontSize: 16,
+  },
+  genresContainer: {
+    marginTop: 20,
+  },
 });
 
 export default withExpoSnack(ViewAccount);
