@@ -5,6 +5,7 @@ import { withExpoSnack } from 'nativewind';
 import { Ionicons } from '@expo/vector-icons';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
 
@@ -33,7 +34,7 @@ const config_D = {
 function randNum() {
     var min = Math.floor(Math.random() * 4) + 2;
     var sec = Math.floor(Math.random() * 60);
-    min = min < 10 ? "0" + min : min;
+    min = min < 10 ? "" + min : min;
     sec = sec < 10 ? "0" + sec : sec;
     return min + ":" + sec;
 }
@@ -81,13 +82,10 @@ function Home() {
     return (
         <StyledView style={styles.viewContainer}>
         
-            <StyledView tw="mt-[-70vh]" style={styles.head}>
-                <StyledTitle tm="Home" />
+                <StyledView tw="mt-[-70vh]" style={styles.head}>
+                    <StyledTitle tm="Home" />
                 </StyledView>
-                <View style={{alignItems: 'left'}}>
-                        <StyledText style={styles.explore} tw="text-4xl color-white pb-[2vh] font-bold">Explore:</StyledText>
-                </View>
-                <ScrollView style={styles.ScrollView}>
+                <ScrollView style={styles.ScrollView} showsVerticalScrollIndicator={false}>
                     <ProfilePicturesBar />
                     <StyledView style={styles.viewContainer}>
                       <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
@@ -148,6 +146,7 @@ const styles = StyleSheet.create({
       marginBottom: 8,
       marginTop: -18,
       color: 'white',
+      alignContent: 'center',
     },
     userContainer: {
       flexDirection: 'row',
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
     userCard: {
       marginRight: 16,
       alignItems: 'center',
-      backgroundColor: '#9ca3af', // Add the desired background color here
+      backgroundColor: 'transparent', 
       borderRadius: 8,
       padding: 8,
       width: 100, // Adjust the width as needed
@@ -169,6 +168,7 @@ const styles = StyleSheet.create({
     username: {
       marginTop: 8,
       textAlign: 'center',
+      color: 'white'
     },  
     scrollView: {
       alignContent: 'center'

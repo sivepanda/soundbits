@@ -2,6 +2,7 @@
 import React, { useState, useCallback }  from 'react';
 import {Button, View, Text, StyleSheet, Image, Touchable, TouchableOpacity} from 'react-native';
 
+import { LinearGradient } from 'expo-linear-gradient';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
@@ -52,12 +53,14 @@ function WelcomeScreen() {
             
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.headTex} tw='text-white text-3xl'>Soundbits</StyledText> 
-            <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {styles.Button}>
+            <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient, {top: '45%'}]} />
+            <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {[styles.Button, {top: '4.5%'}]}>
                 <StyledView>
                     <StyledText style={styles.bodyTex} tw='color-white'>Sign In</StyledText>
                 </StyledView>
             </TouchableOpacity>
-            <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {styles.Button}>
+            <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient, {top: '53%'}]} />
+            <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {[styles.Button, {top: '4.7%'}]}>
                 <StyledView>
                     <StyledText style={styles.bodyTex} tw='color-white'>Sign Up</StyledText>
                 </StyledView>
@@ -75,22 +78,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     Button: {
-        margin: 10,
-        marginBottom: 5,
-        paddingTop: 5,
-        paddingBottom: 5,
-        paddingLeft: 8,
-        paddingRight: 8,
-        borderColor: 'white',
+        margin: 0,
+        paddingVertical: 25,
+        paddingHorizontal: '35%',
+    },
+    LinearGradient: {
+        margin: 0,
+        paddingVertical: '35%',
+        paddingHorizontal: 25,
+        borderRadius: 25,
+        position: 'absolute',
+        transform: [{ rotate: '90deg' }],
+        borderColor: 'indigo',
         borderWidth: 2,
-        borderRadius: 15
-
     },
     headTex: {
         fontFamily: 'Syne',
     },
     bodyTex: {
         fontFamily: 'Urbanist',
+        fontSize: 20,
     }
 });
 

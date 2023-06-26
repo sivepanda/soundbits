@@ -87,14 +87,14 @@ const Accounts = () => {
               
               
               <StyledView tw="w-[100vw]" style={styles.soundList}>
-                    <View style>
-                        <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Your Top 5 Sounds:</StyledText>
-                    </View>
+                    
                 
                   <ScrollView showsVerticalScrollIndicator={false} syle= {styles.title}>
                    
                     {/* Scrollable component with 5 random people */}
-
+                    <View style>
+                        <StyledText tw="text-4xl color-white pt-[2vh] pb-[2vh] font-bold">Your Top 5 Sounds:</StyledText>
+                    </View>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={ "Likes: " + (Math.floor(randomLikes/5))}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/6))}/>
                     <Sound tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={"Likes: " + (Math.floor(randomLikes/7))}/>

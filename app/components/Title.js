@@ -1,14 +1,16 @@
 import React from 'react';
 import { useCallback } from 'react';
-import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View, Dimensions} from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const StyledView = styled(View);
 const StyledText = styled(Text);
+const { width, height } = Dimensions.get('window');
 
 /* Easy-to-use title component */
 
@@ -31,7 +33,8 @@ const Title = (props) => {
 
     const y = props;
     return (
-        <StyledView tw="w-[100vw] h-[15vh] bg-indigo-900" style={styles.header}>
+        <StyledView style={styles.header} >
+            <LinearGradient colors={['#312e81', 'transparent']} style={styles.header} /> 
             <StyledText tw="mt-[5vh] ml-[7vw] color-white" style={styles.username}>{y.tm}</StyledText>
         </StyledView>
     );
@@ -47,12 +50,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 0,
-        marginBottom: 40
+        marginBottom: 15,
+        width: width,
+        height: height * .20,
+        backgroundColor: 'black',
     },
     username: {
         fontFamily: 'Syne',
         fontSize: 40,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        position: 'absolute',
     },
 });
 

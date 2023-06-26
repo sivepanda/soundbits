@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, ScrollView, Image, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, ScrollView, Image, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
@@ -7,6 +7,7 @@ import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { Ionicons } from '@expo/vector-icons';
 import GenreItem from '../components/GenreItem';
 import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
@@ -49,6 +50,17 @@ function randImg() {
 const { width, height } = Dimensions.get('window');
 
 const ViewAccount = () => {
+  
+  const [isFriended, setIsFriended] = useState(false);
+
+  const handleFriended = () => {
+      if(isFriended){
+        setIsFriended(false)
+      } else {
+        setIsFriended(true)
+      }
+  };
+
   const StyledView = styled(View);
   
   // const user = await AsyncStorage.getItem('user-id')
@@ -66,23 +78,30 @@ const ViewAccount = () => {
   return (
     <StyledView style={styles.styledContainer}>
     
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.profileContainer}> 
-            <Image
-             style={styles.profilePicture}
-             source={{ uri: randImg() }}
-            />
-            <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
+          <Image
+           style={styles.profilePicture}
+           source={{ uri: randImg() }}
+          />
+          <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
           {/* <View style={styles.gradientOverlay} /> */}
           <Text style={styles.username}>John Doe</Text>
+          <LinearGradient colors={['#6838C7', '#384FC7']} style={styles.buttonLinearGradient} />
+          <TouchableOpacity onPress={handleFriended} style={styles.button}>
+            <Ionicons name={isFriended ? 'person-remove-outline' : 'person-add-outline'} size={28} color='white' />
+          </TouchableOpacity>
           <View style={styles.infoContainer}>
-            {/* <Text style={styles.infoText}>Likes: {getUsrInfo(numLikes)}</Text> */}
-            <Text style={styles.infoText}>Posts: 100</Text>
+            {/* {getUsrInfo(numLikes)} */}
+            <Text style={styles.infoText}>Likes: 500 </Text>
+            <Text style={styles.infoText}>Posts: 100 </Text>
             <Text style={styles.infoText}>Friends: 300</Text>
           </View>
+
         </View>
+
         <View style={styles.topHitsContainer}>
-          <Text style={styles.sectionTitle}>Top Hits</Text>
+          <Text style={styles.sectionTitle}>Top Sounds</Text>
           <View style={styles.songContainer}>
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
           </View>
@@ -137,12 +156,32 @@ const styles = StyleSheet.create({
     height: width,
     position: 'absolute',
   },
+  buttonLinearGradient: {
+    width: width * .15,
+    height: width * .15,
+    borderRadius: '15%',
+    alignSelf: 'flex-end',
+    right: 20,
+    transform: [{ rotate: '90deg' }],
+    position: 'absolute',
+    top: '87%',
+  },
+  button: {
+    position: 'absolute',
+    width: width * .15,
+    height: width * .15,
+    borderRadius: '15%',
+    alignSelf: 'flex-end',
+    right: width * .0075,
+    top: '91%',
+    zIndex: 1,
+  },
   username: {
     color: 'white',
     fontSize: 40,
     fontWeight: 'bold',
     marginLeft: 10,
-    alignSelf: 'left',
+    alignSelf: 'baseline',
     zIndex: 2,
     position: 'absolute',
     paddingTop: width * .9,
@@ -171,7 +210,7 @@ const styles = StyleSheet.create({
   songContainer: {
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#8b5cf6',
+    borderBottomColor: '#1c1917',
     borderRadius: 10,
     borderWidth: 15,
     alignItems: 'center',

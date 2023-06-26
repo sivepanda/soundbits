@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View, Button, Image, Dimensions } from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { Ionicons } from '@expo/vector-icons';
 import { Audio } from 'expo-av';
 
+const { width, height } = Dimensions.get('window');
 
 const StyledText = styled(Text);
 const StyledView = styled(View);
@@ -85,10 +86,10 @@ const Sound = (props) => {
 // However, this object can only play Metamorphosis
 
     return (
-        <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-gray-400 shadow-sm">
+        <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 shadow-sm">
             <View style={styles.colplay}>
                 <TouchableOpacity style={styles.plbt} onPress={playSound}>
-                    <StyledImage style={styles.plbt} source={require('../assets/play-button.png')} tw='bg-contain ml-4 w-[5vh] h-[5vh]' />
+                    <Ionicons style={styles.plbt} name="play-circle-outline" size={55} color={'white'}/>
                 </TouchableOpacity>
                 <StyledText style={styles.mono} tw="mt-1 ml-4">{props.tm}</StyledText>
             </View>
@@ -100,10 +101,10 @@ const Sound = (props) => {
             </View>
             <View style={styles.icons}>
                 <TouchableOpacity onPress={handleLiked}>
-                    <Ionicons name={isLiked ? 'heart' : 'heart-outline'} size={28} color={isLiked ? 'red' : 'black'} />
+                    <Ionicons name={isLiked ? 'heart' : 'heart-outline'} size={28} color={isLiked ? 'red' : 'white'} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleDownload}>
-                    <Ionicons style={styles.download} name={isDownloaded ? 'checkmark-outline' : 'arrow-down-outline'} size={28} color={isDownloaded ? 'green' : 'black'} />
+                    <Ionicons style={styles.download} name={isDownloaded ? 'checkmark-outline' : 'arrow-down-outline'} size={28} color={isDownloaded ? 'green' : 'white'} />
                 </TouchableOpacity>
             </View>
         </StyledView>
@@ -120,10 +121,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'Syne',
         fontWeight: 600,
+        color: 'white',
     },
     auth: {
         fontFamily: 'Urbanist',
-
+        color: 'white',
     },
     container: {
         flex: 0.7,
@@ -135,6 +137,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         margin: 0,
+        backgroundColor: 'transparent',
     },
     colinfo: {
         flexDirection: 'column',
@@ -142,12 +145,18 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
     },
     colplay: {
-        flexDirection: 'column',
-        alignItems: 'center'
-        // marginLeft: 10
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        width: width *.15,
     },
     mono: {
-        fontFamily: "Courier New"
+        fontFamily: "Courier New",
+        color: 'white',
+
+    },
+    plbt: {
+        paddingLeft: 2,
     },
     download: {
         paddingRight: 15,
