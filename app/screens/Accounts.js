@@ -9,7 +9,10 @@ import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 import NavBar from '../components/Nav';
 
-import Sound from '../components/Sound'
+import Sound from '../components/Sound';
+
+import Axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
@@ -44,6 +47,15 @@ const Accounts = () => {
   const [username, setUsername] = useState('John Doe');
   const [profilePicture, setProfilePicture] = useState('https://picsum.photos/200');
   
+    async function getUsrInfo(attribute) { 
+      const userID = await AsyncStorage.getItem('user-id');
+      console.log('yo')
+      Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/' + userID + '/getId/' + attribute).then(async (response) =>{
+        console.log(response)
+        return response;
+      });
+    }
+
 
     const navigation = useNavigation();  
     return (
