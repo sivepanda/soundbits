@@ -16,6 +16,8 @@ import ViewAccount from './app/screens/ViewAccount';
 
 const Stack = createNativeStackNavigator();
 
+// Function to render all the screens and pages to the actual page
+
 export default function App() {
   return (
     <NavigationContainer>

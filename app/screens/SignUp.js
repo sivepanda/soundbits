@@ -22,9 +22,9 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [usernameError, setUsernameError] = useState(null);
+    const [usernameError, setUsernameError] = useState(null);
   
-  const StyledText = styled(Text);
+    const StyledText = styled(Text);
 
     const handleSignUp = () => {
         bcrypt.setRandomFallback((len) => {
@@ -120,6 +120,11 @@ const SignUp = () => {
         </View>
     );
 };
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   Styles                                   */
+/* -------------------------------------------------------------------------- */
 
 const styles = StyleSheet.create({
     container: {
