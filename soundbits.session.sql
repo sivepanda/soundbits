@@ -1,2 +1,1 @@
-DROP TABLE Sounds;
-DROP TABLE Users;
+DELETE FROM Users

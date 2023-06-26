@@ -50,7 +50,6 @@ const Upload = () => {
       });
     
       const onLayoutRootView = useCallback(async () => {
-        console.log('hello')
         if (fontsLoaded) {
           await SplashScreen.hideAsync();
         }
