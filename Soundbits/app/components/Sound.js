@@ -11,6 +11,8 @@ const StyledView = styled(View);
 const StyledImage = styled(Image);
 const StyledButton = styled(Button);
 
+    /* ----- Returns a functional sound button that only plays the best music ---- */
+
 const Sound = (props) => {
 
     const [isDownloaded, setIsDownloaded] = useState(false);
@@ -20,6 +22,8 @@ const Sound = (props) => {
     }
 
     const [sound, setSound] = React.useState();
+
+    /* --------------------------- Plays Metamorphosis -------------------------- */
 
     async function playSound() {
         if (props.src) {
