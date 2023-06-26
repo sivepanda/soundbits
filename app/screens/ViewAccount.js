@@ -5,7 +5,7 @@ import { styled } from "nativewind";
 import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
 
 import { useNavigation } from '@react-navigation/native';
-
+import LinearGradient from 'react-native-linear-gradient';
 import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
@@ -48,10 +48,12 @@ const ViewAccount = () => {
     
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.profileContainer}>
-          <Image
-            style={styles.profilePicture}
-            source={{ uri: randImg() }}
-          />
+          <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> 
+            <Image
+             style={styles.profilePicture}
+             source={{ uri: randImg() }}
+            />
+          </LinearGradient>
           {/* <View style={styles.gradientOverlay} /> */}
           <Text style={styles.username}>John Doe</Text>
           <View style={styles.infoContainer}>
@@ -109,19 +111,11 @@ const styles = StyleSheet.create({
     width: width,
     height: width,
   },
-  gradientOverlay: {
-    top: 0,
-    left: 0,
-    right: 0,
-    height: height * 0.3,
-    position: 'absolute',
-    backgroundColor: 'transparent',
-    zIndex: 1,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    opacity: 0.7,
-    backgroundColor: 'black',
-    paddingBottom: 10,
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
   },
   username: {
     color: 'white',
