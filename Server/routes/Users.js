@@ -9,7 +9,6 @@ router.get("/", async (req, res) => {
     res.json(get);
 })
 
-//Get Username function that allows the server to send the ID of a user from the Username
 router.get("/getId/:username", async (req, res) => {
     const Username = req.params.username;
     const findUserIdByUsername = async (username) => {
@@ -29,12 +28,11 @@ router.get("/getId/:username", async (req, res) => {
         }
       };
 
-      res.json(findUserIdByUsername(Username));
+      res.json({nm: findUserIdByUsername(Username)});
 });
 
 
-//Gets a dynamic attribute from the user
-//    --> Although passwords are stored in the DB, they are one way encrypted and therefore cannot easily be used to access an account
+
 router.get('/:id/:attribute', (req, res) => {
     const id = req.params.id;
     const attribute = req.params.attribute;
