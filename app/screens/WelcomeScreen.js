@@ -54,13 +54,13 @@ function WelcomeScreen() {
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.headTex} tw='text-white text-3xl'>Soundbits</StyledText> 
             <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient, {top: '45%'}]} />
-            <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {[styles.Button, {top: '4.5%'}]}>
+            <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {[styles.Button, {top: '6.7%'}]}>
                 <StyledView>
                     <StyledText style={styles.bodyTex} tw='color-white'>Sign In</StyledText>
                 </StyledView>
             </TouchableOpacity>
             <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient, {top: '53%'}]} />
-            <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {[styles.Button, {top: '4.7%'}]}>
+            <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {[styles.Button, {top: '3%'}]}>
                 <StyledView>
                     <StyledText style={styles.bodyTex} tw='color-white'>Sign Up</StyledText>
                 </StyledView>
