@@ -36,7 +36,7 @@ const randomPosts = Math.floor((Math.random() * 100)+5);
 function randNum() {
   var min = Math.floor(Math.random() * 4) + 2;
   var sec = Math.floor(Math.random() * 60);
-  min = min < 10 ? "0" + min : min;
+  min = min < 10 ? "" + min : min;
   sec = sec < 10 ? "0" + sec : sec;
   return min + ":" + sec;
 }
