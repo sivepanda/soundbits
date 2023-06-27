@@ -76,7 +76,7 @@ const Upload = () => {
                         style={styles.input}
                         placeholder="Search"
                         value={searchText}
-                        onChangeText={setSearchText}
+                        onEndEditing={setSearchText}
                         onSubmitEditing={handleSearch}
                     />
                 {/* </View> */}
