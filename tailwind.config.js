@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       fontFamily: {
         zila: ["Zilla Slab", "sans-serif"],
-        zen: ["Zen Dots", "sans-serif"]
+        zen: ["Zen Dots", "sans-serif"],
+        arvo: ["Arvo", "sans-serif"],
       }
     },
   },

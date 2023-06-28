@@ -41,6 +41,7 @@ const Sound = (props) => {
         const [fontsLoaded] = useFonts({
             'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
             'Urbanist': require('../assets/fonts/Urbanist-SemiBold.ttf'),
+            'Arvo' : require('../assets/fonts/Arvo-Regular.ttf'),
           });
         
           const onLayoutRootView = useCallback(async () => {
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     mono: {
-        fontFamily: "Courier New",
+        fontFamily: "Urbanist",
         color: 'white',
 
     },

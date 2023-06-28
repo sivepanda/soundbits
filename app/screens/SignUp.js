@@ -34,7 +34,7 @@ const SignUp = () => {
         });
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(password, salt, function(err, hash) {
-                Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users", {
+                Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3001/users", {
                     username: username,
                     email: email,
                     userPassword: hash,

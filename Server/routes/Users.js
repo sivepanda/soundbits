@@ -7,6 +7,25 @@ router.get("/", async (req, res) => {
     const get = req.body.User;
     await User.findAll(get);
     res.json(get);
+});
+
+rounter.post("/changePfp/:pfpLink/:userId", async (req, res) => {
+  try {
+    const profilePictureLink = req.params.pfpLink;
+    const userId = req.params.userId;
+    const user = await User.findByPk(userId);
+
+    if (user) {
+      user.profilePicture = profilePictureLink;
+      await user.save();
+
+      console.log('Profile picture updated successfully.');
+    } else {
+      console.log('User not found.');
+    }
+  } catch (error) {
+    console.error('Error updating profile picture:', error);
+  }
 })
 
 router.get("/getId/:username", async (req, res) => {
