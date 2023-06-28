@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     res.json(get);
 });
 
-rounter.post("/changePfp/:pfpLink/:userId", async (req, res) => {
+router.post("/changePfp/:pfpLink/:userId", async (req, res) => {
   try {
     const profilePictureLink = req.params.pfpLink;
     const userId = req.params.userId;
