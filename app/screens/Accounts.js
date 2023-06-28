@@ -54,7 +54,7 @@ const Accounts = () => {
       //const userID = await AsyncStorage.getItem('user-id');
       userID = 
       console.log('yo')
-      Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3001/' + userID + '/getId/' + attribute).then(async (response) =>{
+      Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/' + userID + '/getId/' + attribute).then(async (response) =>{
         console.log(response)
         return response;
       });

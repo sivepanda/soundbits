@@ -8,6 +8,10 @@ import Axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
+import * as SecureStore from 'expo-secure-store';
+
+async function save(key, value) {
+}
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -28,13 +32,14 @@ const SignIn = () => {
 
     
 
-    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3001/users/getId/' + username).then(async (response) =>{
+    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{
       // var x = JSON.parse(response.data.uID);
-      console.log(username, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3001/users/"+ response.data + "/userPassword")).data.userPassword)
-      bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3001/users/"+ response.data + "/userPassword")).data.userPassword, function(err, res) {
-        console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3001/users/"+ response.data + "/userPassword")  
+      console.log(username, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword)
+      bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, async function(err, res) {
+        console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
         if(res) {
-            navigation.navigate('Home', {})
+          await SecureStore.setItemAsync(key, value);
+          navigation.navigate('Home', {})
           } else {
             console.log('failed to login')
         }

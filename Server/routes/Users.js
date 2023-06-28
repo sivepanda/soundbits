@@ -1,14 +1,15 @@
 const { Router } = require('express');
 const router = Router();
-const { User } = require("../models")
+const { User } = require("../models") // user SQL table model
 
-
+// generic GET request
 router.get("/", async (req, res) => {
     const get = req.body.User;
     await User.findAll(get);
     res.json(get);
 });
 
+//sets the profile picture link to :pfpLink for user :userId
 router.post("/changePfp/:pfpLink/:userId", async (req, res) => {
   try {
     const profilePictureLink = req.params.pfpLink;
@@ -28,6 +29,7 @@ router.post("/changePfp/:pfpLink/:userId", async (req, res) => {
   }
 })
 
+//Gets locale of :username in the db
 router.get("/getId/:username", async (req, res) => {
     const Username = req.params.username;
     const findUserIdByUsername = async (username) => {
