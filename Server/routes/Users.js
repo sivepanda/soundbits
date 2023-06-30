@@ -52,7 +52,21 @@ router.get("/getId/:username", async (req, res) => {
       res.json(await findUserIdByUsername(Username));
 });
 
-
+//Gets locale of :username in the db
+router.get("/:id/getUsrInfo", async (req, res) => {
+    const id = req.params.id;
+    
+    User.findByPk(id).then((result) => {
+        if (result) {
+          res.json(result.body);
+        } else {
+          res.status(404).json({ error: 'Record not found' });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Internal server error' });
+      });
+});
 
 router.get('/:id/:attribute', (req, res) => {
     const id = req.params.id;

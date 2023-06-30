@@ -69,8 +69,8 @@ const ViewAccount = () => {
     const userID = await AsyncStorage.getItem('user-id');
     console.log('yo')
     Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/' + userID + '/getId/' + attribute).then(async (response) =>{
-      console.log(response)
-      return response;
+      console.log(response.attribute)
+      return response.attribute;
     });
   }
 

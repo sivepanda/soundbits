@@ -38,8 +38,10 @@ const SignIn = () => {
       bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, async function(err, res) {
         console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
         if(res) {
-          await SecureStore.setItemAsync(key, value);
-          navigation.navigate('Home', {})
+          SecureStore.setItemAsync("uID", String(response.data)).then((r) => {
+            console.log(r);
+            navigation.navigate('Home', {});
+          });
           } else {
             console.log('failed to login')
         }

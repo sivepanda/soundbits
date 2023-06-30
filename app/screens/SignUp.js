@@ -42,8 +42,10 @@ const SignUp = () => {
                     numLikes: 0,
                     numPosts: 0,
                     numFriends: 0,
-                }).then((e) => {
+                }).then(async (e) => {
                     console.log(e);
+                    // await SecureStore.setItemAsync("uID", String(e.data));
+                    navigation.navigate('Home', {})
                 })
                 .catch(e => {
                     console.log(e);

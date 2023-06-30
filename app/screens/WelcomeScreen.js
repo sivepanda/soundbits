@@ -53,18 +53,25 @@ function WelcomeScreen() {
             
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.headTex} tw='text-white text-3xl'>Soundbits</StyledText> 
-            <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient, {top: '45%'}]} />
-            <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {[styles.Button, {top: '4.5%'}]}>
-                <StyledView>
-                    <StyledText style={styles.bodyTex} tw='color-white'>Sign In</StyledText>
-                </StyledView>
-            </TouchableOpacity>
-            <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient, {top: '53%'}]} />
-            <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {[styles.Button, {top: '4.7%'}]}>
-                <StyledView>
-                    <StyledText style={styles.bodyTex} tw='color-white'>Sign Up</StyledText>
-                </StyledView>
-            </TouchableOpacity>
+            
+            <StyledView style={styles.ContainerBtnView}>
+                <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient]} />
+                <TouchableOpacity onPress = {() => navigation.navigate('SignIn', {})} style = {[styles.Button]}>
+                    <StyledView>
+                        <StyledText style={styles.bodyTex} tw='color-white'>Sign In</StyledText>
+                    </StyledView>
+                </TouchableOpacity>
+            </StyledView>
+            
+            <StyledView style={styles.ContainerBtnView}>
+                <LinearGradient colors={['#3897C7', '#6838C7', '#384FC7']} style={[styles.LinearGradient]} />
+                <TouchableOpacity onPress = {() => navigation.navigate('SignUp', {})} style = {[styles.Button]}>
+                    <StyledView>
+                        <StyledText style={styles.bodyTex} tw='color-white'>Sign Up</StyledText>
+                    </StyledView>
+                </TouchableOpacity>
+            </StyledView>
+            
        </StyledView>
     );
 }
@@ -75,17 +82,31 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+    },
+    ContainerBtnView: {
+        marginTop: 5,
+        // backgroundColor:'green',
+        justifyContent:'center',
+        alignContent: 'center',
+        height:'8%',
+        width: '90%',
     },
     Button: {
-        margin: 0,
-        paddingVertical: 25,
-        paddingHorizontal: '35%',
+        alignSelf: 'center',
+        textAlign: 'center',
+        marginTop: 0,
+        // paddingVertical: 25,
+        // paddingHorizontal: '35%',
+        // opacity:0.5,
     },
     LinearGradient: {
+        alignSelf: 'center',
+
+        marginTop: 0,
         margin: 0,
-        paddingVertical: '35%',
-        paddingHorizontal: 25,
+        height: '300%',
+        width: '15%',
         borderRadius: 25,
         position: 'absolute',
         transform: [{ rotate: '90deg' }],

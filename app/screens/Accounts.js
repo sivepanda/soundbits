@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, Button, ScrollView, Dimensions, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,6 +11,8 @@ import { useFonts } from 'expo-font';
 import NavBar from '../components/Nav'; 
 import Sounds from '../components/Sound';
 import { LinearGradient } from 'expo-linear-gradient';
+
+import * as SecureStore from 'expo-secure-store';
 
 import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -43,25 +45,50 @@ function randNum() {
 const { width, height } = Dimensions.get('window');
 
 const Accounts = () => {
-  const [username, setUsername] = useState('John Doe');
   const [profilePicture, setProfilePicture] = useState('https://picsum.photos/200');
   
   function randImg() {
     return 'https://picsum.photos/400';
   }
-  
-    async function getUsrInfo(attribute) { 
-      //const userID = await AsyncStorage.getItem('user-id');
-      userID = 
-      console.log('yo')
-      Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/' + userID + '/getId/' + attribute).then(async (response) =>{
-        console.log(response)
-        return response;
-      });
+
+  const handleProfileChange = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      console.log('Permission to access media library denied');
+      return;
     }
 
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      Axios.post('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/changePfp/' + currentUser + '/' + result.uri, {});
+      navigation.navigate('accounts', {});
+    }
+  };
+
+    const [uname, setUsername] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      SecureStore.getItemAsync("uID").then((userID)=> {
+        console.log(userID)
+        console.log('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/username')
+        Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/username').then(async (response) =>{
+          console.log(response.data.username)
+          setUsername(response.data.username);
+          setLoading(false);
+        });
+      });  
+    }, []);
 
     const navigation = useNavigation();  
+    
+    
     return (
       <StyledView style={styles.styledContainer}>
     
@@ -73,7 +100,7 @@ const Accounts = () => {
           />
           <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
           {/* <View style={styles.gradientOverlay} /> */}
-          <Text style={styles.username}>John Doe</Text>
+          <Text style={styles.username}>{loading ? "Loading..." : uname}</Text>
           <View style={styles.infoContainer}>
             {/* {getUsrInfo(numLikes)} */}
             <Text style={styles.infoText}>Likes: 500 </Text>
@@ -86,15 +113,15 @@ const Accounts = () => {
         <View style={styles.topHitsContainer}>
           <Text style={styles.sectionTitle}>Your Top Sounds</Text>
           <View style={styles.songContainer}>
-            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={loading ? "Loading..." : uname}/>
 
-            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={loading ? "Loading..." : uname}/>
 
-            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={loading ? "Loading..." : uname}/>
 
-            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={loading ? "Loading..." : uname}/>
 
-            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
+            <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={loading ? "Loading..." : uname}/>
           </View>
         </View>
         <View style={styles.genresContainer}>

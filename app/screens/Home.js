@@ -119,7 +119,7 @@ function Home() {
                 <ScrollView style={styles.ScrollView} showsVerticalScrollIndicator={false}>
                     <ProfilePicturesBar />
                     <StyledView style={styles.viewContainer}>
-                      <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
+                      <Sounds tm={ "1:31" } nm={ "Meta" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
                       <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
                       <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
                       <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>

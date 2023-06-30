@@ -46,6 +46,7 @@
     "react-native-track-player": "^3.2.0",
     "react-native-web": "~0.18.10",
     "unique-names-generator": "^4.7.1",
+    "use-http": "^1.0.28",
     "yarn": "^1.22.19"
   },
   "devDependencies": {

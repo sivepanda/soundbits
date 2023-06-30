@@ -4,13 +4,13 @@ import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
 
 const StyledText = styled(Text);
 const StyledView = styled(View);
 const StyledImage = styled(Image);
-const StyledButton = styled(Button);
 const StyledIcon = styled(Ionicons);
 
 const config = {
@@ -51,14 +51,15 @@ const Sound = (props) => {
 
     if (isVisible) {
         return (
-            <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-6 bg-gray-400 shadow-sm">
+            <StyledView style={styles.box} tw=" h-[9vh] w-[90vw] mb-6 bg-transparent ">
                 <View style={styles.colplay}>
-                    <StyledImage style={styles.plbt} source={{ uri: randImg() }} tw='bg-contain rounded-xl ml-4 w-[7vh] h-[7vh]' />
-                    <StyledText style={styles.nm} tw="mt-1 ml-4 text-2xl color-black text-center font-semibold">{uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}</StyledText>
+                    <StyledImage style={styles.plbt} source={{ uri: randImg() }} />
+                    <LinearGradient style={styles.dGradient} colors={['transparent', 'black']} />
+                    <StyledText style={styles.nm} tw="mt-1 ml-4 text-2xl color-white text-center font-semibold">{uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}</StyledText>
                 </View>
                 <View style={styles.removeButton}>
                     <TouchableOpacity onPress={handleDelete}>
-                        <StyledIcon tw='pl-2' name="person-remove" size={16} color={'#7f1d1d'} />
+                        <StyledIcon tw='pl-2' name="person-remove" size={16} color={'rgb(110, 0, 255)'} />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.colinfo}>
@@ -78,22 +79,37 @@ const Sound = (props) => {
 /* -------------------------------------------------------------------------- */
 
 const styles = StyleSheet.create({
+    dGradient: {
+        marginLeft: -50,
+        transform: [{ rotate: '270deg' }],
+        height: 50,
+        width: 50,
+    },
     container: {
         flex: 0.7,
         justifyContent: 'center',
         alignItems: 'center',
     },
     nm: {
+        marginLeft: -15,
         fontFamily: 'Syne',
+    },
+    plbt: {
+        width: 60,
+        height:50,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
     },
     box: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        borderBottomWidth: 1,
+        borderBottomColor: '#1c1917',
     },
     colinfo: {
         flexDirection: 'row',
-        marginLeft: 20
+        marginLeft: 20,
 
     }, colplay: {
         flexDirection: 'row',
