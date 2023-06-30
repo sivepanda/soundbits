@@ -58,7 +58,7 @@ router.get("/:id/getUsrInfo", async (req, res) => {
     
     User.findByPk(id).then((result) => {
         if (result) {
-          res.json(result.body);
+          res.json(result);
         } else {
           res.status(404).json({ error: 'Record not found' });
         }
