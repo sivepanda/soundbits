@@ -5,15 +5,15 @@ import { withExpoSnack } from 'nativewind';
 import { Ionicons } from '@expo/vector-icons';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
-import { LinearGradient } from 'expo-linear-gradient';
 
-import { uniqueNamesGenerator, adjectives, names, colors, animals } from 'unique-names-generator';
+import { uniqueNamesGenerator, adjectives, names} from 'unique-names-generator';
 
 import { useNavigation } from '@react-navigation/native';
 
 import Sounds from '../components/Sound'
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
+import { FA5Style } from '@expo/vector-icons/build/FontAwesome5';
 
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
@@ -59,12 +59,43 @@ function Home() {
           { id: 8, username: 'random user', image: ""},
         ];
         
+        const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+          if(layoutMeasurement.width - contentOffset.x > 20){
+            return false
+          } else {
+            return true
+          }
+        };
+        
+        function fetchUsers() {
+          // Function to fetch users from the API
+          fetch(`YOUR_API_URL?page=${page}`)
+              .then(response => response.json())
+              .then(data => {
+                  // Append the newly fetched users to the existing list
+                  setUsers(prevUsers => [...prevUsers, ...data.users]);
+              })
+              .catch(error => {
+                  console.error('Error fetching users:', error);
+              });
+        }
+
+        function handleEndReached(){
+          console.log('end reached')
+        };
+
         return (
             <View style={styles.container}>
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.userContainer}
+                onScroll={({ nativeEvent }) => {
+                  if (isCloseToBottom(nativeEvent)) {
+                      handleEndReached();
+                  }
+              }}
+              scrollEventThrottle={400}
               >
                 {users.map(user => (
                   <View key={user.id} style={styles.userCard}>
@@ -88,7 +119,7 @@ function Home() {
                 <ScrollView style={styles.ScrollView} showsVerticalScrollIndicator={false}>
                     <ProfilePicturesBar />
                     <StyledView style={styles.viewContainer}>
-                      <Sounds tm={ "1:31" } nm={ "Metamorphisis" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
+                      <Sounds tm={ "1:31" } nm={ "Meta" } auth={"Jaxon Durken"} src={'meta.mp3'}/>
                       <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
                       <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
                       <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>

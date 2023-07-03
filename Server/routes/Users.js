@@ -1,14 +1,35 @@
 const { Router } = require('express');
 const router = Router();
-const { User } = require("../models")
+const { User } = require("../models") // user SQL table model
 
-
+// generic GET request
 router.get("/", async (req, res) => {
     const get = req.body.User;
     await User.findAll(get);
     res.json(get);
+});
+
+//sets the profile picture link to :pfpLink for user :userId
+router.post("/changePfp/:pfpLink/:userId", async (req, res) => {
+  try {
+    const profilePictureLink = req.params.pfpLink;
+    const userId = req.params.userId;
+    const user = await User.findByPk(userId);
+
+    if (user) {
+      user.profilePicture = profilePictureLink;
+      await user.save();
+
+      console.log('Profile picture updated successfully.');
+    } else {
+      console.log('User not found.');
+    }
+  } catch (error) {
+    console.error('Error updating profile picture:', error);
+  }
 })
 
+//Gets locale of :username in the db
 router.get("/getId/:username", async (req, res) => {
     const Username = req.params.username;
     const findUserIdByUsername = async (username) => {
@@ -31,7 +52,21 @@ router.get("/getId/:username", async (req, res) => {
       res.json(await findUserIdByUsername(Username));
 });
 
-
+//Gets locale of :username in the db
+router.get("/:id/getUsrInfo", async (req, res) => {
+    const id = req.params.id;
+    
+    User.findByPk(id).then((result) => {
+        if (result) {
+          res.json(result);
+        } else {
+          res.status(404).json({ error: 'Record not found' });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Internal server error' });
+      });
+});
 
 router.get('/:id/:attribute', (req, res) => {
     const id = req.params.id;

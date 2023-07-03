@@ -34,7 +34,7 @@ const Title = (props) => {
     const y = props;
     return (
         <StyledView style={styles.header} >
-            <LinearGradient colors={['#312e81', 'transparent']} style={styles.header} /> 
+            <LinearGradient colors={['rgb(75, 71, 196)', 'transparent']} style={styles.header} /> 
             <StyledText tw="mt-[5vh] ml-[7vw] color-white" style={styles.username}>{y.tm}</StyledText>
         </StyledView>
     );
@@ -50,12 +50,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 0,
-        marginBottom: 15,
+        marginBottom: 0,
         width: width,
-        height: height * .20,
+        height: height * .15,
         backgroundColor: 'black',
     },
     username: {
+        paddingTop: 40,
         fontFamily: 'Syne',
         fontSize: 40,
         fontWeight: 'bold',

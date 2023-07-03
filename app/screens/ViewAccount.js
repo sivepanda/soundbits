@@ -31,7 +31,7 @@ const config_D = {
 function randNum() {
     var min = Math.floor(Math.random() * 4) + 2;
     var sec = Math.floor(Math.random() * 60);
-    min = min < 10 ? "0" + min : min;
+    min = min < 10 ? "" + min : min;
     sec = sec < 10 ? "0" + sec : sec;
     return min + ":" + sec;
 }
@@ -69,8 +69,8 @@ const ViewAccount = () => {
     const userID = await AsyncStorage.getItem('user-id');
     console.log('yo')
     Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/' + userID + '/getId/' + attribute).then(async (response) =>{
-      console.log(response)
-      return response;
+      console.log(response.attribute)
+      return response.attribute;
     });
   }
 

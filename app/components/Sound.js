@@ -41,6 +41,7 @@ const Sound = (props) => {
         const [fontsLoaded] = useFonts({
             'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
             'Urbanist': require('../assets/fonts/Urbanist-SemiBold.ttf'),
+            'Arvo' : require('../assets/fonts/Arvo-Regular.ttf'),
           });
         
           const onLayoutRootView = useCallback(async () => {
@@ -86,12 +87,12 @@ const Sound = (props) => {
 // However, this object can only play Metamorphosis
 
     return (
-        <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-0 shadow-sm">
+        <StyledView style={styles.box} tw="rounded-xl h-[9vh] w-[90vw] mb-0">
             <View style={styles.colplay}>
                 <TouchableOpacity style={styles.plbt} onPress={playSound}>
                     <Ionicons style={styles.plbt} name="play-circle-outline" size={55} color={'white'}/>
                 </TouchableOpacity>
-                <StyledText style={styles.mono} tw="mt-1 ml-4">{props.tm}</StyledText>
+                <StyledText style={styles.mono} tw="mt-1">{props.tm}</StyledText>
             </View>
             <View style={styles.colinfo}>
                 <StyledText style={styles.nm} tw="font-bold text-3xl">{props.nm}</StyledText>
@@ -149,13 +150,11 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
     },
     colplay: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+        flexDirection: 'column',
         alignItems: 'center',
-        width: width *.15,
     },
     mono: {
-        fontFamily: "Courier New",
+        fontFamily: "Urbanist",
         color: 'white',
 
     },
