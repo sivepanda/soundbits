@@ -30,6 +30,7 @@ function randNum() {
     return min + ":" + sec;
 }
 
+// Place to search sounds
 const Upload = () => {
     const navigation = useNavigation(); 
     const StyledTO = styled(TouchableOpacity);

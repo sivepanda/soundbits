@@ -9,46 +9,53 @@ import { useNavigation } from '@react-navigation/native';
 var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
 import * as SecureStore from 'expo-secure-store';
+import { Audio } from 'expo-av';
+import NavBar from '../components/Nav';
+import Title from '../components/Title';
 
 async function save(key, value) {
 }
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const SignIn = () => {
+const Upload = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
   const StyledText = styled(Text);
+    const StyledTitle = styled(Title);
+    const StyledView = styled(View);
   const navigation = useNavigation();
 
-  const handleSignIn = () => {
-    // Add sign-in logic here
-    bcrypt.setRandomFallback((len) => {
-      const bytes = Random.getRandomBytes(len);
-      console.log("set")
-      return bytes;
-    });
+  const [recording, setRecording] = useState(null);
 
-    
-    //make a get request to get user info, store ID to local storage
-    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{
-      // var x = JSON.parse(response.data.uID);
-      console.log(username, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword)
-      //encrypt / hash
-      bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, async function(err, res) {
-        console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
-        if(res) {
-          SecureStore.setItemAsync("uID", String(response.data)).then((r) => {
-            console.log(r);
-            navigation.navigate('Home', {});
-          });
-          } else {
-            console.log('failed to login')
-        }
-      })
-    });
-  }
+  const startRecording = async () => {
+    try {
+      console.log('Requesting permissions..');
+      await Audio.requestPermissionsAsync();
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        playsInSilentModeIOS: true,
+      });
+      console.log('Starting recording..');
+      const recording = new Audio.Recording();
+      await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+      await recording.startAsync();
+      setRecording(recording);
+      console.log('Recording started');
+    } catch (err) {
+      console.error('Failed to start recording', err);
+    }
+  };
+
+  const stopRecording = async () => {
+    console.log('Stopping recording..');
+    setRecording(null);
+    await recording.stopAndUnloadAsync();
+    const uri = recording.getURI();
+    console.log('Recording stopped and stored at', uri);
+  };
+
 
   /* ------------------------------------------------------------------------------------------------------------------ */
   /*                Allow for a returning user to access their account instead of creating a new account                */
@@ -56,38 +63,34 @@ const SignIn = () => {
 
   return (
     <View style={styles.container}>
-     
-      <Image
-        source={require('../assets/icon.png')}
-        style={styles.logo}
-      />
-      <StyledText tw='text-white text-3xl'>Soundbits</StyledText>
+        <StyledTitle tm="Upload" />
+        
       
      {/* ----------------------------- Username input ----------------------------- */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder='Username'
+          placeholder='Sound Name'
           onChangeText={(text) => setUsername(text)}
           value={username}
         />
      { /* ---------------------------- Password input ---------------------------- */ }
-        <TextInput
-          style={styles.input}
-          placeholder='Password'
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          secureTextEntry={true}
-        />
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => handleSignIn()}>
-        <Text style={styles.buttonText}>Sign In</Text>
+      <TouchableOpacity style={styles.button} onPress={() => startRecording()}>
+        <Text style={styles.buttonText}>Record</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home', {})}>
-        <Text style={styles.buttonText}>Skip Sign In</Text>
+      <TouchableOpacity style={styles.button} onPress={() => stopRecording()}>
+        <Text style={styles.buttonText}>Stop Recording</Text>
       </TouchableOpacity>
+
+      <StyledView tw='mt-[51vh]' style={{ marginTop: 'auto' }}>
+            <NavBar navigation={navigation} activeTab="Search"/>
+        </StyledView>
+      
     </View>
+
+    
   );
 };
 
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    // padding: 20,
   },
   logo: {
     width: 200,
@@ -137,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withExpoSnack(SignIn);
+export default withExpoSnack(Upload);

@@ -11,7 +11,7 @@ import Title from '../components/Title';
 import Homies from '../components/Homies';
 
 
-
+// List of firends
 const Friends = () => {
     const navigation = useNavigation(); 
     const StyledTO = styled(TouchableOpacity);
@@ -33,7 +33,7 @@ const Friends = () => {
                 <StyledTitle tm="Friends" />
             </StyledView>
              
-             {/* ------------------------------------- Creaetes the friends view ------------------------------------- */}
+             {/* ------------------------------------- Creaetes the friends view, populates with randomly generated freidnds ------------------------------------- */}
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Homies />
                 <Homies />

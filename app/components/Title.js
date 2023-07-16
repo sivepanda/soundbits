@@ -12,7 +12,7 @@ const StyledView = styled(View);
 const StyledText = styled(Text);
 const { width, height } = Dimensions.get('window');
 
-/* Easy-to-use title component */
+/* Easy-to-use title component, dynamically populated with props */
 
 const Title = (props) => {
     const [fontsLoaded] = useFonts({

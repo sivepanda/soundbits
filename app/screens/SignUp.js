@@ -16,7 +16,6 @@ bcrypt.setRandomFallback((len) => {
 });
 
 const SignUp = () => {
-
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,12 +32,12 @@ const SignUp = () => {
             return bytes;
         });
         bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(password, salt, function(err, hash) {
+            bcrypt.hash(password, salt, function(err, hash) { //hash new password and post it to db
                 Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users", {
                     username: username,
                     email: email,
                     userPassword: hash,
-                    profilePicture: "https://media.discordapp.net/attachments/908915908758601729/1121652123625607168/pass-colin-1.png?width=559&height=559",
+                    profilePicture: "https://i1.sndcdn.com/artworks-000048236823-jshou5-t500x500.jpg", //default pfp
                     numLikes: 0,
                     numPosts: 0,
                     numFriends: 0,

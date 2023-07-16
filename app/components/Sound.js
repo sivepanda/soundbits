@@ -34,26 +34,9 @@ const Sound = (props) => {
 
     const [sound, setSound] = React.useState();
 
-    /* ---------------------------  Creates a sound object on the screen -------------------------- */
-    // However, this object can only play Metamorphosis atm
+    /* ---------------------------  Creates a sound object on the screen, plays from prop -------------------------- */
 
     async function playSound() {
-        const [fontsLoaded] = useFonts({
-            'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
-            'Urbanist': require('../assets/fonts/Urbanist-SemiBold.ttf'),
-            'Arvo' : require('../assets/fonts/Arvo-Regular.ttf'),
-          });
-        
-          const onLayoutRootView = useCallback(async () => {
-            if (fontsLoaded) {
-              await SplashScreen.hideAsync();
-            }
-          }, [fontsLoaded]);
-    
-          if (!fontsLoaded) {
-            console.log('fail to load');
-            return null;
-          }
 
         if (props.src) {
             sound ? await sound.unloadAsync() : null;
