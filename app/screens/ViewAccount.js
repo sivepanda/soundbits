@@ -114,12 +114,12 @@ const ViewAccount = () => {
             <Sounds tm={ randNum() } nm={ uniqueNamesGenerator(config_D) } auth={uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}/>
           </View>
         </View>
-        <View style={styles.genresContainer}>
+        {/* <View style={styles.genresContainer}>
           <Text style={styles.sectionTitle}>Genres</Text>
             <GenreItem c={ color() } t={ title() } w={ width } />
             <GenreItem c={ color() } t={ title() } w={ width } />
             <GenreItem c={ color() } t={ title() } w={ width } />
-        </View>
+        </View> */}
       </ScrollView>
       <StyledView style={{ marginTop: 'auto' /*, width: '100%'*/}}>
         <NavBar navigation={navigation} activeTab="Home"/>

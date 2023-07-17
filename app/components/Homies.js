@@ -29,10 +29,12 @@ function randImg() {
 const Sound = (props) => {
     const [isVisible, setIsVisible] = useState(true);
 
+    //delete a friend
     const handleDelete = () => {
         setIsVisible(false);
     }
 
+    //load custom fonts
     const [fontsLoaded] = useFonts({
         'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
         'Urbanist': require('../assets/fonts/Urbanist-SemiBold.ttf'),
@@ -49,6 +51,7 @@ const Sound = (props) => {
         return null;
     }
 
+    // is visible for if user is unfriended
     if (isVisible) {
         return (
             <StyledView style={styles.box} tw=" h-[9vh] w-[90vw] mb-6 bg-transparent ">

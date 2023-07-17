@@ -46,6 +46,8 @@ const { width, height } = Dimensions.get('window');
 
 const Accounts = () => {
   
+
+  
   function randImg() {
     return 'https://picsum.photos/400';
   }
@@ -77,6 +79,7 @@ const Accounts = () => {
     const [profilePicture, setProfilePicture] = useState('https://picsum.photos/200');
     const [loading, setLoading] = useState(true);
 
+    //dynamically load user info and populate divs
     useEffect(() => {
       SecureStore.getItemAsync("uID").then((userID)=> {
         console.log(userID)
@@ -106,7 +109,6 @@ const Accounts = () => {
            source={{ uri: loading ? randImg() : profilePicture }}
           />
           <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
-          {/* <View style={styles.gradientOverlay} /> */}
           <Text style={styles.username}>{loading ? "Loading..." : uname}</Text>
           <View style={styles.infoContainer}>
             {/* {getUsrInfo(numLikes)} */}
@@ -117,6 +119,7 @@ const Accounts = () => {
 
         </View>
 
+        {/* Randomly generated "top sounds" for demonstration pruposes */}
         <View style={styles.topHitsContainer}>
           <Text style={styles.sectionTitle}>Your Top Sounds</Text>
           <View style={styles.songContainer}>

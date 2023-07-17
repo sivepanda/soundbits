@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
     res.json("Test");
 })
 
+//get user attribute at id
 router.get('/:id/:attribute', (req, res) => {
     const id = req.params.id;
     const attribute = req.params.attribute;
@@ -26,6 +27,7 @@ router.get('/:id/:attribute', (req, res) => {
       });
   });
 
+  //post request for user
 router.post("/", async (req, res) => {
     const post = req.body;
     await Sound.create(post);

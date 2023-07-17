@@ -45,12 +45,6 @@ function WelcomeScreen() {
     return (
         <StyledView style={styles.viewContainer} tw="bg-black" onLayout={onLayoutRootView}>
             
-            {/*<TouchableOpacity style={styles.Button} onPress={() => fetchData('/quit')}>
-                <StyledText tw='color-white'>{returnedData}</StyledText>
-            </TouchableOpacity>
-             onPress={() => fetchData('/quit')}
-            {returnedData} */}
-            
             <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.headTex} tw='text-white text-3xl'>Soundbits</StyledText> 
             

@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+    //user db
     const User = sequelize.define("User", {
         username: { type: DataTypes.STRING, allowNull: false, validate: { notEmpty: true } },
         email: { type: DataTypes.TEXT('tiny'), allowNull: false, validate: { notEmpty: true } },
@@ -9,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         numFriends: { type: DataTypes.MEDIUMINT, allowNull: false, validate: { notEmpty: true } },
     });
 
+    // has many assocaition of user model to sound
     User.associate = (models) => {
         User.hasMany(models.Sound, {
             onDelete: "cascade"
