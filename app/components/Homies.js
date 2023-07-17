@@ -55,7 +55,7 @@ const Sound = (props) => {
                 <View style={styles.colplay}>
                     <StyledImage style={styles.plbt} source={{ uri: randImg() }} />
                     <LinearGradient style={styles.dGradient} colors={['transparent', 'black']} />
-                    <StyledText style={styles.nm} tw="mt-1 ml-4 text-2xl color-white text-center font-semibold">{uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}</StyledText>
+                    <StyledText numberOfLines={1} style={styles.nm} tw="mt-1 ml-4 text-2xl color-white text-center font-semibold">{uniqueNamesGenerator(config) + " " + uniqueNamesGenerator(config)}</StyledText>
                 </View>
                 <View style={styles.removeButton}>
                     <TouchableOpacity onPress={handleDelete}>
@@ -80,10 +80,10 @@ const Sound = (props) => {
 
 const styles = StyleSheet.create({
     dGradient: {
-        marginLeft: -50,
+        marginLeft: -60,
         transform: [{ rotate: '270deg' }],
         height: 50,
-        width: 50,
+        width: 70,
     },
     container: {
         flex: 0.7,
@@ -93,10 +93,12 @@ const styles = StyleSheet.create({
     nm: {
         marginLeft: -15,
         fontFamily: 'Syne',
+        width: 200,
+        textAlign: 'left',
     },
     plbt: {
         width: 60,
-        height:50,
+        height:70,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
     },
@@ -104,8 +106,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderBottomWidth: 1,
-        borderBottomColor: '#1c1917',
+        // borderBottomWidth: 1,
+        // borderBottomColor: '#1c1917',
     },
     colinfo: {
         flexDirection: 'row',

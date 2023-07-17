@@ -45,7 +45,6 @@ function randNum() {
 const { width, height } = Dimensions.get('window');
 
 const Accounts = () => {
-  const [profilePicture, setProfilePicture] = useState('https://picsum.photos/200');
   
   function randImg() {
     return 'https://picsum.photos/400';
@@ -72,15 +71,23 @@ const Accounts = () => {
   };
 
     const [uname, setUsername] = useState(null);
+    const [nLikes, setNumLikes] = useState(null);
+    const [nPosts, setNumPosts] = useState(null);
+    const [nFriends, setNumFriends] = useState(null);
+    const [profilePicture, setProfilePicture] = useState('https://picsum.photos/200');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
       SecureStore.getItemAsync("uID").then((userID)=> {
         console.log(userID)
-        console.log('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/username')
-        Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/username').then(async (response) =>{
+        console.log('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/getUsrInfo')
+        Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/getUsrInfo').then(async (response) =>{
           console.log(response.data.username)
           setUsername(response.data.username);
+          setNumLikes(response.data.numLikes);
+          setNumPosts(response.data.numPosts);
+          setNumFriends(response.data.numFriends);
+          setProfilePicture(response.data.profilePicture);
           setLoading(false);
         });
       });  
@@ -96,16 +103,16 @@ const Accounts = () => {
         <View style={styles.profileContainer}> 
           <Image
            style={styles.profilePicture}
-           source={{ uri: randImg() }}
+           source={{ uri: loading ? randImg() : profilePicture }}
           />
           <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
           {/* <View style={styles.gradientOverlay} /> */}
           <Text style={styles.username}>{loading ? "Loading..." : uname}</Text>
           <View style={styles.infoContainer}>
             {/* {getUsrInfo(numLikes)} */}
-            <Text style={styles.infoText}>Likes: 500 </Text>
-            <Text style={styles.infoText}>Posts: 100 </Text>
-            <Text style={styles.infoText}>Friends: 300</Text>
+            <Text style={styles.infoText}>Likes: {loading ? '...' : nLikes} </Text>
+            <Text style={styles.infoText}>Posts: {loading ? '...' : nPosts} </Text>
+            <Text style={styles.infoText}>Friends: {loading ? '...' : nFriends} </Text>
           </View>
 
         </View>
@@ -196,8 +203,10 @@ const styles = StyleSheet.create({
     zIndex: 2,
     position: 'absolute',
     paddingTop: width * .9,
+    fontFamily: 'Syne',
   },
   infoContainer: {
+    fontFamily: 'Urbanist',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignSelf: 'left',
@@ -206,6 +215,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   infoText: {
+    fontFamily: 'Urbanist',
     color: 'white',
     fontSize: 16,
   },

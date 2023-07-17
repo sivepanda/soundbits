@@ -12,6 +12,7 @@
   "dependencies": {
     "-": "^0.0.1",
     "@expo/webpack-config": "^18.0.1",
+    "@monterosa/react-native-parallax-scroll": "^1.8.0",
     "@react-native-async-storage/async-storage": "^1.18.2",
     "@react-native-picker/picker": "^2.4.10",
     "@react-navigation/native": "^6.1.6",
@@ -46,7 +47,6 @@
     "react-native-track-player": "^3.2.0",
     "react-native-web": "~0.18.10",
     "unique-names-generator": "^4.7.1",
-    "use-http": "^1.0.28",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
