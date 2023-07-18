@@ -6,8 +6,9 @@ import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 
 import Axios from 'axios';
-var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
+
+var bcrypt = require('react-native-bcrypt');
 
 bcrypt.setRandomFallback((len) => {
     const bytes = Random.getRandomBytes(len);

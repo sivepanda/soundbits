@@ -29,6 +29,7 @@ function WelcomeScreen() {
     const [fontsLoaded] = useFonts({
         'Syne': require('../assets/fonts/Syne-SemiBold.ttf'),
         'Urbanist': require('../assets/fonts/Urbanist-Regular.ttf'),
+        'Arvo' : require('../assets/fonts/Arvo-Regular.ttf')
       });
     
       const onLayoutRootView = useCallback(async () => {

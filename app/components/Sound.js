@@ -138,7 +138,8 @@ const styles = StyleSheet.create({
     },
     mono: {
         fontFamily: "Urbanist",
-        color: 'white',
+        color: 'lightgray',
+        marginTop: 0,
 
     },
     plbt: {
