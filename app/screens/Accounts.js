@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, Button, ScrollView, Dimensions, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import { uniqueNamesGenerator, adjectives, names} from 'unique-names-generator';
-
 import { withExpoSnack } from 'nativewind';
 import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
-
 import NavBar from '../components/Nav'; 
 import Sounds from '../components/Sound';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import ParallaxScroll from '@monterosa/react-native-parallax-scroll';
 import * as SecureStore from 'expo-secure-store';
-
 import Axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -103,21 +99,34 @@ const Accounts = () => {
       <StyledView style={styles.styledContainer}>
     
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-        <View style={styles.profileContainer}> 
-          <Image
-           style={styles.profilePicture}
-           source={{ uri: loading ? randImg() : profilePicture }}
-          />
-          <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
-          <Text style={styles.username}>{loading ? "Loading..." : uname}</Text>
-          <View style={styles.infoContainer}>
-            {/* {getUsrInfo(numLikes)} */}
-            <Text style={styles.infoText}>Likes: {loading ? '...' : nLikes} </Text>
-            <Text style={styles.infoText}>Posts: {loading ? '...' : nPosts} </Text>
-            <Text style={styles.infoText}>Friends: {loading ? '...' : nFriends} </Text>
+        
+        <ParallaxScroll
+          renderHeader={({ animatedValue }) => <Header animatedValue={animatedValue} />}
+          headerHeight={50}
+          isHeaderFixed={false}
+          parallaxHeight={250}
+          renderParallaxBackground={({ animatedValue }) => 
+            <Image style={styles.profilePicture} source={{ uri: loading ? randImg() : profilePicture }} />
+          }
+          renderParallaxForeground={({ animatedValue }) => <Foreground animatedValue={animatedValue} />}
+          parallaxBackgroundScrollSpeed={5}
+          parallaxForegroundScrollSpeed={2.5}
+        >
+          
+          <View style={styles.profileContainer}> 
+            
+            <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
+            <Text style={styles.username}>{loading ? "Loading..." : uname}</Text>
+            <View style={styles.infoContainer}>
+              {/* {getUsrInfo(numLikes)} */}
+              <Text style={styles.infoText}>Likess: {loading ? '...' : nLikes} </Text>
+              <Text style={styles.infoText}>Posts: {loading ? '...' : nPosts} </Text>
+              <Text style={styles.infoText}>Friends: {loading ? '...' : nFriends} </Text>
+            </View>
+
           </View>
 
-        </View>
+        </ParallaxScroll>
 
         {/* Randomly generated "top sounds" for demonstration pruposes */}
         <View style={styles.topHitsContainer}>
