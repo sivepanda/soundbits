@@ -10,8 +10,11 @@ var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
 import * as SecureStore from 'expo-secure-store';
 
-async function save(key, value) {
-}
+bcrypt.setRandomFallback((len) => {
+  const buf = new Uint8Array(len);
+  console.log("set");
+  return buf.map(() => Math.floor(Random.getRandomBytes(1)[0] * 256));
+});
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,11 +27,7 @@ const SignIn = () => {
 
   const handleSignIn = () => {
     // Add sign-in logic here
-    bcrypt.setRandomFallback((len) => {
-      const bytes = Random.getRandomBytes(len);
-      console.log("set")
-      return bytes;
-    });
+    
     
     //make a get request to get user info, store ID to local storage
     Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{

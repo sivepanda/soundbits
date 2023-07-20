@@ -11,9 +11,9 @@ import * as Random from 'expo-random';
 var bcrypt = require('react-native-bcrypt');
 
 bcrypt.setRandomFallback((len) => {
-    const bytes = Random.getRandomBytes(len);
-    console.log("set")
-    return bytes;
+    const buf = new Uint8Array(len);
+    console.log("set");
+    return buf.map(() => Math.floor(Random.getRandomBytes(1)[0] * 256));
 });
 
 const SignUp = () => {
@@ -27,11 +27,6 @@ const SignUp = () => {
     const StyledText = styled(Text);
 
     const handleSignUp = () => {
-        bcrypt.setRandomFallback((len) => {
-            const bytes = Random.getRandomBytes(len);
-            console.log("set")
-            return bytes;
-        });
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(password, salt, function(err, hash) { //hash new password and post it to db
                 Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users", {

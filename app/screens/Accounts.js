@@ -100,33 +100,22 @@ const Accounts = () => {
     
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         
-        <ParallaxScroll
-          renderHeader={({ animatedValue }) => <Header animatedValue={animatedValue} />}
-          headerHeight={50}
-          isHeaderFixed={false}
-          parallaxHeight={250}
-          renderParallaxBackground={({ animatedValue }) => 
-            <Image style={styles.profilePicture} source={{ uri: loading ? randImg() : profilePicture }} />
-          }
-          renderParallaxForeground={({ animatedValue }) => <Foreground animatedValue={animatedValue} />}
-          parallaxBackgroundScrollSpeed={5}
-          parallaxForegroundScrollSpeed={2.5}
-        >
-          
-          <View style={styles.profileContainer}> 
-            
-            <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
-            <Text style={styles.username}>{loading ? "Loading..." : uname}</Text>
-            <View style={styles.infoContainer}>
-              {/* {getUsrInfo(numLikes)} */}
-              <Text style={styles.infoText}>Likess: {loading ? '...' : nLikes} </Text>
-              <Text style={styles.infoText}>Posts: {loading ? '...' : nPosts} </Text>
-              <Text style={styles.infoText}>Friends: {loading ? '...' : nFriends} </Text>
-            </View>
 
+          
+        <View style={styles.profileContainer}> 
+          <Image style={styles.profilePicture} source={{ uri: loading ? randImg() : profilePicture }} />
+          
+          <LinearGradient colors={['transparent', '#000000']} style={styles.linearGradient} />
+          <Text style={styles.username}>{loading ? "Loading..." : uname}</Text>
+          <View style={styles.infoContainer}>
+            {/* {getUsrInfo(numLikes)} */}
+            <Text style={styles.infoText}>Likess: {loading ? '...' : nLikes} </Text>
+            <Text style={styles.infoText}>Posts: {loading ? '...' : nPosts} </Text>
+            <Text style={styles.infoText}>Friends: {loading ? '...' : nFriends} </Text>
           </View>
 
-        </ParallaxScroll>
+        </View>
+
 
         {/* Randomly generated "top sounds" for demonstration pruposes */}
         <View style={styles.topHitsContainer}>

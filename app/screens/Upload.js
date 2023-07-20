@@ -6,28 +6,41 @@ import { styled } from "nativewind";
 import { useFonts } from 'expo-font';
 import Axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-var bcrypt = require('react-native-bcrypt');
+// var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
 import * as SecureStore from 'expo-secure-store';
 import { Audio } from 'expo-av';
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
 
-async function save(key, value) {
-}
+import * as WebBrowser from "expo-web-browser";
+import * as Google from 'expo-auth-session/providers/google'
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// GOOGLE DRIVE CONSTANTS
+const CLIENT_ID = '138676097879-8d34pesopas6hn04oblj3cvgfo4fjsoa.apps.googleusercontent.com';
+const CLIENT_SECRET = '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';
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = '1//04mGCR6zqAH-YCgYIARAAGAQSNwF-L9Ir3mCkV1ye07lwJAMwHdz2csUeiiVS-Vn9GPXU-gtXsfWuMemlqbN9kRt5jeVs4999zfs';
+
+
 
 const Upload = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const [userInfo, setUserInfo] = useState(null);
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    webClientId: CLIENT_ID
+  })
   
   const StyledText = styled(Text);
-    const StyledTitle = styled(Title);
-    const StyledView = styled(View);
+  const StyledTitle = styled(Title);
+  const StyledView = styled(View);
   const navigation = useNavigation();
 
   const [recording, setRecording] = useState(null);
+
+  
 
   const startRecording = async () => {
     try {
