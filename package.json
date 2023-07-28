@@ -10,22 +10,21 @@
   },
   "dependencies": {
     "-": "^0.0.1",
-    "@google-cloud/local-auth": "^2.1.0",
     "@monterosa/react-native-parallax-scroll": "^1.8.0",
     "@react-native-async-storage/async-storage": "1.18.2",
-    "@react-native-google-signin/google-signin": "^10.0.1",
     "@react-native-picker/picker": "2.4.10",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
-    "@robinbobin/react-native-google-drive-api-wrapper": "^1.2.3",
+    "aws-sdk": "^2.1421.0",
     "axios": "^1.4.0",
+    "base64-js": "^1.5.1",
     "body": "^5.1.0",
     "chart.js": "^4.2.1",
     "color-convert": "^2.0.1",
     "cors": "^2.8.5",
     "expo": "^49.0.0",
-    "expo-auth-session": "~5.0.2",
     "expo-av": "~13.4.1",
+    "expo-file-system": "~15.4.2",
     "expo-font": "~11.4.0",
     "expo-linear-gradient": "~12.3.0",
     "expo-random": "~13.2.0",
@@ -36,11 +35,11 @@
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "g": "^2.0.1",
-    "googleapis": "^105.0.0",
     "nativewind": "^2.0.11",
     "nodemon": "^2.0.22",
     "parser": "^0.1.4",
     "path": "^0.12.7",
+    "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-native": "0.72.3",
     "react-native-bcrypt": "^2.4.0",
@@ -52,13 +51,12 @@
     "react-native-track-player": "^3.2.0",
     "react-native-web": "~0.19.6",
     "stream": "^0.0.2",
+    "tailwindcss": "^3.3.2",
     "unique-names-generator": "^4.7.1",
-    "yarn": "^1.22.19",
-    "react": "18.2.0"
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "tailwindcss": "^3.3.1"
+    "@babel/core": "^7.20.0"
   },
   "private": true
 }

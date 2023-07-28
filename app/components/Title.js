@@ -27,7 +27,6 @@ const Title = (props) => {
       }, [fontsLoaded]);
 
       if (!fontsLoaded) {
-        console.log('fail to load');
         return null;
       }
 

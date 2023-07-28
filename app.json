@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "dark",
+    "scheme": "soundbits",
     "splash": {
       "image": "./app/assets/icon.png",
       "resizeMode": "contain",
@@ -15,13 +16,28 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.develpandas.Soundbits",
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.138676097879-2u9g2ekrsqnekvimb8b24oro5sf8h0o6"
+            ]
+          }
+        ]
+      }
     },
     "android": {
       "package": "com.develpandas.Soundbits"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3fa0f86f-9254-48ef-8102-cb6dc01ffa39"
+      }
     }
   }
 }

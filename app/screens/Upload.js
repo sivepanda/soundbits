@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import { withExpoSnack } from 'nativewind';
@@ -9,30 +9,19 @@ import { useNavigation } from '@react-navigation/native';
 // var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
 import * as SecureStore from 'expo-secure-store';
-import { Audio } from 'expo-av';
+import { Audio, Platform } from 'expo-av';
 import NavBar from '../components/Nav';
 import Title from '../components/Title';
+import * as FileSystem from 'expo-file-system';
+import { toByteArray } from 'base64-js';
 
-import * as WebBrowser from "expo-web-browser";
-import * as Google from 'expo-auth-session/providers/google'
-
-// GOOGLE DRIVE CONSTANTS
-const CLIENT_ID = '138676097879-8d34pesopas6hn04oblj3cvgfo4fjsoa.apps.googleusercontent.com';
-const CLIENT_SECRET = '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';
-const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04mGCR6zqAH-YCgYIARAAGAQSNwF-L9Ir3mCkV1ye07lwJAMwHdz2csUeiiVS-Vn9GPXU-gtXsfWuMemlqbN9kRt5jeVs4999zfs';
+import AWS from 'aws-sdk';
 
 
 
 const Upload = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [soundName, setSoundName] = useState('');
 
-  const [userInfo, setUserInfo] = useState(null);
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    webClientId: CLIENT_ID
-  })
-  
   const StyledText = styled(Text);
   const StyledTitle = styled(Title);
   const StyledView = styled(View);
@@ -40,7 +29,8 @@ const Upload = () => {
 
   const [recording, setRecording] = useState(null);
 
-  
+  const [sounduri, setSoundUri] = useState('');
+
 
   const startRecording = async () => {
     try {
@@ -52,7 +42,7 @@ const Upload = () => {
       });
       console.log('Starting recording..');
       const recording = new Audio.Recording();
-      await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+      await recording.prepareToRecordAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
       await recording.startAsync();
       setRecording(recording);
       console.log('Recording started');
@@ -63,11 +53,71 @@ const Upload = () => {
 
   const stopRecording = async () => {
     console.log('Stopping recording..');
-    setRecording(null);
     await recording.stopAndUnloadAsync();
-    const uri = recording.getURI();
-    console.log('Recording stopped and stored at', uri);
+    setSoundUri(recording.getURI());
+    setRecording(null);
+
+    console.log('Recording stopped and stored at', sounduri);
   };
+
+  const uploadSound = async () => {
+    const activeUser = parseInt(await SecureStore.getItemAsync('uID'));
+    // Configure the AWS SDK with your credentials and region
+    /// FIX SECRETS
+    AWS.config.update({
+      accessKeyId: process.env.EXPO_PUBLIC_AWS_ACCESS_KEY,
+      secretAccessKey: process.env.EXPO_PUBLIC_S_ACCESS_KEY,
+      region: process.env.EXPO_PUBLIC_AWS_REGION,
+    });
+
+    console.log(process.env.AWS_ACCESS_KEY);
+
+    const S3 = new AWS.S3();
+    const bucketName = 'soundbits-master';
+    var rand = parseInt(Math.random() * 10000000);
+    const fileName = (soundName ? (soundName) : 'sound') + rand + '.m4a';
+
+    console.log(fileName, sounduri);
+
+    if (sounduri) {
+      //upload file to S3 instance
+      try {
+        const fileData = toByteArray(await FileSystem.readAsStringAsync(sounduri, {
+          encoding: FileSystem.EncodingType.Base64,
+        }));
+        console.log(fileData);
+        const params = {
+          Bucket: bucketName,
+          Key: fileName,
+          Body: fileData,
+          ContentType: ';audio/m4a', // Change the content type as per your file
+        };
+
+        const response = await S3.putObject(params).promise();
+        console.log('File uploaded successfully:', response);
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+
+      //update database
+      Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/sounds", {
+        name: soundName,
+        genre: 'undefined',
+        url: 'https://soundbits-master.s3.amazonaws.com/' + fileName,
+        numLikes: 0,
+        UserId: activeUser
+      }).catch(e => {
+        console.log(e);
+        return e;
+      });
+
+    } else {
+      console.log('Sound URI not found')
+    }
+
+
+
+  }
 
 
   /* ------------------------------------------------------------------------------------------------------------------ */
@@ -76,18 +126,18 @@ const Upload = () => {
 
   return (
     <View style={styles.container}>
-        <StyledTitle tm="Upload" />
-        
-      
-     {/* ----------------------------- Username input ----------------------------- */}
+      <StyledTitle tm="Upload" />
+
+
+      {/* ----------------------------- Username input ----------------------------- */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder='Sound Name'
-          onChangeText={(text) => setUsername(text)}
-          value={username}
+          onChangeText={(text) => setSoundName(text)}
+          value={soundName}
         />
-     { /* ---------------------------- Password input ---------------------------- */ }
+        { /* ---------------------------- Password input ---------------------------- */}
       </View>
 
       <TouchableOpacity style={styles.button} onPress={() => startRecording()}>
@@ -97,13 +147,17 @@ const Upload = () => {
         <Text style={styles.buttonText}>Stop Recording</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity style={styles.button} onPress={() => uploadSound()}>
+        <Text style={styles.buttonText}>Upload</Text>
+      </TouchableOpacity>
+
       <StyledView tw='mt-[51vh]' style={{ marginTop: 'auto' }}>
-            <NavBar navigation={navigation} activeTab="Search"/>
-        </StyledView>
-      
+        <NavBar navigation={navigation} activeTab="Search" />
+      </StyledView>
+
     </View>
 
-    
+
   );
 };
 

@@ -9,6 +9,7 @@ import { useFonts } from 'expo-font';
 
 import { useNavigation } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
+import * as SecureStore from 'expo-secure-store';
 
 //Allows for these to be styles with tailwind 
 const StyledText = styled(Text);
@@ -34,14 +35,18 @@ function WelcomeScreen() {
     
       const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
-          await SplashScreen.hideAsync();
+            await SplashScreen.hideAsync();
+            if(await SecureStore.getItemAsync('uID')) {
+                navigation.navigate('Home', {});
+            } 
         }
       }, [fontsLoaded]);
 
       if (!fontsLoaded) {
-        console.log('fail to load fonts');
         return null;
       }
+
+    //   console.log(aw)
     
     return (
         <StyledView style={styles.viewContainer} tw="bg-black" onLayout={onLayoutRootView}>

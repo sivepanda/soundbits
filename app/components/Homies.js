@@ -47,7 +47,6 @@ const Sound = (props) => {
     }, [fontsLoaded]);
 
     if (!fontsLoaded) {
-        console.log('fail to load');
         return null;
     }
 

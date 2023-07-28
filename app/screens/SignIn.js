@@ -10,15 +10,17 @@ var bcrypt = require('react-native-bcrypt');
 import * as Random from 'expo-random';
 import * as SecureStore from 'expo-secure-store';
 
-bcrypt.setRandomFallback((len) => {
-  const buf = new Uint8Array(len);
-  console.log("set");
-  return buf.map(() => Math.floor(Random.getRandomBytes(1)[0] * 256));
-});
+
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignIn = () => {
+  bcrypt.setRandomFallback((len) => {
+    const buf = new Uint8Array(len);
+    console.log("set");
+    return buf.map(() => Math.floor(Random.getRandomBytes(1)[0] * 256));
+  });
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
@@ -61,7 +63,6 @@ const SignIn = () => {
   }, [fontsLoaded]);
 
 if (!fontsLoaded) {
-    console.log('fail to load');
     return null;
 }
 

@@ -57,7 +57,6 @@ const Upload = () => {
       }, [fontsLoaded]);
 
       if (!fontsLoaded) {
-        console.log('fail to load');
         return null;
       }
 
