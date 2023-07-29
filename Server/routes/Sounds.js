@@ -1,14 +1,14 @@
 const { Router } = require('express');
 const router = Router();
-const { User } = require("../models")
-const { Sound } = require("../models")
+const { User, Sound } = require("../models")
+// const { Sound } = require("../models")
 
 
 router.get("/", (req, res) => {
     res.json("Test");
 })
 
-router.get("/:id/like"), (req, res) => {
+router.get("/like/:id"), (req, res) => {
   const id = req.params.id;
   Sound.increment({numLikes: 1}, {where: {id: id} }).then((result) => {
     if(result) {
@@ -19,7 +19,7 @@ router.get("/:id/like"), (req, res) => {
   })
 }
 
-router.get("/:id/unlike"), (req, res) => {
+router.get("/unlike/:id"), (req, res) => {
   const id = req.params.id;
   Sound.increment({numLikes: -1}, {where: {id: id} }).then((result) => {
     if(result) {
@@ -29,26 +29,6 @@ router.get("/:id/unlike"), (req, res) => {
     }
   })
 }
-
-//get user attribute at id
-router.get('/:id/:attribute', (req, res) => {
-    const id = req.params.id;
-    const attribute = req.params.attribute;
-  
-    User.findByPk(id, {
-      attributes: [attribute] // Pass the attribute dynamically
-    })
-      .then((result) => {
-        if (result) {
-          res.json(result);
-        } else {
-          res.status(404).json({ error: 'Record not found' });
-        }
-      })
-      .catch((error) => {
-        res.status(500).json({ error: 'Internal server error' });
-      });
-  });
 
   //post request for user
 router.post("/", async (req, res) => {
