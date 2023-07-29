@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     res.json("Test");
 })
 
-router.get("/like/:id"), (req, res) => {
+router.get("/thumbsup/:id"), (req, res) => {
   const id = req.params.id;
   Sound.increment({numLikes: 1}, {where: {id: id} }).then((result) => {
     if(result) {
