@@ -10,9 +10,24 @@ router.get("/", (req, res) => {
 
 router.get("/:id/like"), (req, res) => {
   const id = req.params.id;
-  Sound.findByPk(id, {
-    
-  });
+  Sound.increment({numLikes: 1}, {where: {id: id} }).then((result) => {
+    if(result) {
+      res.json(result)
+    } else {
+      res.status(500).json({error: "Internal Server Error"});
+    }
+  })
+}
+
+router.get("/:id/unlike"), (req, res) => {
+  const id = req.params.id;
+  Sound.increment({numLikes: -1}, {where: {id: id} }).then((result) => {
+    if(result) {
+      res.json(result)
+    } else {
+      res.status(500).json({error: "Internal Server Error"});
+    }
+  })
 }
 
 //get user attribute at id
