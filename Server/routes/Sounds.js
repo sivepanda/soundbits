@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     res.json("Test");
 })
 
-router.get("/thumbsup/:id"), (req, res) => {
+router.get("/thumbsup/:id", (req, res) => {
   const id = req.params.id;
   Sound.increment({numLikes: 1}, {where: {id: id} }).then((result) => {
     if(result) {
@@ -17,9 +17,9 @@ router.get("/thumbsup/:id"), (req, res) => {
       res.status(500).json({error: "Internal Server Error"});
     }
   })
-}
+})
 
-router.get("/unlike/:id"), (req, res) => {
+router.get("/unlike/:id", (req, res) => {
   const id = req.params.id;
   Sound.increment({numLikes: -1}, {where: {id: id} }).then((result) => {
     if(result) {
@@ -28,7 +28,7 @@ router.get("/unlike/:id"), (req, res) => {
       res.status(500).json({error: "Internal Server Error"});
     }
   })
-}
+})
 
   //post request for user
 router.post("/", async (req, res) => {
