@@ -32,7 +32,7 @@ jobs:
               env:
                 HOSTNM: ${{secrets.HOSTNM}}
                 AWS_USR: ${{secrets.AWS_USR}}
-                PASS: ${{secrets.pass}}
+                PASS: ${{secrets.PASS}}
                 AWS_DB: ${{secrets.AWS_DB}}
               with:
                 host: ${{ secrets.AZN_HST }}
