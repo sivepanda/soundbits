@@ -1,0 +1,14 @@
+version: '4.11'
+services:
+  app:
+    container_name: soundbitsserver
+    build: .
+    restart: always
+    
+    secrets:
+      - environment-secrets
+
+      
+secrets:
+  environment-secrets:
+    file: ./.env
