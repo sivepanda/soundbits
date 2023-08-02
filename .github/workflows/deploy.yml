@@ -43,7 +43,7 @@ jobs:
                   docker stop soundbitsserver || true
                   docker rm soundbitsserver || true
                   docker pull ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
-                  docker run -d --name soundbitsserver -p 3000:3000 --env-file .env ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
+                  docker run -d --name soundbitsserver -p 3000:3000 --mount=type=secret,id=_env,dst=/home/ubuntu/.env ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
 
 
 
