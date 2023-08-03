@@ -38,7 +38,7 @@ jobs:
                   docker stop soundbitsserver || true
                   docker rm soundbitsserver || true
                   docker pull ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
-                  docker run -d --name soundbitsserver sleep infinity -p 3000:3000 --env-file .env ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
+                  docker run -d --name soundbitsserver -p 3000:3000 --env-file .env ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }} sleep infinity
 
 
 
