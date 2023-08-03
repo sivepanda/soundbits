@@ -34,6 +34,12 @@ router.get("/mostliked", (req, res) => {
   Sound.findAll({
     order: [['numLikes','DESC']],
     limit: 5
+  }).then((result) => {
+    if(result) {
+      res.json(result)
+    } else {
+      res.status(500).json({error: "Internal Server Error"});
+    }
   }) 
 })
 
