@@ -130,7 +130,7 @@ const Upload = () => {
 
 
       {/* ----------------------------- Username input ----------------------------- */}
-      <View style={styles.inputContainer}>
+      <View style={(sounduri ? styles.inputContainer : styles.none)}>
         <TextInput
           style={styles.input}
           placeholder='Sound Name'
@@ -140,15 +140,12 @@ const Upload = () => {
         { /* ---------------------------- Password input ---------------------------- */}
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => startRecording()}>
-        <Text style={styles.buttonText}>Record</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => stopRecording()}>
-        <Text style={styles.buttonText}>Stop Recording</Text>
+      <TouchableOpacity style={styles.button} onPress={() => (recording ? stopRecording() : startRecording())}>
+        <Text style={styles.buttonText}>{recording ? "Stop Recording" : "Record"}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => uploadSound()}>
-        <Text style={styles.buttonText}>Upload</Text>
+      <TouchableOpacity style={(sounduri ? styles.button : styles.none)} onPress={() => uploadSound()}>
+        <Text style={styles.buttonText}>{sounduri ? "Upload" : "hmm"}</Text>
       </TouchableOpacity>
 
       <StyledView tw='mt-[51vh]' style={{ marginTop: 'auto' }}>
@@ -168,6 +165,9 @@ const Upload = () => {
 /* -------------------------------------------------------------------------- */
 
 const styles = StyleSheet.create({
+  none: {
+    display: 'none',
+  },
   container: {
     flex: 1,
     backgroundColor: '#000',

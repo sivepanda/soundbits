@@ -30,6 +30,13 @@ router.get("/unlike/:id", (req, res) => {
   })
 })
 
+router.get("/mostliked", (req, res) => {
+  Sound.findAll({
+    order: [[sequelize.col(numLikes),'DESC']],
+    limit: 5
+  }) 
+})
+
   //post request for user
 router.post("/", async (req, res) => {
     const post = req.body;
