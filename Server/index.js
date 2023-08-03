@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
-console.log(process.env.PASS ? "true" : "false")
+console.log(process.env.AWS_USR)
 
 app.use(express.json());
 app.use(cors());
