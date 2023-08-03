@@ -3,6 +3,10 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require('body-parser');
 
+require('dotenv').config();
+
+console.log(process.env.PASS ? "true" : "false")
+
 app.use(express.json());
 app.use(cors());
 
