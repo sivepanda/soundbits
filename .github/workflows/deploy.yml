@@ -29,11 +29,6 @@ jobs:
 
             - name: Deploy to EC2 Instance
               uses: appleboy/ssh-action@master
-              env:
-                HOSTNM: ${{secrets.HOSTNM}}
-                AWS_USR: ${{secrets.AWS_USR}}
-                PASS: ${{secrets.PASS}}
-                AWS_DB: ${{secrets.AWS_DB}}
               with:
                 host: ${{ secrets.AZN_HST }}
                 username: ${{ secrets.AZN_AK }}
@@ -43,7 +38,7 @@ jobs:
                   docker stop soundbitsserver || true
                   docker rm soundbitsserver || true
                   docker pull ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
-                  docker run -d --name soundbitsserver -p 3000:3000 --mount=type=secret,id=_env,dst=/home/ubuntu/.env ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
+                  docker run -d --name soundbitsserver -p 3000:3000 --env-file .env ${{ secrets.DOCK_UNAME }}/soundbitsserver:${{ github.sha }}
 
 
 
