@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
-console.log(process.env.AWS_USR)
+console.log(process.env.AWS_USR.replace(/['"]/g, ''))
 
 app.use(express.json());
 app.use(cors());
