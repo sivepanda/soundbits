@@ -41,9 +41,9 @@ const Sound = (props) => {
         if (props.src) {
             sound ? await sound.unloadAsync() : null;
             console.log('Loading Sound');
-            const source = '../assets/' + props.src;
+            const source = props.src;
             console.log('../assets/' + props.src + ' 111 ' + source);
-            const { sound } = await Audio.Sound.createAsync(require('../assets/meta.mp3'));
+            const { sound } = await Audio.Sound.createAsync({uri: source});
             Audio.setAudioModeAsync({
                 allowsRecordingIOS: false,
                 playsInSilentModeIOS: true,

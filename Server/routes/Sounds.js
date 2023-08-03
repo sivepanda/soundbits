@@ -46,7 +46,7 @@ router.get("/mostliked", (req, res) => {
   //post request for user
 router.post("/", async (req, res) => {
     const post = req.body;
-    if (await User.findByPk(post.userId)) {
+    if (await User.findByPk(post.UserId)) {
       await Sound.create(post);
       res.json(post);
     } else {

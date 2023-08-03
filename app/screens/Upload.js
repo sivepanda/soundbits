@@ -77,7 +77,6 @@ const Upload = () => {
     var rand = parseInt(Math.random() * 10000000);
     const fileName = (soundName ? (soundName) : 'sound') + rand + '.m4a';
 
-    console.log(fileName, sounduri);
 
     if (sounduri) {
       //upload file to S3 instance
@@ -85,7 +84,6 @@ const Upload = () => {
         const fileData = toByteArray(await FileSystem.readAsStringAsync(sounduri, {
           encoding: FileSystem.EncodingType.Base64,
         }));
-        console.log(fileData);
         const params = {
           Bucket: bucketName,
           Key: fileName,
@@ -98,6 +96,9 @@ const Upload = () => {
       } catch (error) {
         console.error('Error uploading file:', error);
       }
+
+      console.log(soundName, fileName, activeUser);
+
 
       //update database
       Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/sounds", {
