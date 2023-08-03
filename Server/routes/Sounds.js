@@ -32,7 +32,7 @@ router.get("/unlike/:id", (req, res) => {
 
 router.get("/mostliked", (req, res) => {
   Sound.findAll({
-    order: [[sequelize.col(numLikes),'DESC']],
+    order: [['numLikes','DESC']],
     limit: 5
   }) 
 })
