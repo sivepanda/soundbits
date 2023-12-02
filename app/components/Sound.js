@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'Syne',
         fontWeight: 600,
+        width: 150,
         color: 'white',
     },
     auth: {
