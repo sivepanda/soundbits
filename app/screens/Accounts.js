@@ -63,7 +63,7 @@ const Accounts = () => {
     });
 
     if (!result.cancelled) {
-      Axios.post('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/changePfp/' + currentUser + '/' + result.uri, {});
+      Axios.post('http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/changePfp/' + currentUser + '/' + result.uri, {});
       navigation.navigate('accounts', {});
     }
   };
@@ -79,8 +79,8 @@ const Accounts = () => {
     useEffect(() => {
       SecureStore.getItemAsync("uID").then((userID)=> {
         console.log(userID)
-        console.log('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/getUsrInfo')
-        Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/' + userID + '/getUsrInfo').then(async (response) =>{
+        console.log('http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/users/' + userID + '/getUsrInfo')
+        Axios.get('http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/users/' + userID + '/getUsrInfo').then(async (response) =>{
           console.log(response.data.username)
           setUsername(response.data.username);
           setNumLikes(response.data.numLikes);
