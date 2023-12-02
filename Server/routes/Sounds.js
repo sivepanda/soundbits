@@ -35,8 +35,7 @@ router.get("/mostliked", (req, res) => {
     order: [['numLikes','DESC']],
     limit: 5,
     include: [{
-      model: User,
-      as: 'user'
+      model: User
     }]
   }).then((result) => {
     if(result) {
