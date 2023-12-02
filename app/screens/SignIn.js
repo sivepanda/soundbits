@@ -32,12 +32,12 @@ const SignIn = () => {
     
     
     //make a get request to get user info, store ID to local storage
-    Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{
+    Axios.get('http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/users/getId/' + username).then(async (response) =>{
       // var x = JSON.parse(response.data.uID);
-      console.log(username, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword)
+      console.log(username, (await Axios.get("http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword)
       //encrypt / hash
-      bcrypt.compare(password, (await Axios.get("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, async function(err, res) {
-        console.log(password, "\n", "http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
+      bcrypt.compare(password, (await Axios.get("http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")).data.userPassword, async function(err, res) {
+        console.log(password, "\n", "http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/users/"+ response.data + "/userPassword")  
         if(res) {
           SecureStore.setItemAsync("uID", String(response.data)).then((r) => {
             console.log(r);

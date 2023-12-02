@@ -121,7 +121,7 @@ function Home() {
 
     //dynamically load user info and populate divs
     useEffect(() => {
-        Axios.get('http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/sounds/mostliked').then(async (response) => {
+        Axios.get('http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/sounds/mostliked').then(async (response) => {
             console.log(response.data);
             console.log(response.data[1].UserId);
             setSoundList(response.data);

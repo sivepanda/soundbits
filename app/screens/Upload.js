@@ -101,7 +101,7 @@ const Upload = () => {
 
 
       //update database
-      Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/sounds", {
+      Axios.post("http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/sounds", {
         name: soundName,
         genre: 'undefined',
         url: 'https://soundbits-master.s3.amazonaws.com/' + fileName,

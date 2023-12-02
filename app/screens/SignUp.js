@@ -29,7 +29,7 @@ const SignUp = () => {
     const handleSignUp = () => {
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(password, salt, function(err, hash) { //hash new password and post it to db
-                Axios.post("http://ec2-54-235-233-148.compute-1.amazonaws.com:3000/users", {
+                Axios.post("http://ec2-18-212-20-211.compute-1.amazonaws.com:3000/users", {
                     username: username,
                     email: email,
                     userPassword: hash,
