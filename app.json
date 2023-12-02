@@ -4,11 +4,11 @@
     "slug": "Soundbits",
     "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/bits.png",
     "userInterfaceStyle": "dark",
     "scheme": "soundbits",
     "splash": {
-      "image": "./app/assets/icon.png",
+      "image": "./app/assets/bits.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -32,7 +32,7 @@
       "package": "com.develpandas.Soundbits"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favbits.png"
     },
     "extra": {
       "eas": {

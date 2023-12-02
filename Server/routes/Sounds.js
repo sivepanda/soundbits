@@ -33,7 +33,11 @@ router.get("/unlike/:id", (req, res) => {
 router.get("/mostliked", (req, res) => {
   Sound.findAll({
     order: [['numLikes','DESC']],
-    limit: 5
+    limit: 5,
+    include: [{
+      model: User,
+      as: 'user'
+    }]
   }).then((result) => {
     if(result) {
       res.json(result)

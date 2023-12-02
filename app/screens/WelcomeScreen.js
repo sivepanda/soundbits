@@ -51,7 +51,7 @@ function WelcomeScreen() {
     return (
         <StyledView style={styles.viewContainer} tw="bg-black" onLayout={onLayoutRootView}>
             
-            <StyledImage source={require('../assets/icon.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
+            <StyledImage source={require('../assets/bits.png')} tw='bg-contain w-[40vw] h-[40vw]'/>
             <StyledText style={styles.headTex} tw='text-white text-3xl'>Soundbits</StyledText> 
             
             <StyledView style={styles.ContainerBtnView}>

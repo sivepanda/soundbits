@@ -69,7 +69,7 @@ const SignUp = () => {
         <View style={styles.container}>
 
             <Image
-                source={require('../assets/icon.png')}
+                source={require('../assets/bits.png')}
                 style={styles.logo}
             />
 

@@ -74,7 +74,7 @@ if (!fontsLoaded) {
     <View style={styles.container}>
      
       <Image
-        source={require('../assets/icon.png')}
+        source={require('../assets/bits.png')}
         style={styles.logo}
       />
       <StyledText style={styles.itle} tw='text-white'>Sign In</StyledText>
